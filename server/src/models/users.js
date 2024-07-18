@@ -10,10 +10,13 @@ const userSchema = new Schema({
       enum : ['Male','Female','Others'],
       default: 'Male'
   },
+  role: {
+    type: String,
+    enum : ['Seller','Buyer','Admin'],
+    default: 'Buyer'
+},
   email: String,
-  username:String,
-  password: String, 
-  confirmPassword: String
+  password: String 
 });
 const User = mongoose.model('User', userSchema);
 module.exports = User
