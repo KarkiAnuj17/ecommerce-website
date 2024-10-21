@@ -1,6 +1,6 @@
-const product =require('../models/product')
-const productSchema = (req, res) => {
-  product.create(req.body)
+const Product = require('../models/products');
+const addNewProduct = (req, res) => {
+  Product.create(req.body)
   res.send("ok created");
 }
-module.exports ={productSchema}
+module.exports ={addNewProduct}

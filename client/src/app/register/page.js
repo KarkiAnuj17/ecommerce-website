@@ -124,16 +124,15 @@ const Register = () => {
             value={formik.values.phoneNumber}
             placeholder={"Enter your phone number"}
           />
-          <RadioGroup label=" Select Gender">
-            <div className='flex gap-5'>
-              <Radio value="Male">Male</Radio>
-              <Radio value="Female">Female</Radio>
-              <Radio value="Others">Others</Radio>
-            </div>
-         
-          </RadioGroup>
-          <label htmlFor="role">Role</label>
+          <h2 className='p-1 font-mono text-base'>Gender</h2>
+    <RadioGroup  onChange={(e)=>formik.setFieldValue('gender', e.target.defaultValue)}>
+      <Radio value="Male">Male</Radio>
+      <Radio value="Female">Female</Radio>
+      <Radio value="Other">Other</Radio>
+    </RadioGroup>
 
+    <h2 className='p-1 font-mono text-base'>Role</h2>
+          
 <Select name="role" onChange={(e)=>formik.setFieldValue('role', e.target.value)}>
     <SelectItem key="Buyer">Buyer</SelectItem>
     <SelectItem key="Seller">Seller</SelectItem>
