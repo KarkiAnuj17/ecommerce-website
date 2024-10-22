@@ -1,10 +1,11 @@
-import CustomNavbar from '@/component/navbar/page'
-import React from 'react'
+import CustomNavbar from '@/component/navbar/page';
+import { Button } from "@nextui-org/react";
+import React from 'react';
 
-const homepage = () => {
+const Homepage = () => {
   return (
-    <CustomNavbar/>
-  )
-}
+      <CustomNavbar /> 
+  );
+};
 
-export default homepage
+export default Homepage;

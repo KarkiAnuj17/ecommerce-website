@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = { 
+  reactStrictMode: true,
+  images: {
+    domains: ['imgs.search.brave.com'], 
+  },};
 
 export default nextConfig;
