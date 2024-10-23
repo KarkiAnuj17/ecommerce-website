@@ -3,12 +3,8 @@ import { Card, CardBody, CardFooter, CircularProgress } from '@nextui-org/react'
 import Image from 'next/image'
 import React from 'react'
 import { useRouter } from 'next/navigation'
-import CustomNavbar from '@/component/navbar/page'
-import {Tabs, Tab} from "@nextui-org/react"; 
+import ProductCatogories from './catogories/page'
 
-const variants = [
-  "light",
-];
 
 const productList=[
   {id: 1, productName: 'Iphone', image:'https://imgs.search.brave.com/arkTNGlxIlD4XaSOTZbzNu1vCz-2dLszrstRYOJIn7s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS53aXJlZC5jb20v/cGhvdG9zLzY1MDhi/Y2Y0YjYxOTRlYTcw/NTQyNTJiNy9tYXN0/ZXIvd18zMjAsY19s/aW1pdC9pUGhvbmUt/MTUtUmV2aWV3LVRv/cC1HZWFyLmpwZw', price:150000},
@@ -25,28 +21,8 @@ const Product = () => {
   const router = useRouter()
   return (
     <div>
-    <CustomNavbar/>
-    <div>
-    <div className="flex flex-wrap gap-4">
-      {variants.map((variant) => (
-        <Tabs key={variant} variant={variant} aria-label="Tabs variants">
-          <Tab key="Electronics" title="Electronics"/>
-          <Tab key=" Fashion" title=" Fashion"/>
-          <Tab key=" Books" title=" Books"/>
-          <Tab key="Home & Furniture" title="Home & Furniture"/>
-          <Tab key="Beauty & Personal Care" title="Beauty & Personal Care"/>
-          <Tab key="Groceries" title="Groceries"/>
-          <Tab key=" Gifts " title=" Gifts "/>
-          <Tab key=" Toys & Baby Products " title=" Toys & Baby Products "/>
-          <Tab key=" Automotive " title=" Automotive "/>
-          <Tab key=" Pet Supplies " title=" Pet Supplies "/>
-
-        </Tabs>
-      ))}
-    </div>
-    </div>
-    
-    <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 m-3 p-1">
+      <ProductCatogories/>
+    <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 m-1 p-2">
       
       {productList.map((item, index) => (
         <Card shadow="sm" key={index} isPressable onPress={() => console.log("item pressed")}>

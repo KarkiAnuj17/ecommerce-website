@@ -11,7 +11,7 @@ const CustomNavbar = () => {
           </NavbarBrand>
           <NavbarContent className="sm:flex gap-4" >
             <NavbarItem>
-              <Link color="foreground" href="#">
+              <Link color="foreground" href="/">
                 Home
               </Link>
             </NavbarItem>
@@ -21,7 +21,7 @@ const CustomNavbar = () => {
               </Link>
             </NavbarItem>
             <NavbarItem>
-              <Link color="foreground" href="#">
+              <Link color="foreground" href="/website">
                 Contact
               </Link>
             </NavbarItem>
