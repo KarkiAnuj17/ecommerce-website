@@ -32,7 +32,7 @@ const Login = () => {
 
   return (
   <div>  
-    <form onSubmit={formik.handleSubmit} className='flex justify-center items-center m-36'>
+    <form onSubmit={formik.handleSubmit} className='flex justify-center items-center m-18 bg-orange-400'>
       <div className='items-center bg-gray-100 border border-gray-300 m-10 p-4 rounded-3xl'>
         <div className='flex gap-3'>
         

@@ -1,5 +1,7 @@
 import React from "react";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Input, Button } from "@nextui-org/react";
+import { IoMdHeartEmpty } from "react-icons/io";
+import { GiShoppingCart } from "react-icons/gi";
 
 const CustomNavbar = () => {
   return (
@@ -30,27 +32,33 @@ const CustomNavbar = () => {
                 id="search"
                 name="search"
                 type="text"
-                placeholder={"Search...⌕"}
+                placeholder={"Search..."}
               />
             </NavbarItem>
             <NavbarItem>
               <Link color="foreground" href="#">
-              ❤Favourites
+              <IoMdHeartEmpty/>Favourites
               </Link>
             </NavbarItem>
             <NavbarItem>
               <Link color="foreground" href="#">
-              🛒Cart
+              <GiShoppingCart/>Cart
               </Link>
             </NavbarItem>
             </NavbarContent>
           <NavbarContent  justify="end">
             <NavbarItem className="lg:flex">
-              <Button className="bg-slate-100 h-8 w-8" href="/">Login</Button>
+              <Link href="/login">
+              <Button className="bg-slate-100 h-8 w-8">Login</Button>
+              </Link>
+
             </NavbarItem>
             <NavbarItem >
-              <Button className="bg-slate-100  h-8 w-8" href="/register">Sign up</Button>
+            <Link  href="/register">
+              <Button className="bg-slate-100  h-8 w-8">Sign up</Button>
+              </Link>
             </NavbarItem> 
+            
             
         </NavbarContent>
         </Navbar>

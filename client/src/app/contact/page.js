@@ -3,6 +3,9 @@ import CustomNavbar from '@/component/navbar/header/page';
 import { Input, Button, Textarea, CardBody, Card } from '@nextui-org/react';
 import Image from 'next/image';
 import React from 'react';
+import { CiLocationOn } from "react-icons/ci";
+import { IoCallOutline } from "react-icons/io5";
+import { HiOutlineMail } from "react-icons/hi";
 
 const Website = () => {
   return (
@@ -55,7 +58,8 @@ const Website = () => {
       <div className="flex flex-row  font-serif justify-center gap-4 p-8">
         <Card className="p-4 m-4 w-60 h-45 border border-inherit break-words">
           <div className="flex justify-center">
-            <p className="text-6xl">📞</p>
+            <p className="text-6xl"><IoCallOutline/>
+            </p>
           </div>
           <p className="flex justify-center font-bold">Talk to the sales</p>
           <p className="m-1 p-3">Just pick up a phone to chat with a member of the team</p>
@@ -64,7 +68,7 @@ const Website = () => {
 
   <Card className="p-4 m-4 w-60 h-45 border border-inherit break-words">
     <div className="flex justify-center">
-        <p className="text-6xl">📍</p>
+        <p className="text-6xl"><CiLocationOn/></p>
     </div>
     <p className="flex justify-center font-bold">Find Us</p>
     <p className="m-1 p-3">Visit our nearest office for direct assistance</p>
@@ -74,7 +78,7 @@ const Website = () => {
   
   <Card className="p-4 m-4 w-60 h-45 border border-inherit break-words">
     <div className="flex justify-center">
-        <p className="text-6xl">📧</p>
+        <p className="text-6xl"><HiOutlineMail /></p>
     </div>
     <p className="flex justify-center font-bold">Email Us</p>
     <p className="m-1 p-3">Send us an email and we’ll get back to you shortly</p>

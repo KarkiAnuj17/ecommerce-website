@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import React from 'react'
-
+import { FaFacebook } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 const FooterNavbar = () => {
   return (
     <div className="font-serif">
@@ -21,18 +23,16 @@ const FooterNavbar = () => {
         </div>
         <div className="flex flex-col">
   <a className="font-bold ">Stay Connected</a>
-  <div className="flex flex-row items-center gap-2">
+  <div className="flex flex-row  text-xl	items-center gap-2">
     <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-      <Image src="/facebook.png" width={50} height={50}/>
+    <FaFacebook />
     </a>
-    <div className=" flex gap-4">
     <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-      <Image src="/instagram.jpg" width={30} height={50} className="border border-solid rounded-full"/>
-    </a>
+    <FaInstagram />   
+     </a>
     <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
-      <Image src="/x.jpg" width={30} height={50} className="border border-solid rounded-full"/>
-    </a>
-    </div>
+    <FaXTwitter />   
+     </a>
   </div>
 </div>
 

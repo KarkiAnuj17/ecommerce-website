@@ -4,7 +4,8 @@ import Image from 'next/image'
 import React from 'react'
 import { useRouter } from 'next/navigation'
 import ProductCatogories from './catogories/page'
-
+import { IoMdHeartEmpty } from "react-icons/io";
+import { GiShoppingCart } from "react-icons/gi";
 
 const productList=[
   {id: 1, productName: 'Iphone', image:'https://imgs.search.brave.com/arkTNGlxIlD4XaSOTZbzNu1vCz-2dLszrstRYOJIn7s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS53aXJlZC5jb20v/cGhvdG9zLzY1MDhi/Y2Y0YjYxOTRlYTcw/NTQyNTJiNy9tYXN0/ZXIvd18zMjAsY19s/aW1pdC9pUGhvbmUt/MTUtUmV2aWV3LVRv/cC1HZWFyLmpwZw', price:150000},
@@ -42,9 +43,9 @@ const Product = () => {
             <b>{item.productName}</b>
             <b>Rs{item.price}</b>
             </div>
-            <div className="flex  gap-4">
-            <p >❤</p>
-            <p >🛒</p>
+            <div className="flex  gap-4 text-xl">
+            <p ><IoMdHeartEmpty /></p>
+            <p ><GiShoppingCart /></p>
             </div>
 
 
