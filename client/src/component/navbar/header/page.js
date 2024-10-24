@@ -21,7 +21,7 @@ const CustomNavbar = () => {
               </Link>
             </NavbarItem>
             <NavbarItem>
-              <Link color="foreground" href="/website">
+              <Link color="foreground" href="/contact">
                 Contact
               </Link>
             </NavbarItem>

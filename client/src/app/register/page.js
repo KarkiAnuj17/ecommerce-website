@@ -1,8 +1,7 @@
 'use client'
 import React from 'react'
-import { Badge, Avatar, Input, Button, Divider, DateInput, Select, SelectItem } from "@nextui-org/react";
+import { Input, Button, Divider, DateInput, Select, SelectItem } from "@nextui-org/react";
 import { RadioGroup, Radio } from "@nextui-org/react";
-import { CalendarDate } from "@internationalized/date";
 import Link from 'next/link';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -13,32 +12,32 @@ const Register = () => {
     username: Yup.string()
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
-      .required('*Required'),
+      .required('*'),
     password: Yup.string()
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
-      .required('*Required'),
+      .required('*'),
       
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Password should match')
-      .required('*Required'),
+      .required('*'),
 
-    firstname: Yup.string()
+    firstName: Yup.string()
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
-      .required('*Required'),
+      .required('*'),
 
-    lastname: Yup.string()
+    lastName: Yup.string()
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
-      .required('*Required'),
+      .required('*'),
 
-    phonenumber: Yup.string()
+    phoneNumber: Yup.string()
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
-      .required('*Required'),
+      .required('*'),
       
-    email: Yup.string().email('Invalid email').required('*Required'),
+    email: Yup.string().email('Invalid email').required('*'),
   });
 
   const formik = useFormik({
@@ -52,6 +51,7 @@ const Register = () => {
       password: '',
       confirmPassword: ''
     },
+    validationSchema: loginSchema,
     onSubmit: values => {
       registerUser(values)
     },
@@ -81,8 +81,12 @@ const Register = () => {
         <form onSubmit={formik.handleSubmit}>
           <div className='flex'>
             <div className='flex-col'>
+              <div className="flex flex-row items-center space-x-2">
               <h2 className='p-1 font-mono text-base'>First Name</h2>
+              <div className="text-red-600 text-sm">
               {formik.errors.firstName }
+              </div>
+              </div>
               <Input
                 id="firstName"
                 name="firstName"
@@ -104,8 +108,13 @@ const Register = () => {
               />
             </div>
           </div>
-          <h2 className='p-1 font-mono text-base'>Last Name</h2>
-          {formik.errors.lastName }
+          <div className="flex flex-row items-center space-x-2">
+            <h2 className='p-1 font-mono text-base'>Last Name</h2>
+            <div className="text-red-600 text-sm">
+            {formik.errors.lastName }
+            </div>
+          </div>
+          
           <Input
             id="lastName"
             name="lastName"
@@ -114,8 +123,12 @@ const Register = () => {
             value={formik.values.lastName}
             placeholder={"Enter your lastname"}
           />
+          <div className="flex flex-row items-center space-x-2">
           <h2 className='p-1 font-mono text-base'>Phone Number</h2>
-          {formik.errors.phoneNumber}
+            <div className="text-red-600 text-sm">
+            {formik.errors.phoneNumber}
+            </div>
+          </div>
           <Input
             id="phoneNumber"
             name="phoneNumber"
@@ -147,28 +160,42 @@ const Register = () => {
             value={formik.values.username}
             placeholder={"Enter your username"}
           /> */}
-          <h2 className='p-1 font-mono text-base'>Email</h2>
-          {formik.errors.email }
-          <Input
-            id="email"
-            name="email"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.email}
-            placeholder={"Enter your email"}
-          />
-          <h2 className='p-1 font-mono text-base'>Password</h2>
-          {formik.errors.password}
-          <Input
-            id="password"
-            name="password"
-            type="password"
-            onChange={formik.handleChange}
-            value={formik.values.password}
-            placeholder={"Enter your password"}
-          />
-          <h2 className='p-1 font-mono text-base'>Confirm Password</h2>
+          <div className="flex flex-row items-center space-x-2">
+        <h2 className="p-1 font-mono text-base">Email</h2>
+      <div className="text-red-600 text-sm">
+      {formik.errors.email}
+    </div>
+   </div>
+        <Input
+          id="email"
+          name="email"
+          type="text"
+          onChange={formik.handleChange}
+          value={formik.values.email}
+          placeholder={"Enter your email"}
+        />
+        <br />
+        <div className="flex flex-row items-center space-x-2">
+        <h2 className="p-1 font-mono text-base">Password</h2>
+      <div className="text-red-600 text-sm">
+      {formik.errors.password}
+    </div>
+   </div>
+        <Input
+          id="password"
+          name="password"
+          type="password"
+          onChange={formik.handleChange}
+          value={formik.values.password}
+          placeholder={"Enter your password"}
+        />
+        <br />
+        <div className="flex flex-row items-center space-x-2">
+        <h2 className='p-1 font-mono text-base'>Confirm Password</h2>
+          <div className="text-red-600 text-sm">
           {formik.errors.confirmPassword }
+          </div>
+        </div>
           <Input
             id="confirmPassword"
             name="confirmPassword"

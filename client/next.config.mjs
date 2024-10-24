@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = { 
-  reactStrictMode: true,
   images: {
-    domains: ['imgs.search.brave.com'], 
-  },};
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'imgs.search.brave.com',
+        port: '',
+        pathname: '/**',
+      },],},};
 
 export default nextConfig;
