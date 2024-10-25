@@ -1,10 +1,10 @@
 'use client'
-import { Card, CardBody, CardFooter, CircularProgress } from '@nextui-org/react'
+import { Button, Card, CardBody, CardFooter, CircularProgress } from '@nextui-org/react'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import ProductCatogories from './catogories/page'
-import { IoMdHeartEmpty } from "react-icons/io";
+import { FaHeart } from "react-icons/fa";
 import { GiShoppingCart } from "react-icons/gi";
 
 const productList=[
@@ -20,6 +20,7 @@ const productList=[
 
 const Product = () => {
   const router = useRouter()
+  const [isLiked,setIsLiked]= useState(false)
   return (
     <div>
       <ProductCatogories/>
@@ -44,11 +45,9 @@ const Product = () => {
             <b>Rs{item.price}</b>
             </div>
             <div className="flex  gap-4 text-xl">
-            <p ><IoMdHeartEmpty /></p>
+            <p onClick={()=>setIsLiked(!isLiked)}><FaHeart  color={isLiked?"red":"gray"}/></p>
             <p ><GiShoppingCart /></p>
             </div>
-
-
           </CardFooter>
         </Card>
       ))}

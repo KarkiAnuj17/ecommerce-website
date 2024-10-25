@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import {Tabs, Tab} from "@nextui-org/react"; 
 import { useRouter } from 'next/navigation';
 
@@ -9,10 +9,17 @@ const variants = [
 
 const ProductCatogories = () => {
   const router = useRouter()
+  const [selectedTab, setSelectedTab] = useState("All");
   return (
     <div className="flex flex-wrap gap-4">
       {variants.map((variant) => (
-        <Tabs key={variant} variant={variant} aria-label="Tabs variants">
+          <Tabs
+          key={variant}
+          variant={variant}
+          aria-label="Tabs variants"
+          selectedKey={selectedTab} 
+          onSelectionChange={setSelectedTab} 
+          >      
           <Tab key="All" title="All"/>
           <Tab key="Electronics" title="Electronics"/>
           <Tab key=" Fashion" title=" Fashion"/>
