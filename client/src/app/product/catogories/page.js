@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import {Tabs, Tab} from "@nextui-org/react"; 
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const variants = [
   "light",
