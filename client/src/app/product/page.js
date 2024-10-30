@@ -23,8 +23,7 @@ const Product = () => {
   const [isLiked,setIsLiked]= useState(false)
   return (
     <div>
-      <ProductCatogories/>
-    <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 m-1 p-2">
+    <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 m-2 p-2">
       
       {productList.map((item, index) => (
         <Card shadow="sm" key={index} isPressable onPress={() => console.log("item pressed")}>

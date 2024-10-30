@@ -10,8 +10,8 @@ import { HiOutlineMail } from "react-icons/hi";
 const Website = () => {
   return (
     
-    <div className="flex flex-col font-serif bg-orange-400"><CustomNavbar/>
-      <div className="flex flex-col font-serif lg:flex-row p-8  bg-orange-400">
+    <div className="flex flex-col font-serif bg-gray-200"><CustomNavbar/>
+      <div className="flex flex-col font-serif lg:flex-row p-8  bg-gray-200">
         <Image
           src="https://imgs.search.brave.com/Me3qtPcpYRq9drnYiGoWb6GXRM9_xuvOwjLMpeqDJkg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9idXJz/dC5zaG9waWZ5Y2Ru/LmNvbS9waG90b3Mv/Y29udGFjdC11cy1p/bWFnZS5qcGc_d2lk/dGg9MTAwMCZmb3Jt/YXQ9cGpwZyZleGlm/PTAmaXB0Yz0w"
           alt="Contact Us"
@@ -51,7 +51,7 @@ const Website = () => {
             width="100%"
             rows={5}
           />
-          <Button className="mt-4 w-full bg-orange-600">Submit</Button>
+          <Button className="mt-4 w-full bg-black text text-white">Submit</Button>
         </div>
       </div>
 

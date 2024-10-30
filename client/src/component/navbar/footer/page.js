@@ -6,8 +6,8 @@ import { FaXTwitter } from "react-icons/fa6";
 const FooterNavbar = () => {
   return (
     <div className="font-serif">
-      <div className=" border border-inherit bg-orange-400">
-        <div className="p-4 m-4 gap-16 flex justify-center break-words bg-orange-400">
+      <div className=" border border-inherit bg-white">
+        <div className="p-4 m-4 gap-16 flex justify-center break-words bg-white">
         <div className="flex flex-col">
           <p className="font-bold">Shop</p>
           <a href="#">Coupons</a>
