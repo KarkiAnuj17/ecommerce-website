@@ -7,9 +7,7 @@ const CustomNavbar = () => {
   return (
     <Navbar className=" bg-white border  p-4 font-serif">
     <NavbarBrand >
-          {/* <p> <img className="w-10 h-10" src="/pexels-jessbaileydesign-1097930.jpg" />
-          </p> */}
-            <p className=" font-extrabold  text-3xl text-inherit">SHOPPING</p>
+            <p><img src='/logo.png' width={150} height={30} alt='Hustle Logo' /></p>
           </NavbarBrand>
           <NavbarContent className="sm:flex gap-4" >
             <NavbarItem>

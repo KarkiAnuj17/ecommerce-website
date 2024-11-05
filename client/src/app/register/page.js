@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 
 const Register = () => {
-  const loginSchema = Yup.object().shape({
+  const userSchema = Yup.object().shape({
     username: Yup.string()
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
@@ -51,12 +51,12 @@ const Register = () => {
       password: '',
       confirmPassword: ''
     },
-    validationSchema: loginSchema,
+    validationSchema: userSchema,
     onSubmit: values => {
       registerUser(values)
     },
   });
-  const registerUser =async (values)=>{
+  const registerUser = async (values)=>{
     const {data}= await  axios.post(`${process.env.NEXT_PUBLIC_API_URL}/register`, values)
     if(data) alert("registered successfully")
     }
@@ -64,10 +64,10 @@ const Register = () => {
     <div className='flex justify-center items-center m-36'>
       <div className='items-center bg-gray-100 border border-gray-300 m-10 p-4 rounded-3xl'>
         <div className='flex gap-3'>
-          <img src='/eazymall.png' width={110} height={30} alt='Hustle Logo' />
+          <img src='/logo.png' width={170} height={30} alt='Hustle Logo' />
           <div className="max-w-md">
             <div className="space-y-1">
-              <h1 className="font-serif font-bold text-5xl">Hustle</h1>
+              <h1 className="font-serif font-bold text-5xl">REDSTORE</h1>
             </div>
             <Divider className="my-4" />
             <div className="font-mono text-3xl font-bold bd-green-500">
@@ -79,7 +79,7 @@ const Register = () => {
         <h2 className='p-1 font-mono text-base'>Please Register your account</h2>
         <br />
         <form onSubmit={formik.handleSubmit}>
-          <div className='flex'>
+          <div className='flex gap-3'>
             <div className='flex-col'>
               <div className="flex flex-row items-center space-x-2">
               <h2 className='p-1 font-mono text-base'>First Name</h2>

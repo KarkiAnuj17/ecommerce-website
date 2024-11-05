@@ -4,5 +4,4 @@ const app = Router();
 
 app.post('/register', registerNewUser);
 app.post('/login', loginUser);
-
 module.exports = app;

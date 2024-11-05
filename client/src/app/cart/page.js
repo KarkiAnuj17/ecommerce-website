@@ -16,7 +16,7 @@ const ShoppingCart = () => {
     quantity:1,
     price:100},
   ]
-
+  const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   return (
   <div>
     <CustomNavbar/>
@@ -33,33 +33,21 @@ const ShoppingCart = () => {
                 <p className="text-gray-600 mt-2">${item.price.toFixed(2)}</p>
               </div>
               <div className="flex items-center gap-2">
-                <button
-          className=" text-xl px-2 text-gray-700 bg-gray-200 rounded-full"
-          aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
-        >
-          -
-        </button>
+                <button className="text-xl px-2 text-gray-700 bg-gray-200 rounded-full">-</button>
                 <span>{item.quantity}</span>
-                <button
-          className=" text-xl px-2 text-gray-700 bg-gray-200 rounded-full"
-          aria-label="Increment value"
-          onClick={() => dispatch(increment())}
-        >
-          +
-        </button>              </div>
+                <button className="text-xl px-2 text-gray-700 bg-gray-200 rounded-full">+</button>
+              </div>
               <p className="text-lg font-semibold text-gray-800">${(item.price * item.quantity).toFixed(2)}</p>
               <button className="text-red-500 hover:text-red-700">Remove</button>
             </div>
           ))}
         </div>
-
         <div className="lg:w-1/3">
           <div className="bg-white rounded-lg shadow-md p-6">
             <h3 className="text-2xl font-semibold text-gray-800 mb-4">Order Summary</h3>
             <div className="flex justify-between mb-2">
               <span className="text-gray-600">Subtotal</span>
-              <span className="text-gray-800">$400.00</span>
+              <span className="text-gray-800">${subtotal.toFixed(2)}</span>
             </div>
             <div className="flex justify-between mb-2">
               <span className="text-gray-600">Estimated Shipping</span>
@@ -71,7 +59,7 @@ const ShoppingCart = () => {
             </div>
             <div className="flex justify-between font-bold text-lg mb-6">
               <span>Total</span>
-              <span>$455.00</span>
+              <span>${(subtotal+20+35).toFixed(2) }</span>
             </div>
             <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700">
               Proceed to Checkout

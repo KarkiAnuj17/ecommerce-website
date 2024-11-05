@@ -12,7 +12,7 @@ const ProductCatogories = () => {
   const router = useRouter()
   const [selectedTab, setSelectedTab] = useState("All");
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className="flex flex-wrap gap-4 text-black">
       {variants.map((variant) => (
           <Tabs
           key={variant}
@@ -21,7 +21,7 @@ const ProductCatogories = () => {
           selectedKey={selectedTab} 
           onSelectionChange={setSelectedTab} 
           >      
-          <Tab key="All" title="All"/>
+          <Tab key="All"  title="All"/>
           <Tab key="Electronics" title="Electronics"/>
           <Tab key=" Fashion" title=" Fashion"/>
           <Tab key=" Books" title=" Books"/>

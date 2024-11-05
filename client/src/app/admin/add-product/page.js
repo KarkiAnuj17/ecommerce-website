@@ -10,7 +10,6 @@ import axios from 'axios';
 
 
 const addProducts = () => {
-
   const loginSchema = Yup.object().shape({
     username: Yup.string()
       .min(2, 'Too Short!')
