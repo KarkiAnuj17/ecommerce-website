@@ -23,7 +23,7 @@ const FeaturedProduct = () => {
     <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 m-2 p-2">
       
       {productList.map((item, index) => (
-        <Card shadow="sm" key={index} isPressable onPress={() => console.log("item pressed")}>
+        <Card shadow="sm" key={item.id} isPressable onPress={() => console.log("item pressed")}>
           <CardBody onClick ={()=>router.push('/product/'+item.id)} className=" p-0 ">
 
           <Image
