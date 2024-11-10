@@ -7,12 +7,13 @@ import { CgPerformance } from "react-icons/cg";
 import { FaHistory } from "react-icons/fa";
 import { TbLogout2 } from "react-icons/tb";
 import { User } from '@nextui-org/react';
+import Image from 'next/image';
 
 const Sidebar = () => {
   return (
     <div className="flex">
       <div className="h-screen w-55 flex flex-col bg-gray-100 p-2 shadow-lg overflow-y-auto">
-        <h2 className="text-3xl font-bold font-serif mb-4">SHOPPING</h2>
+        <Image src="/logo.png" width="200" height="50"className="text-3xl font-bold font-serif  mb-4"/>
 
         <div className="mb-8">
           <User
@@ -25,7 +26,7 @@ const Sidebar = () => {
         </div>
 
         <nav className="flex-1 space-y-2">
-          <a href="#" className="flex items-center p-1 text-l rounded-md flex-shrink-0">
+          <a href="/admin/dashboard" className="flex items-center p-1 text-l rounded-md flex-shrink-0">
             <LuLayoutDashboard className="mr-3" />
             Dashboard
           </a>

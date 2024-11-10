@@ -25,7 +25,7 @@ const LatestProduct = () => {
       <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 m-2 p-2">
         {productList.map((item) => (
           <Card shadow="sm" key={item.id} isPressable onPress={() => console.log("item pressed")}>
-            <CardBody onClick={() => router.push('/product/' + item.id)} className="p-0">
+            <CardBody onClick={() => router.push('/products/' + item.id)} className="p-0">
               <Image
                 src={item.image}
                 width={250}

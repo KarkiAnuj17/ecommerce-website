@@ -5,17 +5,11 @@ import FooterNavbar from '@/component/navbar/footer/page';
 import Image from 'next/image';
 import FeaturedProduct from './product/featured-product/page';
 import LatestProduct from './product/latest-product/page';
-import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button} from "@nextui-org/react";
+import { Select, SelectItem} from "@nextui-org/react";
 import { FaArrowRight } from "react-icons/fa";
 
 
 const Homepage = () => {
-  const [selectedKeys, setSelectedKeys] = React.useState(new Set(["Default Sorting"]));
-
-const selectedValue = React.useMemo(
-  () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
-  [selectedKeys]
-);
   return (
     <div className="flex flex-col">
       <CustomNavbar />,
@@ -42,27 +36,18 @@ const selectedValue = React.useMemo(
     <div className="flex justify-between w-full">
       <p>All Products</p>
       <div className="flex justify-end w-1/3">
-        <Dropdown>
-          <DropdownTrigger>
-            <Button variant="bordered" className="capitalize">
-              {selectedValue}
-            </Button>
-          </DropdownTrigger>
-          <DropdownMenu 
-            aria-label="Single selection example"
-            variant="flat"
-            disallowEmptySelection
-            selectionMode="single"
-            selectedKeys={selectedKeys}
-            onSelectionChange={setSelectedKeys}
-          >
-            <DropdownItem key="Default Sorting">Default Sorting</DropdownItem>
-            <DropdownItem key="Sort By price">Sort By price</DropdownItem>
-            <DropdownItem key="Sort by Popularity">Sort by Popularity </DropdownItem>
-            <DropdownItem key="Sort By sale">Sort By sale</DropdownItem>
-            <DropdownItem key="Sort by Rating">Sort by Rating</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
+      <Select
+  selectionMode="single"
+  placeholder="Default Sorting"
+  className="w-2/3 my-3 justify-start"
+>
+  <SelectItem key="Default Sorting">Default Sorting</SelectItem>
+  <SelectItem key="Sort By price">Sort By price</SelectItem>
+  <SelectItem key="Sort by Popularity">Sort by Popularity</SelectItem>
+  <SelectItem key="Sort by Rating">Sort by Rating</SelectItem>
+  <SelectItem key="Sort By sale">Sort By sale</SelectItem>
+</Select>
+
       </div>
     </div>
   </div>

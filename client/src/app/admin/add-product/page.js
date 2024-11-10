@@ -1,47 +1,13 @@
-'use client'
+"use client"
 import React from 'react'
-import { Badge, Avatar, Input, Button, Divider, DateInput, Select, SelectItem } from "@nextui-org/react";
+import { Input, Button, Divider , Select, SelectItem } from "@nextui-org/react";
 import { RadioGroup, Radio } from "@nextui-org/react";
-import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem} from "@nextui-org/react";
-import Link from 'next/link';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import axios from 'axios';
+import ProductList from './product-list';
 
 
 const addProducts = () => {
-  const loginSchema = Yup.object().shape({
-    username: Yup.string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('*Required'),
-    password: Yup.string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('*Required'),
-      
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref('password'), null], 'Password should match')
-      .required('*Required'),
-
-    firstname: Yup.string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('*Required'),
-
-    lastname: Yup.string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('*Required'),
-
-    phonenumber: Yup.string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('*Required'),
-      
-    email: Yup.string().email('Invalid email').required('*Required'),
-  });
-
   const formik = useFormik({
     initialValues: {
       "productName":'', 
@@ -56,18 +22,21 @@ const addProducts = () => {
       addProducts(values)
     },
   });
-  const addProducts =async (values)=>{
+  const addProducts = async (values)=>{
     const {data}= await  axios.post(`${process.env.NEXT_PUBLIC_API_URL}/products`, values)
     if(data) alert("products successfully added")
     }
   return (
-    <div className='flex justify-center items-center m-36'>
+  <div>
+  <ProductList/>
+ <div className='flex justify-center items-center m-18'>
       <div className='items-center bg-gray-100 border border-gray-300 m-10 p-4 rounded-3xl'>
         <div className='flex gap-3'>
-          <img src='/eazymall.png' width={110} height={30} alt='Hustle Logo' />
+
+          <img src='/logo.png' width={180} height={50} alt='Hustle Logo' />
           <div className="max-w-md">
             <div className="space-y-1">
-              <h1 className="font-serif font-bold text-5xl">Hustle</h1>
+              <h1 className="font-serif font-bold text-5xl">RedStore</h1>
             </div>
             <Divider className="my-4" />
             <div className="font-mono text-3xl font-bold bd-green-500">
@@ -149,17 +118,16 @@ const addProducts = () => {
     <SelectItem key="Red">Red</SelectItem>
     <SelectItem key="Blue">Blue</SelectItem>
     <SelectItem key="Green">Green</SelectItem>
-
 </Select>
     </div>
     <br/>
           
           <Button type='submit' className='bg-black p-2 m-2 text-white ' >Add product </Button>
         </form>
-        <br />
-        <h2 className='p-3 font-mono text-base'>Already have an Account? <Link href='/login' className='m-1 text-blue-300'>Sign In</Link> Instead</h2>
       </div>
     </div>
+  </div>
+   
   );
 }
 

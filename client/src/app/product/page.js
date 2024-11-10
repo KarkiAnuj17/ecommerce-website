@@ -1,12 +1,8 @@
 'use client'
-
 import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { Divider } from '@nextui-org/react';
 import FeaturedProduct from './featured-product/page';
 import LatestProduct from './latest-product/page';
-
-
 
 const Product = () => {
   return (
