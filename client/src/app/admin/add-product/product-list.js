@@ -1,5 +1,4 @@
-'use client'; // Add this at the top of your file
-
+'use client';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Card, CardBody, CardFooter, Image } from '@nextui-org/react'; 

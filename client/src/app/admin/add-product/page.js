@@ -1,134 +1,160 @@
-"use client"
-import React from 'react'
-import { Input, Button, Divider , Select, SelectItem } from "@nextui-org/react";
+"use client";
+import React from "react";
+import { Input, Button, Divider, Select, SelectItem } from "@nextui-org/react";
 import { RadioGroup, Radio } from "@nextui-org/react";
-import { useFormik } from 'formik';
-import axios from 'axios';
-import ProductList from './product-list';
+import { useFormik } from "formik";
+import axios from "axios";
+import ProductList from "./product-list";
+import CustomNavbar from "@/component/navbar/header/page";
 
-
-const addProducts = () => {
+const AddProducts = () => {
   const formik = useFormik({
     initialValues: {
-      "productName":'', 
-      "productPrice": 0,
-      "productBrand":'',
-      "stockQuantity":0,
-      "discount":0,
-      "isFeatured":'',
-      "colorOption":[] ,
+      productName: "",
+      productPrice: 0,
+      productBrand: "",
+      stockQuantity: 0,
+      discount: 0,
+      isFeatured: "",
+      colorOption: [],
     },
-    onSubmit: values => {
-      addProducts(values)
+    onSubmit: (values) => {
+      addProducts(values);
     },
   });
-  const addProducts = async (values)=>{
-    const {data}= await  axios.post(`${process.env.NEXT_PUBLIC_API_URL}/products`, values)
-    if(data) alert("products successfully added")
-    }
+
+  const addProducts = async (values) => {
+    const { data } = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_URL}/products`,
+      values
+    );
+    if (data) alert("Product successfully added");
+  };
+
   return (
-  <div>
-  <ProductList/>
- <div className='flex justify-center items-center m-18'>
-      <div className='items-center bg-gray-100 border border-gray-300 m-10 p-4 rounded-3xl'>
-        <div className='flex gap-3'>
+    <div className="min-h-screen bg-gray-50">
+      <CustomNavbar />
 
-          <img src='/logo.png' width={180} height={50} alt='Hustle Logo' />
-          <div className="max-w-md">
-            <div className="space-y-1">
-              <h1 className="font-serif font-bold text-5xl">RedStore</h1>
+      <div className="flex justify-center items-center bg-white py-6 shadow-sm">
+        <h1 className="text-3xl font-bold text-gray-700">Add a New Product</h1>
+      </div>
+
+      <div className="container mx-auto m-3">
+        <div className="bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto">
+          <form onSubmit={formik.handleSubmit}>
+            <div className="grid grid-cols-2 gap-6">
+              <div>
+                <h2 className="text-lg font-medium mb-2">Product Name</h2>
+                <Input
+                  id="productName"
+                  name="productName"
+                  type="text"
+                  onChange={formik.handleChange}
+                  value={formik.values.productName}
+                  placeholder="Enter product name"
+                  className="w-full"
+                />
+              </div>
+
+              <div>
+                <h2 className="text-lg font-medium mb-2">Product Price</h2>
+                <Input
+                  id="productPrice"
+                  name="productPrice"
+                  type="number"
+                  onChange={formik.handleChange}
+                  value={formik.values.productPrice}
+                  placeholder="Enter product price"
+                  className="w-full"
+                />
+              </div>
+
+              <div>
+                <h2 className="text-lg font-medium mb-2">Product Brand</h2>
+                <Input
+                  id="productBrand"
+                  name="productBrand"
+                  type="text"
+                  onChange={formik.handleChange}
+                  value={formik.values.productBrand}
+                  placeholder="Enter product brand"
+                  className="w-full"
+                />
+              </div>
+
+              <div>
+                <h2 className="text-lg font-medium mb-2">Stock Quantity</h2>
+                <Input
+                  id="stockQuantity"
+                  name="stockQuantity"
+                  type="number"
+                  onChange={formik.handleChange}
+                  value={formik.values.stockQuantity}
+                  placeholder="Enter stock quantity"
+                  className="w-full"
+                />
+              </div>
+
+              <div className="col-span-2">
+                <h2 className="text-lg font-medium mb-2">Is Featured?</h2>
+                <RadioGroup
+                  orientation="horizontal"
+                  onChange={(e) =>
+                    formik.setFieldValue("isFeatured", e.target.value === "true")
+                  }
+                  className="space-x-6"
+                >
+                  <Radio value="true">Yes</Radio>
+                  <Radio value="false">No</Radio>
+                </RadioGroup>
+              </div>
+
+              <div>
+                <h2 className="text-lg font-medium mb-2">Discount Price</h2>
+                <Input
+                  id="discount"
+                  name="discount"
+                  type="number"
+                  onChange={formik.handleChange}
+                  value={formik.values.discount}
+                  placeholder="Enter discount price"
+                  className="w-full"
+                />
+              </div>
+
+              <div>
+                <h2 className="text-lg font-medium mb-2">Select Colors</h2>
+                <Select
+                  selectionMode="multiple"
+                  name="colorOption"
+                  placeholder="Select color(s)"
+                  onChange={(e) =>
+                    formik.setFieldValue("colorOption", e.target.value.split(","))
+                  }
+                  className="w-full"
+                >
+                  <SelectItem key="Black">Black</SelectItem>
+                  <SelectItem key="Red">Red</SelectItem>
+                  <SelectItem key="Blue">Blue</SelectItem>
+                  <SelectItem key="Green">Green</SelectItem>
+                </Select>
+              </div>
             </div>
-            <Divider className="my-4" />
-            <div className="font-mono text-3xl font-bold bd-green-500">
-              <div>Add produts</div>
+
+            <div className="mt-6">
+              <Button type="submit" className="bg-black text-white w-full">
+                Add Product
+              </Button>
             </div>
-          </div>
+          </form>
         </div>
-        <br />
-        <br />
-        <form onSubmit={formik.handleSubmit}>
-          <div >
-            <div className='flex-col'>
-              <h2 className='p-1 font-mono text-base'>Product Name</h2>
-              {formik.errors.productName }
-              <Input
-                id="productName"
-                name="productName"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.productName}
-                placeholder={"Enter your Product Name"}
-              />
-            </div>
-            <div className='flex-col'>
-              <h2 className='p-1 font-mono text-base'>Product Price</h2>
-              <Input
-                id="productPrice"
-                name="productPrice"
-                type="Number"
-                onChange={formik.handleChange}
-                value={formik.values.productPrice}
-                placeholder={"Enter your Product Price"}
-              />
-            </div>
-          </div>
-          <h2 className='p-1 font-mono text-base'>Product Brand</h2>
-          {formik.errors.productBrand }
-          <Input
-            id="productBrand"
-            name="productBrand"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.productBrand}
-            placeholder={"Enter your Product Brand"}
-          />
-          <h2 className='p-1 font-mono text-base'>Stock Quantity</h2>
-          {formik.errors.stockQuantity}
-          <Input
-            id="stockQuantity"
-            name="stockQuantity"
-            type="Number"
-            onChange={formik.handleChange}
-            value={formik.values.stockQuantity}
-            placeholder={"Enter your Stock Quantity"}
-          />
-      <h2 className='p-1 font-mono text-base'>Is Featured?</h2>
-<RadioGroup onChange={(e) => formik.setFieldValue('isFeatured', e.target.value === 'true')}>
-  <Radio value="true">Yes</Radio>  
-  <Radio value="false">No</Radio> 
-</RadioGroup>
+      </div>
 
-          <h2 className='p-1 font-mono text-base'>Discount price</h2>
-          {formik.errors.discount }
-          <Input
-            id="discount"
-            name="discount"
-            type="Number"
-            onChange={formik.handleChange}
-            value={formik.values.discount}
-            placeholder={"Enter your discount price"}
-          />
-            {formik.errors.discount }
-<br/>
-<h2 className='p-1 font-mono text-base'>Select Colour</h2>
-    <div>
-    <Select selectionMode="multiple" name="colorOption"  placeholder="Select color"
- onChange={(e)=>formik.setFieldValue('colorOption', e.target.value.split(","))}>
-    <SelectItem key="Black">Black</SelectItem>
-    <SelectItem key="Red">Red</SelectItem>
-    <SelectItem key="Blue">Blue</SelectItem>
-    <SelectItem key="Green">Green</SelectItem>
-</Select>
-    </div>
-    <br/>
-          
-          <Button type='submit' className='bg-black p-2 m-2 text-white ' >Add product </Button>
-        </form>
+      <div className="mt-12">
+        <ProductList />
       </div>
     </div>
-  </div>
-   
   );
-}
+};
 
-export default addProducts;
+export default AddProducts;
