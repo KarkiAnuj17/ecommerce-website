@@ -5,7 +5,7 @@ import { GiShoppingCart } from "react-icons/gi";
 
 const CustomNavbar = () => {
   return (
-    <Navbar className=" bg-white border  p-4 font-serif">
+    <Navbar className=" bg-white border  p-4">
     <NavbarBrand >
             <p><img src='/logo.png' width={150} height={30} alt='Hustle Logo' /></p>
           </NavbarBrand>

@@ -32,14 +32,14 @@ const Login = () => {
 
   return (
   <div>  
-    <form onSubmit={formik.handleSubmit} className='flex justify-center items-center m-18 bg-orange-400'>
+    <form onSubmit={formik.handleSubmit} className='flex justify-center items-center m-18'>
       <div className='items-center bg-gray-100 border border-gray-300 m-10 p-4 rounded-3xl'>
         <div className='flex gap-3'>
         
-          <img src='/hustle.png' width={110} height={30} alt='Hustle Logo' />
-          <div className="max-w-md">
+        <img src='/logo.png' width={170} height={30} alt='Hustle Logo' />
+        <div className="max-w-md">
             <div className="space-y-1">
-              <h1 className="font-serif font-bold text-5xl">HUSTLE</h1>
+              <h1 className="font-serif font-bold text-5xl">REDSTORE</h1>
             </div>
             <Divider className="my-4" />
             <div className="font-mono text-3xl font-bold bd-green-500">

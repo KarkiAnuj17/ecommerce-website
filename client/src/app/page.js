@@ -14,18 +14,18 @@ const Homepage = () => {
     <div className="flex flex-col">
       <CustomNavbar />,
       {/* <ProductCatogories/>, */}
-      <div className="flex flex-col items-center justify-center gap-5">
-      <div className=" w-1.7/3 h-60 bg-gray-300 rounded-lg  flex items-center justify-center">
+      <div className="flex flex-col items-center justify-center gap-5 ">
+      <div className=" w-1.7/3 h-60 bg-orange-300 rounded-lg  flex items-center justify-center">
       <div className="flex">
-      <div className="p-6   flex-col">
+      <div className="p-6 flex-col">
           <h2 className="text-4xl font-bold mb-4 ">The Ultimate Watch <br/>Collection Awaits
           </h2>
-          <button className="bg-orange-400 text-black m-4 py-2 px-4 rounded-full shadow-lg">
+          <button className="bg-black text-white m-4 py-2 px-4 rounded-full shadow-lg">
             SHOP NOW
           </button>
           </div>
-          <div className=" bg-green-300 inline-block">
-          <Image src='/watch.jpg' width={170} height={30} alt='watch' className="filter brightness-90 sepia-20" />
+          <div className=" p-2 inline-block">
+          <Image src='/exclusive.png' width={250} height={170} alt='watch' className="filter brightness-90 sepia-20" />
           </div>
           </div>
       </div>

@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { Input, Button, Divider, DateInput, Select, SelectItem } from "@nextui-org/react";
+import { Input, Button, Divider, Select, SelectItem } from "@nextui-org/react";
 import { RadioGroup, Radio } from "@nextui-org/react";
 import Link from 'next/link';
 import { useFormik } from 'formik';
@@ -53,10 +53,10 @@ const Register = () => {
     },
     validationSchema: userSchema,
     onSubmit: values => {
-      registerUser(values)
+      registerNewUser(values)
     },
   });
-  const registerUser = async (values)=>{
+  const registerNewUser = async (values)=>{
     const {data}= await  axios.post(`${process.env.NEXT_PUBLIC_API_URL}/register`, values)
     if(data) alert("registered successfully")
     }
