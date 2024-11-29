@@ -11,24 +11,27 @@ import { IoIosStar } from "react-icons/io";
 import { IoIosStarHalf } from "react-icons/io";
 import { IoIosStarOutline } from "react-icons/io";
 import {User} from "@nextui-org/react";
+import Link from 'next/link';
 
 
 const Homepage = () => {
   return (
     <div>
       <CustomNavbar />
-      <div className="flex flex-row items-center justify-between p-10 bg-orange-200">
+      <div className="flex flex-row items-center justify-between p-10 bg-red-600 w-2.5/3">
         <div className="flex flex-col space-y-8 ">
-          <h1 className="text-3xl  font-bold">
+          <h1 className="text-3xl  font-bold text-white">
             Give Your Workout <br /> A New Style!
           </h1>
-          <p className="text-gray-600 ">
+          <p className="text-white ">
             Success isn't always about greatness. It's about consistency.
             Consistent hard work gains success. Greatness will come.
           </p>
-          <Button className="flex items-center bg-black text-white w-1/3" >
+          <Link href="/">
+          <Button className="flex items-center bg-white text-black w-1/3" > 
             Explore Now <FaArrowRight  />
           </Button>
+          </Link>
         </div>
         <Image src='/image1.png' width={500} height={500} alt='watch' />
       </div>
@@ -59,8 +62,8 @@ const Homepage = () => {
       </div>
       <LatestProduct/>
       </div>
-      <div className=" bg-green-100 items-center justify-center m-12 p-9 w-full">
-      <div className="flex">
+      <div className=" bg-green-100 items-center justify-center m-12 p-9 w-2.5/3 border rounded-xl">
+      <div className="flex ">
       <Image src='/exclusive.png' width={500} height={600} alt='watch' />
       <div className="flex flex-col m-4 p-4">
       <p className="p-3 m-2">Exclusively Available in Redstore</p>

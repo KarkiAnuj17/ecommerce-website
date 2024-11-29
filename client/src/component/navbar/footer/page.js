@@ -5,9 +5,9 @@ import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 const FooterNavbar = () => {
   return (
-    <div className="font-serif">
-      <div className=" border border-inherit bg-white">
-        <div className="p-4 m-4 gap-16 flex justify-center break-words bg-white">
+    <div >
+      <div className=" border border-inherit bg-gray-900">
+        <div className="p-4 m-4 gap-16 flex justify-center break-words bg-gray-900 text-white">
         <div className="flex flex-col">
           <p className="font-bold">Shop</p>
           <a href="#">Coupons</a>
@@ -42,7 +42,7 @@ const FooterNavbar = () => {
           <a href="#">Privacy setting</a>
         </div>
         </div>
-        <div className="flex justify-center m-3 gap-7">
+        <div className="flex justify-center m-3 gap-7 text-white">
           <a href="#" className="hover:underline">Copyright@</a>
           <a href="#" className="hover:underline">Terms and Services</a>
           <a href="#" className="hover:underline">Privacy</a>

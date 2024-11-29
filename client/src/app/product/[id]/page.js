@@ -24,8 +24,8 @@ const ProductPage = () => {
   return (
     <div>
       <CustomNavbar />
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="w-full p-8 bg-gray-200 rounded-lg shadow-md flex flex-col lg:flex-row gap-8">
+      <div className="min-h-screen flex items-center justify-center bg-gray-200">
+        <div className="w-full p-8 rounded-lg shadow-md flex flex-col lg:flex-row gap-8">
           <div className="flex-1">
             <div className="mb-6">
               {productDetail.map((item, index) => (
@@ -87,7 +87,7 @@ const ProductPage = () => {
               </div>
             </div>
             <div className="mb-4">
-              <button className="w-full bg-orange-400 text-white py-3 rounded-lg m-4">
+              <button className="w-full bg-black text-white py-3 rounded-lg m-4">
                 Add to Cart
               </button>
               <p className="text-sm text-gray-500 mt-2">

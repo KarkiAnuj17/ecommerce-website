@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import React from "react";
 import { Input, Button, Divider, Select, SelectItem } from "@nextui-org/react";
 import { RadioGroup, Radio } from "@nextui-org/react";
@@ -24,10 +24,7 @@ const AddProducts = () => {
   });
 
   const addProducts = async (values) => {
-    const { data } = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/products`,
-      values
-    );
+    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/products`,values);
     if (data) alert("Product successfully added");
   };
 

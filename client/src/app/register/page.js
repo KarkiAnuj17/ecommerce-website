@@ -57,9 +57,9 @@ const Register = () => {
     },
   });
   const registerNewUser = async (values)=>{
-    const {data}= await  axios.post(`${process.env.NEXT_PUBLIC_API_URL}/register`, values)
+    const {data}= await  axios.post(`${process.env.NEXT_PUBLIC_API_URL}/register`, values);
     if(data) alert("registered successfully")
-    }
+    };
   return (
     <div className='flex justify-center items-center m-36'>
       <div className='items-center bg-gray-100 border border-gray-300 m-10 p-4 rounded-3xl'>

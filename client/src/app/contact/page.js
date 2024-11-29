@@ -1,14 +1,31 @@
+'use client'
+import React from 'react';
 import FooterNavbar from '@/component/navbar/footer/page';
 import CustomNavbar from '@/component/navbar/header/page';
 import { Input, Button, Textarea, CardBody, Card } from '@nextui-org/react';
 import Image from 'next/image';
-import React from 'react';
 import { CiLocationOn } from "react-icons/ci";
 import { IoCallOutline } from "react-icons/io5";
 import { HiOutlineMail } from "react-icons/hi";
 import Link from 'next/link';
+import axios from 'axios';
+import { useFormik } from 'formik';
 
 const Website = () => {
+  const formik = useFormik({
+    initialValues: {
+    fullName: '',
+    message: '',
+    email: '',
+    },
+    onSubmit: (values) => {
+      contactUsers(values);
+    },
+  });
+  const contactUsers = async (values)=>{
+    const {data}= await  axios.post(`${process.env.NEXT_PUBLIC_API_URL}/contact`, values);
+    if(data) alert("registered successfully")
+    };
   return (
     
     <div className="flex flex-col  bg-gray-200"><CustomNavbar/>
@@ -22,12 +39,15 @@ const Website = () => {
         />
         <div className="flex flex-col justify-center p-6 bg-white shadow-lg rounded-lg w-full max-w-lg">
           <h2 className="text-2xl font-semibold mb-6 text-gray-800">Get In Touch</h2>
+          <form onSubmit={formik.handleSubmit}></form>
           <label className="p-1 text-base text-gray-600">Full Name</label>
           <Input
             isRequired
             id="fullName"
             name="fullName"
             type="text"
+            onChange={formik.handleChange}
+            value={formik.values.fullName}
             placeholder="Enter your Full Name"
             className="mb-4"
             width="100%"
@@ -38,6 +58,8 @@ const Website = () => {
             id="email"
             name="email"
             type="email"
+            onChange={formik.handleChange}
+            value={formik.values.email}
             placeholder="Enter your Email"
             className="mb-4"
             width="100%"
@@ -47,12 +69,14 @@ const Website = () => {
             isRequired
             id="message"
             name="message"
+            onChange={formik.handleChange}
+            value={formik.values.message}
             placeholder="Type your message here..."
             className="mb-4"
             width="100%"
             rows={5}
           />
-          <Button className="mt-4 w-full bg-black text text-white">Submit</Button>
+          <Button type="submit" className="mt-4 w-full bg-black text text-white">Submit</Button>
         </div>
       </div>
 

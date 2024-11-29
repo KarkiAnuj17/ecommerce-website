@@ -1,65 +1,45 @@
 import React from "react";
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Input, Button } from "@nextui-org/react";
-import { IoMdHeartEmpty } from "react-icons/io";
-import { GiShoppingCart } from "react-icons/gi";
+import {Link, Input, Button } from "@nextui-org/react";
+import { CiHeart } from "react-icons/ci";
+import { FiShoppingCart } from "react-icons/fi";
 
 const CustomNavbar = () => {
   return (
-    <Navbar className=" bg-white border  p-4">
-    <NavbarBrand >
-            <p><img src='/logo.png' width={150} height={30} alt='Hustle Logo' /></p>
-          </NavbarBrand>
-          <NavbarContent className="sm:flex gap-4" >
-            <NavbarItem>
-              <Link color="foreground" href="/">
-                Home
-              </Link>
-            </NavbarItem>
-            <NavbarItem>
-              <Link color="foreground" href="#">
-                Features
-              </Link>
-            </NavbarItem>
-            <NavbarItem>
-              <Link color="foreground" href="/contact">
-                Contact
-              </Link>
-            </NavbarItem>
-            <NavbarItem className="w-56 p-2 text-lg">
+    <div className=" bg-gray-50">
+      {/* Navigation */}
+      <nav className="flex items-center justify-between px-6 py-4 bg-gray-900 text-white">
+        <div className="flex items-center gap-8">
+          <Link href="/" className="text-xl font-bold text-white">
+            BuzzeBuy
+          </Link>
+          <div className="hidden md:flex gap-6">
+            <Link className="text-white" href="/new">New</Link>
+            <Link className="text-white" href="/deals">Deals</Link>
+            <Link className="text-white" href="/contact">Help & Contact</Link>
+          </div>
+        </div>
+        <div className="flex items-center gap-4">
+          <div className="relative w-64 hidden md:block">
             <Input
-                id="search"
-                name="search"
-                type="text"
-                placeholder={"Search..."}
-              />
-            </NavbarItem>
-            <NavbarItem>
-              <Link color="foreground" href="#">
-              <IoMdHeartEmpty/>Favourites
-              </Link>
-            </NavbarItem>
-            <NavbarItem>
-              <Link color="foreground" href="#">
-              <GiShoppingCart/>Cart
-              </Link>
-            </NavbarItem>
-            </NavbarContent>
-          <NavbarContent  justify="end">
-            <NavbarItem className="lg:flex">
-              <Link href="/login">
-              <Button className="bg-slate-100 h-8 w-8">Login</Button>
-              </Link>
-
-            </NavbarItem>
-            <NavbarItem >
-            <Link  href="/register">
-              <Button className="bg-slate-100  h-8 w-8">Sign up</Button>
-              </Link>
-            </NavbarItem> 
-            
-            
-        </NavbarContent>
-        </Navbar>
+              className="pl-8 bg-gray-800 border-gray-700 text-white"
+              placeholder="Search..."
+            />
+          </div>
+          <Link className="flex text-white " href="/favourites">
+          <CiHeart className="h-5 w-5" />
+          Favourites
+          </Link>
+          <Link className="flex text-white" href="/cart">
+          <FiShoppingCart className="h-5 w-5" />
+          Cart
+          </Link>
+          <Button variant="outline" className="text-sm">
+            Sign in
+          </Button>
+          <Button className="text-sm">Register</Button>
+        </div>
+      </nav>
+      </div>
   )
 }
 

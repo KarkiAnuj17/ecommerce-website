@@ -22,13 +22,19 @@ const ProductList = () => {
     <div className="flex ">
       <div className="flex-col">
       <p className="text-2xl font-bold m-3 p-2">Product Recently Added</p>
-      <div className="flex w-full   ">
+      <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 ">
       {products.map((item) => (
-        <div className="p-2">
-        <Card shadow="sm" key={item.id}>
-          <CardBody>
-            <Image src="/product-3.jpg" height={100} width={150} layout="responsive" 
-              className="object-cover"/>
+        <div>
+        <Card shadow="sm" key={item.id} >
+          <CardBody className=" p-0 ">
+          <Image
+              src="/product-3.jpg"
+              width={250}      
+              height={250}     
+              alt={item.productName}
+              layout="responsive" 
+              className="object-cover "
+          />
           </CardBody>
           <CardFooter className="text-small justify-between">
             <div className="flex flex-col m-0 font-light">
