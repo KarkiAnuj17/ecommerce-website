@@ -51,18 +51,18 @@ const Register = () => {
       password: '',
       confirmPassword: ''
     },
-    validationSchema: userSchema,
+    
     onSubmit: values => {
-      registerNewUser(values)
+      handleRegister(values)
     },
   });
-  const registerNewUser = async (values)=>{
+  const handleRegister = async (values)=>{
     const {data}= await  axios.post(`${process.env.NEXT_PUBLIC_API_URL}/register`, values);
     if(data) alert("registered successfully")
     };
   return (
-    <div className='flex justify-center items-center m-36'>
-      <div className='items-center bg-gray-100 border border-gray-300 m-10 p-4 rounded-3xl'>
+    <div className='flex justify-center items-center  bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 '>
+      <div className='items-center bg-gray-100 border m-36 border-gray-300 p-4 rounded-3xl '>
         <div className='flex gap-3'>
           <img src='/logo.png' width={170} height={30} alt='Hustle Logo' />
           <div className="max-w-md">
@@ -190,7 +190,7 @@ const Register = () => {
           placeholder={"Enter your password"}
         />
         <br />
-        <div className="flex flex-row items-center space-x-2">
+        {/* <div className="flex flex-row items-center space-x-2">
         <h2 className='p-1 font-mono text-base'>Confirm Password</h2>
           <div className="text-red-600 text-sm">
           {formik.errors.confirmPassword }
@@ -203,7 +203,7 @@ const Register = () => {
             onChange={formik.handleChange}
             value={formik.values.confirmPassword}
             placeholder={"Enter your confirm password"}
-          />
+          /> */}
           <Button type='submit' className='bg-black p-2 m-2 text-white ' >REGISTER </Button>
         </form>
         <br />

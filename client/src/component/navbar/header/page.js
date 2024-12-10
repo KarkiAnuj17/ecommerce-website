@@ -10,7 +10,7 @@ const CustomNavbar = () => {
       <nav className="flex items-center justify-between px-6 py-4 bg-gray-900 text-white">
         <div className="flex items-center gap-8">
           <Link href="/" className="text-xl font-bold text-white">
-            BuzzeBuy
+          RedStore
           </Link>
           <div className="hidden md:flex gap-6">
             <Link className="text-white" href="/new">New</Link>
@@ -33,10 +33,14 @@ const CustomNavbar = () => {
           <FiShoppingCart className="h-5 w-5" />
           Cart
           </Link>
-          <Button variant="outline" className="text-sm">
+          <Link href="/login">
+          <Button variant="outline" className="text-sm text-white">
             Sign in
           </Button>
+          </Link>
+          <Link href="/register">
           <Button className="text-sm">Register</Button>
+          </Link>
         </div>
       </nav>
       </div>

@@ -4,6 +4,7 @@ import { Badge, Avatar, Input, Button, Divider } from "@nextui-org/react";
 import Link from 'next/link';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 
 const Login = () => {
   const loginSchema = Yup.object().shape({
@@ -26,10 +27,13 @@ const Login = () => {
     },
     validationSchema: loginSchema,
     onSubmit: values => {
-      console.log(values)
+      handleLogin(values)
     },
   });
-
+  const handleLogin = async (values)=>{
+    const {data}= await  axios.post(`${process.env.NEXT_PUBLIC_API_URL}/login`, values);
+    if(data) alert("login successfully")
+    };
   return (
   <div>  
     <form onSubmit={formik.handleSubmit} className='flex justify-center items-center m-18'>

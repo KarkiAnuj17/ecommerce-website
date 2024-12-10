@@ -10,7 +10,7 @@ const categories = [
   {
     name: "Sports",
     slug: "sports",
-    image: "/",
+    image: "/sports.webp",
   },
   {
     name: "Fashion",
