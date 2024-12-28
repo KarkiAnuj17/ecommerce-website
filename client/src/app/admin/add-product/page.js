@@ -148,7 +148,7 @@ const AddProducts = () => {
       </div>
 
       <div className="mt-12">
-        <ProductList />
+      
       </div>
     </div>
   );

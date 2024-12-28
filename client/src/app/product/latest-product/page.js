@@ -11,10 +11,6 @@ const productList=[
   {id: 2, productName: 'Black shoe', image:'/product-12.jpg', price:1500},
   {id: 3, productName: 'Black printed Trousers', image:'/product-6.jpg', price:1500},
   {id: 4, productName: 'Blue printed T-shirt', image:'/product-7.jpg', price:1500},
-  {id: 5, productName: 'Blue printed T-shirt', image:'/product-8.jpg', price:1500},
-  {id: 6, productName: 'Blue printed T-shirt', image:'/product-9.jpg', price:1500},
-  {id: 7, productName: 'Blue printed T-shirt', image:'/product-10.jpg', price:1500},
-  {id: 8, productName: 'Blue printed T-shirt', image:'/product-11.jpg', price:1500},
 ]
 const LatestProduct = () => {
   const router = useRouter();

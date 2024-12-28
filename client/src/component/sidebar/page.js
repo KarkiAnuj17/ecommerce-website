@@ -13,7 +13,7 @@ const Sidebar = () => {
   return (
     <div className="flex">
       <div className="h-screen w-55 flex flex-col bg-gray-100 p-2 shadow-lg overflow-y-auto">
-        <Image src="/logo.png" width="200" height="50"className="text-3xl font-bold font-serif  mb-4"/>
+        <Image src="/logo.png" width="200" height="50" alt="image"className="text-3xl font-bold font-serif  mb-4"/>
 
         <div className="mb-8">
           <User
