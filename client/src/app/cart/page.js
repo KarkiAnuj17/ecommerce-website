@@ -1,70 +1,136 @@
+"use client"
+import React, { useState } from 'react';
 import CustomNavbar from '@/component/navbar/header/page';
-import React from 'react';
+import { MdDelete } from "react-icons/md";
+import { IoIosArrowRoundForward } from "react-icons/io";
+import { FiShoppingCart } from "react-icons/fi";
 
 const ShoppingCart = () => {
-  const cartItems=[
-    {id: 1,
-    productName: 'Blue Printed T-Shirt',
-    image:"/product-4.jpg",
-    quantity:2,
-    price:150},
-    {id: 2,
-    productName: 'Watch',
-    image:"/product-9.jpg",    quantity:1,
-    price:10000},
-  ]
+  const [cartItems, setCartItems] = useState([
+    {
+      id: 1,
+      productName: 'Wireless Earbuds',
+      image: '/product-4.jpg',
+      quantity: 1,
+      price: 7999,
+    },
+    {
+      id: 2,
+      productName: 'Smart Watch',
+      image: '/product-9.jpg',
+      quantity: 1,
+      price: 1999,
+    },
+  ]);
+
+  const handleIncrement = (id) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  const handleDecrement = (id) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    );
+  };
+
+  const handleRemove = (id) => {
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  };
+
   const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  const tax = subtotal * 0.1; // 10% tax
+  const total = subtotal + tax;
+
   return (
-  <div>
-    <CustomNavbar/>
-    <div className=" bg-gray-100 p-8 ">
-      <h2 className="text-3xl w-full font-bold mb-6 text-gray-800">Shopping Cart</h2>
-      
-      <div className="flex flex-col lg:flex-row gap-8"> 
-        <div className="flex-1">
-          {cartItems.map((item) => (
-            <div key={item.id} className="bg-white rounded-lg  p-6 mb-4 flex gap-4 items-center">
-              <img src={item.image} alt={item.productName} className="w-24 h-24  rounded-lg" />
-              <div className="flex-1">
-                <h3 className="text-lg font-semibold text-gray-800">{item.productName}</h3>
-                <p className="text-gray-600 mt-2">Rs {item.price.toFixed(2)}</p>
+    <div>
+      <CustomNavbar />
+      <div className="bg-gray-100 p-8">
+        <h2 className="text-3xl font-bold mb-6 text-gray-800 flex items-center">
+          <div className=" flex gap-3 material-icons text-4xl mr-2"> <FiShoppingCart />
+          Your Shopping Cart</div>
+        </h2>
+
+        <div className="flex flex-col lg:flex-row gap-8">
+          <div className="flex-1">
+            {cartItems.map((item) => (
+              <div
+                key={item.id}
+                className="bg-white rounded-lg p-6 mb-4 flex gap-4 items-center shadow-md"
+              >
+                <img
+                  src={item.image}
+                  alt={item.productName}
+                  className="w-24 h-24 rounded-lg bg-gray-200"
+                />
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    {item.productName}
+                  </h3>
+                  <p className="text-gray-600 mt-1">Rs{item.price.toFixed(2)}</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => handleDecrement(item.id)}
+                    className="w-8 h-8 text-gray-700 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300"
+                  >
+                    -
+                  </button>
+                  <span className="text-lg font-semibold">{item.quantity}</span>
+                  <button
+                    onClick={() => handleIncrement(item.id)}
+                    className="w-8 h-8 text-gray-700 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300"
+                  >
+                    +
+                  </button>
+                </div>
+                <button
+                  onClick={() => handleRemove(item.id)}
+                  className="w-8 h-8 text-white bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600"
+                >
+                  <MdDelete />
+                </button>
               </div>
-              <div className="flex items-center gap-2">
-                <button className="text-xl px-2 text-gray-700 bg-gray-200 rounded-full">-</button>
-                <span>{item.quantity}</span>
-                <button className="text-xl px-2 text-gray-700 bg-gray-200 rounded-full">+</button>
+            ))}
+          </div>
+
+          {/* Order Summary */}
+          <div className="lg:w-1/3">
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+                Order Summary
+              </h3>
+              <div className="flex justify-between mb-2">
+                <span className="text-gray-600">Subtotal</span>
+                <span className="text-gray-800">Rs{subtotal.toFixed(2)}</span>
               </div>
-              <p className="text-lg font-semibold text-gray-800">Rs {(item.price * item.quantity).toFixed(2)}</p>
+              <div className="flex justify-between mb-2">
+                <span className="text-gray-600">Tax (10%)</span>
+                <span className="text-gray-800">Rs{tax.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between font-bold text-lg mb-6">
+                <span>Total</span>
+                <span>Rs{total.toFixed(2)}</span>
+              </div>
+              <button className="w-full gap-5 bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 flex items-center justify-center">
+                Proceed to Checkout   <IoIosArrowRoundForward className="text-3xl"/>
+
+                </button>
+              <p className="text-sm text-gray-500 text-center mt-4">
+                Free shipping on all orders over Rs2000. <br/>30-day return policy.
+              </p>
             </div>
-          ))}
-        </div>
-        <div className="lg:w-1/3">
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-2xl font-semibold text-gray-800 mb-4">Order Summary</h3>
-            <div className="flex justify-between mb-2">
-              <span className="text-gray-600">Subtotal</span>
-              <span className="text-gray-800">Rs {subtotal.toFixed(2)}</span>
-            </div>
-            <div className="flex justify-between mb-2">
-              <span className="text-gray-600">Estimated Shipping</span>
-              <span className="text-gray-800">Rs 20.00</span>
-            </div>
-            <div className="flex justify-between mb-4">
-              <span className="text-gray-600">Tax</span>
-              <span className="text-gray-800">Rs 35.00</span>
-            </div>
-            <div className="flex justify-between font-bold text-lg mb-6">
-              <span>Total</span>
-              <span>Rs {(subtotal+20+35).toFixed(2) }</span>
-            </div>
-            <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700">
-              Proceed to Checkout
-            </button>
           </div>
         </div>
       </div>
     </div>
-  </div>  
   );
 };
 

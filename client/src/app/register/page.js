@@ -48,7 +48,6 @@ const Register = () => {
       gender: '',
       role: '',
     },
-    validationSchema,
     onSubmit: (values) => {
       handleRegister(values);
     },
