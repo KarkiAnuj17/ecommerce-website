@@ -12,11 +12,11 @@ const salesData = [
 const RecentSales = () => {
   return (
     <div className="bg-white p-2 rounded-lg shadow-lg w-full">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-4 ">
         <h2 className="text-lg font-semibold">Recent Sales</h2>
         <a href="#" className="text-sm text-gray-500">View All</a>
       </div>
-      <div className="space-y-4">
+      <div className="space-y-4 w-full">
         {salesData.map((sale, index) => (
           <div key={index} className="flex items-center justify-between">
             <div className="flex items-center">

@@ -1,27 +1,29 @@
-"use client"
-import React, { useState } from 'react';
-import CustomNavbar from '@/component/navbar/header/page';
+"use client";
+import React, { useState } from "react";
+import CustomNavbar from "@/component/navbar/header/page";
 import { MdDelete } from "react-icons/md";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { FiShoppingCart } from "react-icons/fi";
 
 const ShoppingCart = () => {
-  const [cartItems, setCartItems] = useState([
+  const initialCartItems = [
     {
       id: 1,
-      productName: 'Wireless Earbuds',
-      image: '/product-4.jpg',
+      productName: "Wireless Earbuds",
+      image: "/product-4.jpg",
       quantity: 1,
       price: 7999,
     },
     {
       id: 2,
-      productName: 'Smart Watch',
-      image: '/product-9.jpg',
+      productName: "Smart Watch",
+      image: "/product-9.jpg",
       quantity: 1,
       price: 1999,
     },
-  ]);
+  ];
+
+  const [cartItems, setCartItems] = useState(initialCartItems);
 
   const handleIncrement = (id) => {
     setCartItems((prevItems) =>
@@ -45,8 +47,11 @@ const ShoppingCart = () => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
-  const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-  const tax = subtotal * 0.1; // 10% tax
+  const subtotal = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+  const tax = subtotal * 0.1;
   const total = subtotal + tax;
 
   return (
@@ -54,11 +59,14 @@ const ShoppingCart = () => {
       <CustomNavbar />
       <div className="bg-gray-100 p-8">
         <h2 className="text-3xl font-bold mb-6 text-gray-800 flex items-center">
-          <div className=" flex gap-3 material-icons text-4xl mr-2"> <FiShoppingCart />
-          Your Shopping Cart</div>
+          <div className="flex gap-3 items-center text-4xl">
+            <FiShoppingCart />
+            Your Shopping Cart
+          </div>
         </h2>
 
         <div className="flex flex-col lg:flex-row gap-8">
+          {/* Cart Items */}
           <div className="flex-1">
             {cartItems.map((item) => (
               <div
@@ -74,7 +82,9 @@ const ShoppingCart = () => {
                   <h3 className="text-lg font-semibold text-gray-800">
                     {item.productName}
                   </h3>
-                  <p className="text-gray-600 mt-1">Rs{item.price.toFixed(2)}</p>
+                  <p className="text-gray-600 mt-1">
+                    Rs {item.price.toFixed(2)}
+                  </p>
                 </div>
                 <div className="flex items-center gap-2">
                   <button
@@ -109,22 +119,22 @@ const ShoppingCart = () => {
               </h3>
               <div className="flex justify-between mb-2">
                 <span className="text-gray-600">Subtotal</span>
-                <span className="text-gray-800">Rs{subtotal.toFixed(2)}</span>
+                <span className="text-gray-800">Rs {subtotal.toFixed(2)}</span>
               </div>
               <div className="flex justify-between mb-2">
                 <span className="text-gray-600">Tax (10%)</span>
-                <span className="text-gray-800">Rs{tax.toFixed(2)}</span>
+                <span className="text-gray-800">Rs {tax.toFixed(2)}</span>
               </div>
               <div className="flex justify-between font-bold text-lg mb-6">
                 <span>Total</span>
-                <span>Rs{total.toFixed(2)}</span>
+                <span>Rs {total.toFixed(2)}</span>
               </div>
-              <button className="w-full gap-5 bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 flex items-center justify-center">
-                Proceed to Checkout   <IoIosArrowRoundForward className="text-3xl"/>
-
-                </button>
+              <button className="w-full flex items-center gap-5 bg-gray-900 text-white py-3 rounded-lg font-semibold hover:bg-gray-800 justify-center">
+                Proceed to Checkout <IoIosArrowRoundForward className="text-3xl" />
+              </button>
               <p className="text-sm text-gray-500 text-center mt-4">
-                Free shipping on all orders over Rs2000. <br/>30-day return policy.
+                Free shipping on all orders over Rs 2000. <br />
+                30-day return policy.
               </p>
             </div>
           </div>

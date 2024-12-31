@@ -15,7 +15,7 @@ const Revenue = () => {
   return (
     <div className="flex">
       <div className="flex flex-col w-full">
-        <div className="flex gap-1 p-0 m-4 w-full">
+        <div className="flex gap-5 p-0 m-4 w-full">
           {statsData.map((item) => (
             <Card
               key={item.id}

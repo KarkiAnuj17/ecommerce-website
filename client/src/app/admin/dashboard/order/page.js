@@ -1,9 +1,9 @@
 'use client'
 import React from 'react'
 const orders = [
-  { no: '01', id: '#12345', date: 'Nov 20th, 22', price: 'Rs 500.00', status: 'New order' },
-  { no: '02', id: '#32456', date: 'Nov 19th, 22', price: 'Rs 600.00', status: 'On Delivery' },
-  { no: '03', id: '#43567', date: 'Nov 19th, 22', price: 'Rs 450.00', status: 'Available' }
+  { no: '01', id: '#12345', date: 'Nov 20th, 2022', price: 'Rs 500.00', status: 'New order' },
+  { no: '02', id: '#32456', date: 'Nov 19th, 2022', price: 'Rs 600.00', status: 'On Delivery' },
+  { no: '03', id: '#43567', date: 'Nov 19th, 2022', price: 'Rs 450.00', status: 'Available' }
 ];
 const Order = () => {
   return (
