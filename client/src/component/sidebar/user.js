@@ -74,7 +74,7 @@ const UserLayout = ({ children }) => {
             />
           </div>
         </div>
-        <main className="p-4 bg-white rounded-lg shadow-md">{children}</main>
+        <main>{children}</main>
       </div>
     </div>
   );

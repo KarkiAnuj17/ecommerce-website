@@ -1,13 +1,13 @@
 import React from 'react';
 import { LuLayoutDashboard } from "react-icons/lu";
-import { ImStatsDots } from "react-icons/im";
-import { FaPeopleGroup } from "react-icons/fa6";
-import { SiImessage } from "react-icons/si";
-import { CgPerformance } from "react-icons/cg";
-import { FaHistory } from "react-icons/fa";
+import { GoHistory } from "react-icons/go";
 import { TbLogout2 } from "react-icons/tb";
 import { Input, User } from '@nextui-org/react';
 import Link from 'next/link';
+import { BiBarChart } from "react-icons/bi";
+import { BsPeople } from "react-icons/bs";
+import { AiOutlineMessage } from "react-icons/ai";
+import { GrDocumentPerformance } from "react-icons/gr";
 
 const Layout = ({ children }) => {
   return (
@@ -35,31 +35,31 @@ const Layout = ({ children }) => {
           </Link>
           <Link href="/admin/statistics" passHref>
             <div className="flex items-center p-1.5 text-l rounded-md hover:bg-gray-200">
-              <ImStatsDots className="mr-3" />
+              <BiBarChart className="mr-3" />
               Statistics
             </div>
           </Link>
           <Link href="/admin/customers" passHref>
             <div className="flex items-center p-1.5 text-l rounded-md hover:bg-gray-200">
-              <FaPeopleGroup className="mr-3" />
+              <BsPeople className="mr-3" />
               Customers
             </div>
           </Link>
           <Link href="/admin/message" passHref>
             <div className="flex items-center p-1.5 text-l rounded-md hover:bg-gray-200">
-              <SiImessage className="mr-3" />
+              <AiOutlineMessage className="mr-3" />
               Message
             </div>
           </Link>
           <Link href="/admin/performance" passHref>
             <div className="flex items-center p-1.5 text-l rounded-md hover:bg-gray-200">
-              <CgPerformance className="mr-3" />
+              <GrDocumentPerformance className="mr-3" />
               Performance
             </div>
           </Link>
           <Link href="/admin/history" passHref>
             <div className="flex items-center p-1.5 text-l rounded-md hover:bg-gray-200">
-              <FaHistory className="mr-3" />
+              <GoHistory className="mr-3" />
               History
             </div>
           </Link>
@@ -86,7 +86,7 @@ const Layout = ({ children }) => {
             />
           </div>
         </div>
-        <main className="p-4 bg-white rounded-lg shadow-md">{children}</main>
+        <main >{children}</main>
       </div>
     </div>
   );
