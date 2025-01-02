@@ -5,9 +5,9 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useRouter } from 'next/navigation';
 
 const statsData = [
-  { id: "revenue", componentName: "Total Revenue", value: "Rs11345", increment: +4.3 },
+  { id: "revenue", componentName: "Total Revenue", value: "Rs 1345", increment: +4.3 },
   { id: "customers", componentName: "Total Customers", value: "1345", increment: +14.3 },
-  { id: "profit", componentName: "Total Profit", value: "Rs3450", increment: -2.3 },
+  { id: "profit", componentName: "Total Profit", value: "Rs 3450", increment: -2.3 },
 ];
 
 const Revenue = () => {
@@ -15,7 +15,7 @@ const Revenue = () => {
   return (
     <div className="flex">
       <div className="flex flex-col w-full">
-        <div className="flex gap-5 p-0 m-4 w-full">
+        <div className="flex gap-5 m-2 w-full">
           {statsData.map((item) => (
             <Card
               key={item.id}
@@ -34,7 +34,7 @@ const Revenue = () => {
                 onClick={() => router.push('/admin/dashboard/' + item.id)}
                 className="flex flex-row items-center gap-4 cursor-pointer"
               >
-                <div className="text-2xl font-semibold">{item.value}</div>
+                <div className="text-xl font-semibold">{item.value}</div>
                 <div
                   className={`text-sm font-medium ${
                     item.increment >= 0 ? 'text-green-500' : 'text-red-500'

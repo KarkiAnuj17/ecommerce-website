@@ -11,7 +11,7 @@ const salesData = [
 
 const RecentSales = () => {
   return (
-    <div className="bg-white p-2 rounded-lg shadow-lg w-full">
+    <div className="bg-white p-3 rounded-xl shadow-lg  w-80">
       <div className="flex justify-between items-center mb-4 ">
         <h2 className="text-lg font-semibold">Recent Sales</h2>
         <a href="#" className="text-sm text-gray-500">View All</a>

@@ -24,7 +24,7 @@ const Order = () => {
       </thead>
       <tbody>
         {orders.map((order, index) => (
-          <tr key={index} className="border-b">
+          <tr key={index} className="border-b text-sm">
             <td className="py-3 px-2">{order.no}</td>
             <td className="py-3 px-2">{order.id}</td>
             <td className="py-3 px-2">{order.date}</td>

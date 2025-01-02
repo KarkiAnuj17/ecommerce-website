@@ -4,11 +4,8 @@ import Order from './order/page';
 import RecentSales from './sales/page';
 import Revenue from './revenue/page';
 import { Input } from '@nextui-org/react';
-import Layout from '@/component/sidebar/page';
-
-
+import Layout from '@/component/sidebar/admin';
 const Dashboard = () => {
-  
   return (
       <Layout>
       <div className="flex-1 w-full ">

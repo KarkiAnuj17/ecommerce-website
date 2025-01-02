@@ -1,7 +1,7 @@
-import Layout from '@/component/sidebar/page'
+import Layout from '@/component/sidebar/admin'
 import React from 'react'
 
-const Audience = () => {
+const Customers = () => {
   return (
     <Layout>
 
@@ -10,4 +10,4 @@ const Audience = () => {
   )
 }
 
-export default Audience
+export default Customers
