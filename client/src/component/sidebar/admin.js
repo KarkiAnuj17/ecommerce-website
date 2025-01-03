@@ -8,6 +8,8 @@ import { BiBarChart } from "react-icons/bi";
 import { BsPeople } from "react-icons/bs";
 import { AiOutlineMessage } from "react-icons/ai";
 import { GrDocumentPerformance } from "react-icons/gr";
+import { LuPackage } from "react-icons/lu";
+import { FiSettings } from 'react-icons/fi';
 
 const Layout = ({ children }) => {
   return (
@@ -33,6 +35,12 @@ const Layout = ({ children }) => {
               Dashboard
             </div>
           </Link>
+          <Link href="/admin/product" passHref>
+            <div className="flex items-center p-1.5 text-l rounded-md hover:bg-gray-200">
+              <LuPackage className="mr-3" />
+              Product
+            </div>
+          </Link>
           <Link href="/admin/statistics" passHref>
             <div className="flex items-center p-1.5 text-l rounded-md hover:bg-gray-200">
               <BiBarChart className="mr-3" />
@@ -45,22 +53,17 @@ const Layout = ({ children }) => {
               Customers
             </div>
           </Link>
-          <Link href="/admin/message" passHref>
-            <div className="flex items-center p-1.5 text-l rounded-md hover:bg-gray-200">
-              <AiOutlineMessage className="mr-3" />
-              Message
-            </div>
-          </Link>
-          <Link href="/admin/performance" passHref>
+          
+          <Link href="/admin/inventory" passHref>
             <div className="flex items-center p-1.5 text-l rounded-md hover:bg-gray-200">
               <GrDocumentPerformance className="mr-3" />
-              Performance
+              Inventory
             </div>
           </Link>
-          <Link href="/admin/history" passHref>
+          <Link href="/admin/setting" passHref>
             <div className="flex items-center p-1.5 text-l rounded-md hover:bg-gray-200">
-              <GoHistory className="mr-3" />
-              History
+              <FiSettings className="mr-3" />
+              Settings
             </div>
           </Link>
         </nav>

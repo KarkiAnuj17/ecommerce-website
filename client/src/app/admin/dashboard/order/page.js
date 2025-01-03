@@ -1,41 +1,45 @@
-'use client'
-import React from 'react'
-const orders = [
-  { no: '01', id: '#12345', date: 'Nov 20th, 2022', price: 'Rs 500.00', status: 'New order' },
-  { no: '02', id: '#32456', date: 'Nov 19th, 2022', price: 'Rs 600.00', status: 'On Delivery' },
-  { no: '03', id: '#43567', date: 'Nov 19th, 2022', price: 'Rs 450.00', status: 'Available' }
-];
-const Order = () => {
-  return (
-    <div className="m-3 bg-white p-6 rounded-lg shadow-md ">
-    <div className="flex justify-between items-center mb-4 ">
-      <p className="text-lg font-bold">Latest Orders</p>
-      <a href="#" className="text-sm text-blue-500 hover:underline">View All</a>
-    </div>
-    <table className="w-full text-left border-collapse">
-      <thead>
-        <tr className="border-b-2 ">
-          <th className=" text-sm text-gray-500">No</th>
-          <th className=" text-sm text-gray-500">ID</th>
-          <th className=" text-sm text-gray-500">Date</th>
-          <th className=" text-sm text-gray-500">Price</th>
-          <th className=" text-sm text-gray-500">Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {orders.map((order, index) => (
-          <tr key={index} className="border-b text-sm">
-            <td className="py-3 px-2">{order.no}</td>
-            <td className="py-3 px-2">{order.id}</td>
-            <td className="py-3 px-2">{order.date}</td>
-            <td className="py-3 px-2">{order.price}</td>
-            <td className="py-3 px-2">{order.status}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-  )
-}
+'use client';
+import React from 'react';
 
-export default Order
+const orders = [
+  { id: "ORD001", product: "Nike Air Max 270", customer: "John Doe", total: "Rs 10,499", status: "Delivered" },
+  { id: "ORD002", product: "Apple AirPods Pro", customer: "Jane Smith", total: "Rs 20,499", status: "Processing" },
+  { id: "ORD003", product: "Samsung Galaxy S21", customer: "Bob Johnson", total: "Rs 65,999", status: "Shipped" },
+  { id: "ORD004", product: "Levi's 501 Original Fit Jeans", customer: "Alice Brown", total: "Rs 4,999", status: "Delivered" },
+  { id: "ORD005", product: "Sony PlayStation 5", customer: "Charlie Wilson", total: "Rs 49,999", status: "Processing" },
+];
+
+const RecentOrders = () => {
+  return (
+    <div className="p-6 bg-white rounded-lg shadow-md">
+      <div className="flex justify-between items-center mb-4">
+        <p className="text-xl font-bold">Latest Orders</p>
+        <a href="#" className="text-sm text-blue-500 hover:underline">View All</a>
+      </div>
+      <table className="w-full border-collapse">
+        <thead>
+          <tr className="text-left text-gray-600 text-lg border-b space-y-2">
+            <th className="py-2">Order ID</th>
+            <th className="py-2">Product</th>
+            <th className="py-2">Customer</th>
+            <th className="py-2">Total</th>
+            <th className="py-2">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {orders.map((order, index) => (
+            <tr key={index} className="border-b text-sm">
+              <td className="py-4">{order.id}</td>
+              <td className="py-4">{order.product}</td>
+              <td className="py-4">{order.customer}</td>
+              <td className="py-4">{order.total}</td>
+              <td className="py-4">{order.status}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default RecentOrders;

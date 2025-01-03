@@ -1,13 +1,49 @@
-import Layout from '@/component/sidebar/admin'
-import React from 'react'
+import Layout from "@/component/sidebar/admin";
+import React from "react";
 
-const Customers = () => {
+const customers = [
+  { id: "CUST001", name: "John Doe", email: "john.doe@example.com", orders: 5, spent: "Rs 64995" },
+  { id: "CUST002", name: "Jane Smith", email: "jane.smith@example.com", orders: 3, spent: "Rs 74700" },
+  { id: "CUST003", name: "Bob Johnson", email: "bob.johnson@example.com", orders: 2, spent: "Rs 159998" },
+  { id: "CUST004", name: "Alice Brown", email: "alice.brown@example.com", orders: 4, spent: "Rs 23800" },
+  { id: "CUST005", name: "Charlie Wilson", email: "charlie.wilson@example.com", orders: 1, spent: "Rs 49999" },
+];
+
+const CustomerDirectory = () => {
   return (
     <Layout>
-
-    <div>Audience</div>
+    <div className="p-6 bg-gray-100 min-h-screen">
+      <h1 className="text-2xl font-bold mb-4">Customer Directory</h1>
+      <div className="overflow-x-auto bg-white shadow rounded-lg">
+        <table className="min-w-full border-collapse border border-gray-200">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">Customer ID</th>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">Name</th>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">Email</th>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">Total Orders</th>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">Total Spent</th>
+            </tr>
+          </thead>
+          <tbody>
+            {customers.map((customer, index) => (
+              <tr
+                key={customer.id}
+                className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
+              >
+                <td className="px-6 py-4 text-sm text-gray-700">{customer.id}</td>
+                <td className="px-6 py-4 text-sm text-gray-700">{customer.name}</td>
+                <td className="px-6 py-4 text-sm text-gray-700">{customer.email}</td>
+                <td className="px-6 py-4 text-sm text-gray-700">{customer.orders}</td>
+                <td className="px-6 py-4 text-sm text-gray-700">{customer.spent}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Customers
+export default CustomerDirectory;

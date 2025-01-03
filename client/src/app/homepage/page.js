@@ -62,14 +62,14 @@ const Homepage = () => {
       </div>
       <LatestProduct/>
       </div>
-      <div className=" bg-green-100 items-center justify-center m-12 p-9 w-2.5/3 border rounded-xl">
+      <div className=" bg-violet-600 text-white  items-center justify-center m-12 p-9 w-2.5/3 border rounded-xl">
       <div className="flex ">
       <Image src='/exclusive.png' width={500} height={600} alt='watch' />
       <div className="flex flex-col m-4 p-4">
       <p className="p-3 m-2">Exclusively Available in Redstore</p>
       <p className="p-3 m-2 text-5xl font-bold ">Small band 4</p>
       <p className="p-3 m-2 w-auto">The Mi Smart Band 4 features a 30.9% larger(than Mi Band 3) Amoled color full-touch display with adjustable Brightness, so everything is clear as can be.</p>
-      <Button className="flex items-center bg-black text-white w-1/3"> Buy Now <FaArrowRight  />
+      <Button className="flex items-center bg-white text-black w-1/3"> Buy Now <FaArrowRight  />
         </Button></div>
       </div>
       </div>

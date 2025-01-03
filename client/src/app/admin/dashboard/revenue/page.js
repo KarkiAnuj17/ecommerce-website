@@ -1,13 +1,49 @@
 'use client';
 import React from 'react';
 import { Card, CardBody, CardHeader } from '@nextui-org/react';
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import {
+  AiOutlineDollar,
+  AiOutlineShoppingCart,
+  AiOutlineUser,
+  AiOutlineAppstore 
+} from "react-icons/ai";
+import { LuPackage } from "react-icons/lu";
+
 import { useRouter } from 'next/navigation';
 
 const statsData = [
-  { id: "revenue", componentName: "Total Revenue", value: "Rs 1345", increment: +4.3 },
-  { id: "customers", componentName: "Total Customers", value: "1345", increment: +14.3 },
-  { id: "profit", componentName: "Total Profit", value: "Rs 3450", increment: -2.3 },
+  {
+    id: "revenue",
+    componentName: "Total Revenue",
+    value: "Rs 45,231.89",
+    increment: +20.1,
+    description: "from last month",
+    icon: <AiOutlineDollar className="text-2xl" />,
+  },
+  {
+    id: "orders",
+    componentName: "Orders",
+    value: "+2,350",
+    increment: +10.1,
+    description: "from last month",
+    icon: <AiOutlineShoppingCart className="text-2xl" />,
+  },
+  {
+    id: "products",
+    componentName: "Products",
+    value: "+12,234",
+    increment: +19,
+    description: "from last month",
+    icon: <LuPackage className="text-2xl" />,
+  },
+  {
+    id: "customers",
+    componentName: "Active Customers",
+    value: "+573",
+    increment: +201,
+    description: "since last week",
+    icon: <AiOutlineUser className="text-2xl" />,
+  },
 ];
 
 const Revenue = () => {
@@ -19,20 +55,18 @@ const Revenue = () => {
           {statsData.map((item) => (
             <Card
               key={item.id}
-              className="p-2 rounded-xl bg-white shadow-md gap-1"
+              className="p-4 rounded-xl bg-white shadow-md w-1/4"
             >
               <CardHeader
                 onClick={() => router.push('/admin/dashboard/' + item.id)}
-                className="flex justify-between items-center w-full cursor-pointer"
+                className="flex justify-between items-center cursor-pointer"
               >
-                <p className="text-sm font-bold w-1/3">
-                  {item.componentName}
-                </p>
-                <AiOutlineLoading3Quarters className="text-2xl w-1/3 flex items-end justify-end" />
+                <p className="text-sm font-bold">{item.componentName}</p>
+                {item.icon}
               </CardHeader>
               <CardBody
                 onClick={() => router.push('/admin/dashboard/' + item.id)}
-                className="flex flex-row items-center gap-4 cursor-pointer"
+                className="flex flex-col items-start cursor-pointer"
               >
                 <div className="text-xl font-semibold">{item.value}</div>
                 <div
@@ -41,6 +75,7 @@ const Revenue = () => {
                   }`}
                 >
                   {item.increment >= 0 ? `+${item.increment}` : item.increment}%
+                  <span className="text-gray-500"> {item.description}</span>
                 </div>
               </CardBody>
             </Card>

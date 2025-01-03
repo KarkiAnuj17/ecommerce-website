@@ -17,9 +17,9 @@ const stats = [
   },
   {
     title: "Total Spent",
-    value: "$429.00",
+    value: "Rs 4290.00",
     icon: FiCreditCard,
-    description: "+$89 this month",
+    description: "+Rs 890 this month",
   },
   {
     title: "Cart Items",
@@ -33,21 +33,21 @@ const recentOrders = [
   {
     id: "ORD001",
     date: "2024-01-01",
-    amount: "$120.00",
+    amount: "Rs 1200.00",
     status: "Delivered",
     statusClass: "bg-green-100 text-green-600",
   },
   {
     id: "ORD002",
     date: "2024-01-02",
-    amount: "$85.00",
+    amount: "Rs 850.00",
     status: "In Transit",
     statusClass: "bg-yellow-100 text-yellow-600",
   },
   {
     id: "ORD003",
     date: "2024-01-03",
-    amount: "224.00",
+    amount: "Rs 224.00",
     status: "Delivered",
     statusClass: "bg-green-100 text-green-600",
   },
@@ -87,9 +87,7 @@ const Dashboard = () => {
         ))}
       </div>
 
-      {/* Recent Orders and Recent Activity */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Recent Orders */}
         <div className="bg-white shadow-md rounded-lg p-4">
           <h3 className="text-lg font-bold mb-4">Recent Orders</h3>
           <div className="space-y-4">
