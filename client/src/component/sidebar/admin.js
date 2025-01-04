@@ -77,18 +77,6 @@ const Layout = ({ children }) => {
       </div>
 
       <div className="flex-1 bg-gray-50 p-6">
-        <div className="flex gap-4 items-center mb-8">
-          <h1 className="text-3xl font-bold">Overview</h1>
-          <div className="flex items-center ml-auto ">
-            <Input
-              id="search"
-              name="search"
-              type="text"
-              placeholder="Search products..."
-              className="w-full"
-            />
-          </div>
-        </div>
         <main >{children}</main>
       </div>
     </div>

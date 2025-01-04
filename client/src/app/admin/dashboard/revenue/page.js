@@ -1,11 +1,10 @@
 'use client';
 import React from 'react';
-import { Card, CardBody, CardHeader } from '@nextui-org/react';
+import { Card, CardBody, CardHeader, Input } from '@nextui-org/react';
 import {
   AiOutlineDollar,
   AiOutlineShoppingCart,
   AiOutlineUser,
-  AiOutlineAppstore 
 } from "react-icons/ai";
 import { LuPackage } from "react-icons/lu";
 
@@ -49,6 +48,19 @@ const statsData = [
 const Revenue = () => {
   const router = useRouter();
   return (
+    <div>
+    <div className="flex gap-4 items-center mb-8">
+          <h1 className="text-3xl font-bold">Dashboard</h1>
+          <div className="flex items-center ml-auto ">
+            <Input
+              id="search"
+              name="search"
+              type="text"
+              placeholder="Search products..."
+              className="w-full"
+            />
+          </div>
+        </div>
     <div className="flex">
       <div className="flex flex-col w-full">
         <div className="flex gap-5 m-2 w-full">
@@ -82,6 +94,7 @@ const Revenue = () => {
           ))}
         </div>
       </div>
+    </div>
     </div>
   );
 };

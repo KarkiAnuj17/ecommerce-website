@@ -1,6 +1,7 @@
 'use client';
 
 import Layout from '@/component/sidebar/admin';
+import { Input } from '@nextui-org/react';
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
 
@@ -21,9 +22,9 @@ const barData = [
 
 const pieData = [
   { name: "Electronics", value: 40 },
-  { name: "Clothing", value: 30 },
+  { name: "Fashion", value: 30 },
   { name: "Books", value: 20 },
-  { name: "Home & Garden", value: 10 },
+  { name: "Sports", value: 10 },
 ];
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
@@ -31,6 +32,19 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 const Statistics = () => {
   return (
     <Layout>
+      <div>
+    <div className="flex gap-4 items-center mb-8">
+          <h1 className="text-3xl font-bold">Statistics</h1>
+          <div className="flex items-center ml-auto ">
+            <Input
+              id="search"
+              name="search"
+              type="text"
+              placeholder="Search products..."
+              className="w-full"
+            />
+          </div>
+        </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Sales Overview Bar Chart */}
         <div className="bg-gray-50 p-4 rounded-lg shadow">
@@ -73,6 +87,7 @@ const Statistics = () => {
             </PieChart>
           </ResponsiveContainer>
         </div>
+      </div>
       </div>
     </Layout>
   );

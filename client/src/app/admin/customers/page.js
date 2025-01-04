@@ -1,4 +1,5 @@
 import Layout from "@/component/sidebar/admin";
+import { Input } from "@nextui-org/react";
 import React from "react";
 
 const customers = [
@@ -12,6 +13,19 @@ const customers = [
 const CustomerDirectory = () => {
   return (
     <Layout>
+      <div>
+    <div className="flex gap-4 items-center mb-8">
+          <h1 className="text-3xl font-bold">Customer</h1>
+          <div className="flex items-center ml-auto ">
+            <Input
+              id="search"
+              name="search"
+              type="text"
+              placeholder="Search products..."
+              className="w-full"
+            />
+          </div>
+        </div>
     <div className="p-6 bg-gray-100 min-h-screen">
       <h1 className="text-2xl font-bold mb-4">Customer Directory</h1>
       <div className="overflow-x-auto bg-white shadow rounded-lg">
@@ -41,6 +55,7 @@ const CustomerDirectory = () => {
           </tbody>
         </table>
       </div>
+    </div>
     </div>
     </Layout>
   );
