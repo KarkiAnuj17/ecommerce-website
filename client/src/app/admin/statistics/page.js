@@ -6,18 +6,18 @@ import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
 
 const barData = [
-  { name: "Jan", total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: "Feb", total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: "Mar", total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: "Apr", total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: "May", total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: "Jun", total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: "Jul", total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: "Aug", total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: "Sep", total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: "Oct", total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: "Nov", total: Math.floor(Math.random() * 5000) + 1000 },
-  { name: "Dec", total: Math.floor(Math.random() * 5000) + 1000 },
+  { name: "Jan", total: 3500 },
+  { name: "Feb", total: 4200 },
+  { name: "Mar", total: 3800 },
+  { name: "Apr", total: 4700 },
+  { name: "May", total: 3900 },
+  { name: "Jun", total: 4500 },
+  { name: "Jul", total: 4400 },
+  { name: "Aug", total: 4600 },
+  { name: "Sep", total: 4300 },
+  { name: "Oct", total: 4800 },
+  { name: "Nov", total: 4100 },
+  { name: "Dec", total: 5000 },
 ];
 
 const pieData = [
@@ -46,7 +46,6 @@ const Statistics = () => {
           </div>
         </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Sales Overview Bar Chart */}
         <div className="bg-gray-50 p-4 rounded-lg shadow">
           <p className="text-2xl font-bold mb-4">Sales Overview</p>
           <ResponsiveContainer width="100%" height={300}>

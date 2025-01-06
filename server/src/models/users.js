@@ -2,9 +2,7 @@ const mongoose = require('mongoose')
 mongoose.connect('mongodb://127.0.0.1:27017/projectdb');
 const { Schema } = mongoose;
 const userSchema = new Schema({
-  firstName: String, 
-  middleName:String,
-  lastName:String,
+  fullName: String, 
   phoneNumber: Number, 
   gender: {
       type: String,

@@ -3,10 +3,6 @@ import CustomNavbar from '@/component/navbar/header/page';
 import React from 'react';
 import FooterNavbar from '@/component/navbar/footer/page';
 import Image from 'next/image';
-import FeaturedProduct from './product/featured-product/page';
-import LatestProduct from './product/latest-product/page';
-import { Select, SelectItem} from "@nextui-org/react";
-import { FaArrowRight } from "react-icons/fa";
 import Categories from './product/catogories/page';
 import Product from './product/page';
 
