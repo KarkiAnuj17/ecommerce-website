@@ -30,8 +30,6 @@ const AddProducts = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <CustomNavbar />
-
       <div className="flex justify-center items-center bg-white py-6 shadow-sm">
         <h1 className="text-3xl font-bold text-gray-700">Add a New Product</h1>
       </div>
@@ -150,6 +148,7 @@ const AddProducts = () => {
       <div className="mt-12">
       
       </div>
+      <ProductList/>
     </div>
   );
 };
