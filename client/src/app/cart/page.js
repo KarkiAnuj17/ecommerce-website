@@ -1,34 +1,37 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CustomNavbar from "@/component/navbar/header/page";
 import { MdDelete } from "react-icons/md";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { FiShoppingCart } from "react-icons/fi";
+import axios from "axios";
 
 const ShoppingCart = () => {
-  const initialCartItems = [
-    {
-      id: 1,
-      productName: "Wireless Earbuds",
-      image: "/product-4.jpg",
-      quantity: 1,
-      price: 7999,
-    },
-    {
-      id: 2,
-      productName: "Smart Watch",
-      image: "/product-9.jpg",
-      quantity: 1,
-      price: 1999,
-    },
-  ];
+  const [products, setProducts] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
-  const [cartItems, setCartItems] = useState(initialCartItems);
+  const getProduct = async () => {
+    try {
+      const { data } = await axios.get(`http://localhost:4000/products`);
+      const itemsQuantity = data.map((item) => ({
+        ...item,
+        quantity: 1, 
+      }));
+      setProducts(itemsQuantity);
+      setCartItems(itemsQuantity); 
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+
+  useEffect(() => {
+    getProduct();
+  }, []);
 
   const handleIncrement = (id) => {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+        item._id === id ? { ...item, quantity: item.quantity + 1 } : item
       )
     );
   };
@@ -36,7 +39,7 @@ const ShoppingCart = () => {
   const handleDecrement = (id) => {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
-        item.id === id && item.quantity > 1
+        item._id === id && item.quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
           : item
       )
@@ -44,11 +47,11 @@ const ShoppingCart = () => {
   };
 
   const handleRemove = (id) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+    setCartItems((prevItems) => prevItems.filter((item) => item._id !== id));
   };
 
   const subtotal = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) => total + item.productPrice * item.quantity,
     0
   );
   const tax = subtotal * 0.1;
@@ -70,11 +73,11 @@ const ShoppingCart = () => {
           <div className="flex-1">
             {cartItems.map((item) => (
               <div
-                key={item.id}
+                key={item._id}
                 className="bg-white rounded-lg p-6 mb-4 flex gap-4 items-center shadow-md"
               >
                 <img
-                  src={item.image}
+                  src="product-3.jpg"
                   alt={item.productName}
                   className="w-24 h-24 rounded-lg bg-gray-200"
                 />
@@ -83,26 +86,26 @@ const ShoppingCart = () => {
                     {item.productName}
                   </h3>
                   <p className="text-gray-600 mt-1">
-                    Rs {item.price.toFixed(2)}
+                    Rs {item.productPrice.toFixed(2)}
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
                   <button
-                    onClick={() => handleDecrement(item.id)}
+                    onClick={() => handleDecrement(item._id)}
                     className="w-8 h-8 text-gray-700 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300"
                   >
                     -
                   </button>
                   <span className="text-lg font-semibold">{item.quantity}</span>
                   <button
-                    onClick={() => handleIncrement(item.id)}
+                    onClick={() => handleIncrement(item._id)}
                     className="w-8 h-8 text-gray-700 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300"
                   >
                     +
                   </button>
                 </div>
                 <button
-                  onClick={() => handleRemove(item.id)}
+                  onClick={() => handleRemove(item._id)}
                   className="w-8 h-8 text-white bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600"
                 >
                   <MdDelete />

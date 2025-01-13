@@ -10,7 +10,6 @@ import axios from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-
 const size = [40, 41, 42, 43, 44, 45, 46];
 
 const Thumbnail = [
@@ -30,6 +29,11 @@ const ProductPage = () => {
   useEffect(() => {
     getProduct();
 }, []);
+
+const [selectProduct,setSelectedProduct]= useState([]);
+const handleProductClick = (item) => {
+  setSelectedProduct(item);
+};
 
   return (
     <div>
@@ -59,7 +63,8 @@ const ProductPage = () => {
           <div className="flex-1">
             {/* <h2 className="mb-4">Home / T-Shirt</h2> */}
             {products.map((item) => (
-              <div key={item._id}>
+              <div key={item._id} onClick={() => handleProductClick(item)}
+>
                 <h2 className="text-3xl font-bold ">
                   {item.productName}
                 </h2>
