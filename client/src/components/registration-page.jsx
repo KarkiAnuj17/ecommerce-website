@@ -17,9 +17,11 @@ import { Icons } from "@/components/icons"
 import { motion } from "framer-motion"
 import axios from 'axios'
 import Link from 'next/link'
+import { useToast } from '@/hooks/use-toast'
+import { ToastAction } from '@radix-ui/react-toast'
 
 const RegistrationPage = () => {
-
+  const { toast } = useToast()
 const validationSchema = Yup.object({
   fullName: Yup.string().required('Full name is required'),
   phoneNumber: Yup.number()
@@ -50,9 +52,17 @@ const validationSchema = Yup.object({
   const handleRegister = async (values) => {
     try {
       const { data } = await axios.post(`http://localhost:4000/register`, values);
-      if (data) alert("Registered successfully");
+      if (data)   toast({
+        title: data,
+        action: <ToastAction altText="Try again">Proceed to Login</ToastAction>,
+      })
     } catch (error) {
-      alert("Registration failed");
+      toast({
+        variant: "destructive",
+        title: error?.response?.data,
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      })
+      // alert(error?.response?.data);
     }
   };
 

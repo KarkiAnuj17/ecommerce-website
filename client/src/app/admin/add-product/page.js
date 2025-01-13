@@ -24,7 +24,7 @@ const AddProducts = () => {
   });
 
   const addProducts = async (values) => {
-    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/products`,values);
+    const { data } = await axios.post(`http://localhost:4000/products`,values);
     if (data) alert("Product successfully added");
   };
 
