@@ -51,7 +51,6 @@ const LandingPage = () => {
             BUY NOW
           </button>
           </div>
-         
           </div>
       </div>
     </div>
