@@ -13,21 +13,7 @@ import { GiShoppingCart } from 'react-icons/gi';
 
 
 const LandingPage = () => {
-  const [products, setProducts] = useState([]);
-  const[selectProduct,setSelectProduct]=useState({});
-  const router = useRouter();
-  const getProduct = async (values) => {
-    const {data} = await axios.get(`http://localhost:4000/products`, values);
-    setProducts(data)
-  }
-  useEffect(() => {
-    getProduct();
-}, []);
- const [likedItems, setLikedItems] = useState({});
-
-  const toggleLike = (id) => {
-    setLikedItems((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
+ 
   return (
     <div className="flex flex-col">
       <CustomNavbar />,
@@ -57,43 +43,8 @@ const LandingPage = () => {
     <Categories/>
     <div className="m-3 p-8 items-end justify-end w-full">
     <div className="flex ">
-      <div className="flex-col">
-      <p className="text-2xl font-bold m-3 p-2">Product Recently Added</p>
-      <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 ">
-      {products.map((item) => (
-        <div key={item._id}>
-        <Card >
-          <CardBody onClick={() => router.push('/product/' + item._id)} className=" p-0 ">
-          <Image
-              src="/product-3.jpg"
-              width={200}      
-              height={150}     
-              alt={item.productName}
-              layout="responsive" 
-              className="object-cover"
-          />
-          </CardBody>
-          <CardFooter className="text-small justify-between">
-            <div className="flex flex-col m-0 font-light">
-              <b>{item.productName}</b>
-              <b>Rs {item.productPrice}</b>
-            </div>
-             <div className="flex gap-4 text-xl">
-                            <p onClick={() => toggleLike(item.id)}>
-                              <FaHeart color={likedItems[item.id] ? "red" : "gray"} />
-                            </p>
-                            <p>
-                              <GiShoppingCart />
-                            </p>
-                          </div>
-          </CardFooter>
-        </Card>
-        </div>
-      ))}
-      </div>
-      </div>
     </div>
-  {/* <Product/> */}
+  <Product/>
       </div>
   
   {/* <div className="flex flex-col items-center justify-center gap-6">

@@ -32,7 +32,6 @@ const ProductList = () => {
               alt={item.productName}
               layout="responsive" 
               className="object-cover "
-             
           />
           </CardBody>
           <CardFooter className="text-small justify-between">
@@ -40,7 +39,6 @@ const ProductList = () => {
               <b>{item.productName}</b>
               <b>Rs {item.productPrice}</b>
             </div>
-            
           </CardFooter>
         </Card>
         </div>

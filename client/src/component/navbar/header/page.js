@@ -6,12 +6,24 @@ import { FiShoppingCart } from "react-icons/fi";
 const CustomNavbar = () => {
   return (
     <div className="bg-gray-50">
-      <nav className="flex items-center justify-between px-8 py-6 bg-gray-900 text-white">
+      <nav className="flex items-center justify-between px-8 py-6 bg-black text-white">
         <div className="flex items-center gap-8">
-          <Link href="/" className="text-2xl font-bold text-white">
-            RedStore
-          </Link>
-          <div className="hidden md:flex gap-8">
+        <div className="flex items-center gap-2 text-2xl font-semibold">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-6 w-6">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          LuxeMarket
+        </div>
+          <div className="hidden md:flex gap-6">
             <Link href="/new" className="text-white">
               New
             </Link>
@@ -27,7 +39,7 @@ const CustomNavbar = () => {
           <div className="relative hidden md:block w-80">
             <Input
               type="text"
-              className="pl-10 bg-gray-900 border border-hidden text-white shadow-none"
+              className="pl-10 bg-black border border-hidden text-white shadow-none"
               placeholder="Search products..."
               contentLeft={
                 <svg

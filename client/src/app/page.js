@@ -18,7 +18,7 @@ const Homepage = () => {
   return (
     <div>
       <CustomNavbar />
-      <div className="flex flex-row items-center justify-between p-10 bg-red-600 w-2.5/3">
+      <div className="flex flex-row items-center justify-between p-10 bg-black w-2.5/3">
         <div className="flex flex-col space-y-8 ">
           <h1 className="text-3xl  font-bold text-white">
             Give Your Workout <br /> A New Style!
@@ -45,7 +45,7 @@ const Homepage = () => {
         <div className="flex flex-col">
         <p>Featured Product</p>
         <div className=" flex items-center justify-center">
-        <Divider className="my-3 m-1 w-12 h-3 rounded-lg bg-orange-500 " />
+        <Divider className="my-3 m-1 w-12 h-3 rounded-lg bg-red-700 " />
         </div>
         </div>
       </div>
@@ -56,13 +56,13 @@ const Homepage = () => {
         <div className="flex flex-col">
         <p>Latest Product</p>
         <div className=" flex items-center justify-center">
-        <Divider className="my-3 m-1 w-12 h-3 rounded-lg bg-orange-500 " />
+        <Divider className="my-3 m-1 w-12 h-3 rounded-lg bg-red-700 " />
         </div>
         </div>
       </div>
       <LatestProduct/>
       </div>
-      <div className=" bg-violet-600 text-white  items-center justify-center m-12 p-9 w-2.5/3 border rounded-xl">
+      <div className=" bg-red-600 text-white  items-center justify-center m-12 p-9 w-2.5/3 border rounded-xl">
       <div className="flex ">
       <Image src='/exclusive.png' width={500} height={600} alt='watch' />
       <div className="flex flex-col m-4 p-4">

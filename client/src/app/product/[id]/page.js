@@ -30,10 +30,6 @@ const ProductPage = () => {
     getProduct();
 }, []);
 
-const [selectProduct,setSelectedProduct]= useState([]);
-const handleProductClick = (item) => {
-  setSelectedProduct(item);
-};
 
   return (
     <div>
