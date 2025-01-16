@@ -5,7 +5,6 @@ import { RadioGroup, Radio } from "@nextui-org/react";
 import { useFormik } from "formik";
 import axios from "axios";
 import ProductList from "./product-list";
-import CustomNavbar from "@/component/navbar/header/page";
 
 const AddProducts = () => {
   const formik = useFormik({
@@ -17,6 +16,7 @@ const AddProducts = () => {
       discount: 0,
       isFeatured: "",
       colorOption: [],
+      productImage: null, 
     },
     onSubmit: (values) => {
       addProducts(values);
@@ -24,8 +24,28 @@ const AddProducts = () => {
   });
 
   const addProducts = async (values) => {
-    const { data } = await axios.post(`http://localhost:4000/products`,values);
-    if (data) alert("Product successfully added");
+    const formData = new FormData();
+    formData.append("productName", values.productName);
+    formData.append("productPrice", values.productPrice);
+    formData.append("productBrand", values.productBrand);
+    formData.append("stockQuantity", values.stockQuantity);
+    formData.append("discount", values.discount);
+    formData.append("isFeatured", values.isFeatured);
+    formData.append("colorOption", JSON.stringify(values.colorOption));
+    if (values.productImage) {
+      formData.append("productImage", values.productImage);
+    }
+
+    try {
+      const { data } = await axios.post(`http://localhost:4000/products`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (data) alert("Product successfully added");
+    } catch (error) {
+      console.error("Error adding product:", error);
+    }
   };
 
   return (
@@ -36,7 +56,7 @@ const AddProducts = () => {
 
       <div className="container mx-auto m-3">
         <div className="bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto">
-          <form onSubmit={formik.handleSubmit}>
+          <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
             <div className="grid grid-cols-2 gap-6">
               <div>
                 <h2 className="text-lg font-medium mb-2">Product Name</h2>
@@ -134,6 +154,19 @@ const AddProducts = () => {
                   <SelectItem key="Green">Green</SelectItem>
                 </Select>
               </div>
+
+              <div className="col-span-2">
+                <h2 className="text-lg font-medium mb-2">Product Image</h2>
+                <Input
+                  id="productImage"
+                  name="productImage"
+                  type="file"
+                  onChange={(event) =>
+                    formik.setFieldValue("productImage", event.currentTarget.files[0])
+                  }
+                  className="w-full"
+                />
+              </div>
             </div>
 
             <div className="mt-6">
@@ -146,9 +179,8 @@ const AddProducts = () => {
       </div>
 
       <div className="mt-12">
-      
+        <ProductList />
       </div>
-      <ProductList/>
     </div>
   );
 };

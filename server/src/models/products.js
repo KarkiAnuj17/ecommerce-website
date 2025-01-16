@@ -5,10 +5,11 @@ const productSchema = new Schema({
   productPrice: Number,
   productBrand:String,
   stockQuantity:Number,
-  discount: Number,
+  discount: Number,  
+  productImage:[String],
   ratings: {type:Number ,default:0},
   isFeatured: {type:Boolean,default:false},
-  colorOption:[String] ,
+  colorOption:[String] 
 
 });
 const Product = mongoose.model('Product', productSchema);

@@ -5,11 +5,6 @@ import FooterNavbar from '@/component/navbar/footer/page';
 import Image from 'next/image';
 import Categories from '../product/catogories/page';
 import Product from '../product/page';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import { Card, CardBody, CardFooter } from '@nextui-org/react';
-import { FaHeart } from 'react-icons/fa';
-import { GiShoppingCart } from 'react-icons/gi';
 
 
 const LandingPage = () => {
