@@ -12,8 +12,7 @@ const customers = [
 
 const CustomerDirectory = () => {
   return (
-    <Layout>
-      <div>
+      <div className="min-h-screen bg-gray-50">
     <div className="flex gap-4 items-center mb-8">
           <h1 className="text-3xl font-bold">Customer</h1>
           <div className="flex items-center ml-auto ">
@@ -26,7 +25,7 @@ const CustomerDirectory = () => {
             />
           </div>
         </div>
-    <div className="p-6 bg-gray-100 min-h-screen">
+    <div className="p-6 bg-gray-100">
       <h1 className="text-2xl font-bold mb-4">Customer Directory</h1>
       <div className="overflow-x-auto bg-white shadow rounded-lg">
         <table className="min-w-full border-collapse border border-gray-200">
@@ -57,7 +56,6 @@ const CustomerDirectory = () => {
       </div>
     </div>
     </div>
-    </Layout>
   );
 };
 

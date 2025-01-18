@@ -6,7 +6,7 @@ import Layout from '@/component/sidebar/admin';
 import SalesOverview from './sales/page';
 const Dashboard = () => {
   return (
-    <Layout>
+  
     <div className="w-full p-4">
       <div className="space-y-6">
         <Revenue/>
@@ -14,7 +14,6 @@ const Dashboard = () => {
         <Order />
       </div>
     </div>
-  </Layout>
   );
 };
 

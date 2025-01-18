@@ -1,6 +1,4 @@
 'use client';
-
-import Layout from '@/component/sidebar/admin';
 import { Input } from '@nextui-org/react';
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
@@ -31,8 +29,7 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const Statistics = () => {
   return (
-    <Layout>
-      <div>
+      <div className='w-full'>
     <div className="flex gap-4 items-center mb-8">
           <h1 className="text-3xl font-bold">Statistics</h1>
           <div className="flex items-center ml-auto ">
@@ -88,7 +85,6 @@ const Statistics = () => {
         </div>
       </div>
       </div>
-    </Layout>
   );
 };
 

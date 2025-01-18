@@ -1,5 +1,5 @@
 'use client'
-import React from "react";
+import React, { useState } from "react";
 import { Input, Button, Divider, Select, SelectItem } from "@nextui-org/react";
 import { RadioGroup, Radio } from "@nextui-org/react";
 import { useFormik } from "formik";
@@ -22,7 +22,6 @@ const AddProducts = () => {
       addProducts(values);
     },
   });
-
   const addProducts = async (values) => {
     const formData = new FormData();
     formData.append("productName", values.productName);
@@ -123,7 +122,6 @@ const AddProducts = () => {
                   <Radio value="false">No</Radio>
                 </RadioGroup>
               </div>
-
               <div>
                 <h2 className="text-lg font-medium mb-2">Discount Price</h2>
                 <Input
