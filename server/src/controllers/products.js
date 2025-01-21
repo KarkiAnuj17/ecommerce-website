@@ -1,6 +1,7 @@
 const Product = require('../models/products');
 const addNewProduct = async (req, res) => {
   try{
+    req.body.productImage = req.file.filename;
     Product.create(req.body)
     res.send("ok created")
 }catch(err){

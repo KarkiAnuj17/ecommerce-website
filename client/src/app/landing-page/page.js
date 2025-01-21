@@ -5,6 +5,7 @@ import FooterNavbar from '@/component/navbar/footer/page';
 import Image from 'next/image';
 import Categories from '../product/catogories/page';
 import Product from '../product/page';
+import ProductList from '../admin/add-product/product-list';
 
 
 const LandingPage = () => {
@@ -21,7 +22,7 @@ const LandingPage = () => {
           </div>
       <div className="p-6 flex-col">
         <div className="gap-5 p-6">
-           <h1 className="text-3xl font-bold">
+          <h1 className="text-3xl font-bold">
             Infinite Precision: Own the Moment
       </h1>
                   <p className="text-l p-3">
@@ -39,8 +40,8 @@ const LandingPage = () => {
     <div className="m-3 p-8 items-end justify-end w-full">
     <div className="flex ">
     </div>
-  <Product/>
-      </div>
+    <ProductList/>
+    </div>
   
   {/* <div className="flex flex-col items-center justify-center gap-6">
       <div className=" w-1.7/3 h-60 bg-gray-300 rounded-lg  flex items-center justify-center">

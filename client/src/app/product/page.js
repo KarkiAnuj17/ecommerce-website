@@ -7,7 +7,6 @@ import { FaHeart } from "react-icons/fa";
 import { GiShoppingCart } from "react-icons/gi";
 import axios from 'axios';
 
-const ITEMS_PER_PAGE = 4;
 
 const Product = () => {
   const [products, setProducts] = useState([]);
@@ -20,44 +19,11 @@ const Product = () => {
     getProduct();
 }, []);
   const [likedItems, setLikedItems] = useState({});
-  const [currentPage, setCurrentPage] = useState(1);
   const [sortOption, setSortOption] = useState('Default Sorting');
 
   const toggleLike = (id) => {
     setLikedItems((prev) => ({ ...prev, [id]: !prev[id] }));
   };
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  const handleSort = (option) => {
-    setSortOption(option);
-    setCurrentPage(1); 
-  };
-
-  // // Sort the product list based on the selected option
-  // const sortedProductList = [...setProducts].sort((a, b) => {
-  //   switch (sortOption) {
-  //     case 'Sort By price':
-  //       return b.price - a.price;
-  //     case 'Sort by Popularity': // Assuming popularity is based on price in reverse
-  //       return b.price - a.price;
-  //     case 'Sort by Rating': // Placeholder for future implementation
-  //       return a.id - b.id; // Default sorting for now
-  //     case 'Sort By sale':
-  //       return (b.originalPrice - b.price) - (a.originalPrice - a.price);
-  //     default:
-  //       return a.id - b.id; // Default sorting
-  //   }
-  // });
-
-  // const totalPages = Math.ceil(sortedProductList.length / ITEMS_PER_PAGE);
-  // const currentItems = sortedProductList.slice(
-  //   (currentPage - 1) * ITEMS_PER_PAGE,
-  //   currentPage * ITEMS_PER_PAGE
-  // );
-
   return (
     <div>
       <div className="text-2xl font-semibold flex flex-col">
@@ -87,9 +53,9 @@ const Product = () => {
         <Card >
           <CardBody onClick={() => router.push('/products/' + item._id)} className=" p-0 ">
           <Image
-              src="/product-3.jpg"
-              width={200}      
-              height={150}     
+              src={"https://localhost:4000/uploads/"+ item.productImage}
+              width={250}      
+              height={250} 
               alt={item.productName}
               layout="responsive" 
               className="object-cover"

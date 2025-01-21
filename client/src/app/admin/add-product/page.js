@@ -1,6 +1,6 @@
 'use client'
-import React, { useState } from "react";
-import { Input, Button, Divider, Select, SelectItem } from "@nextui-org/react";
+import React from "react";
+import { Input, Button, SelectItem, Select } from "@nextui-org/react";
 import { RadioGroup, Radio } from "@nextui-org/react";
 import { useFormik } from "formik";
 import axios from "axios";
@@ -10,19 +10,35 @@ const AddProducts = () => {
   const formik = useFormik({
     initialValues: {
       productName: "",
-      productPrice: 0,
+      productPrice: "",
       productBrand: "",
-      stockQuantity: 0,
-      discount: 0,
-      isFeatured: "",
+      stockQuantity: "",
+      discount: "",
+      isFeatured: false,
       colorOption: [],
-      productImage: null, 
+      productImage: null,
     },
-    onSubmit: (values) => {
-      addProducts(values);
+    validate: (values) => {
+      const errors = {};
+      if (!values.productName) errors.productName = "Product name is required";
+      if (!values.productPrice || values.productPrice <= 0)
+        errors.productPrice = "Price must be greater than 0";
+      if (!values.productBrand) errors.productBrand = "Brand is required";
+      if (!values.stockQuantity || values.stockQuantity < 0)
+        errors.stockQuantity = "Stock quantity cannot be negative";
+      if (values.discount < 0 || values.discount > 100)
+        errors.discount = "Discount must be between 0 and 100";
+      if (values.colorOption.length === 0)
+        errors.colorOption = "At least one color is required";
+      return errors;
+    },
+    onSubmit: (values, { resetForm }) => {
+      addProduct(values);
+      resetForm();
     },
   });
-  const addProducts = async (values) => {
+
+  const addProduct = async (values) => {
     const formData = new FormData();
     formData.append("productName", values.productName);
     formData.append("productPrice", values.productPrice);
@@ -41,9 +57,21 @@ const AddProducts = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      if (data) alert("Product successfully added");
+      alert("Product added successfully");
     } catch (error) {
       console.error("Error adding product:", error);
+    }
+  };
+
+  const handleColorChange = (color) => {
+    const colors = [...formik.values.colorOption];
+    if (colors.includes(color)) {
+      formik.setFieldValue(
+        "colorOption",
+        colors.filter((c) => c !== color)
+      );
+    } else {
+      formik.setFieldValue("colorOption", [...colors, color]);
     }
   };
 
@@ -55,10 +83,11 @@ const AddProducts = () => {
 
       <div className="container mx-auto m-3">
         <div className="bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto">
-          <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
+          <form onSubmit={formik.handleSubmit}>
             <div className="grid grid-cols-2 gap-6">
+              {/* Product Name */}
               <div>
-                <h2 className="text-lg font-medium mb-2">Product Name</h2>
+                <label className="text-lg font-medium mb-2 block">Product Name</label>
                 <Input
                   id="productName"
                   name="productName"
@@ -68,10 +97,14 @@ const AddProducts = () => {
                   placeholder="Enter product name"
                   className="w-full"
                 />
+                {formik.errors.productName && (
+                  <p className="text-red-500 text-sm">{formik.errors.productName}</p>
+                )}
               </div>
 
+              {/* Product Price */}
               <div>
-                <h2 className="text-lg font-medium mb-2">Product Price</h2>
+                <label className="text-lg font-medium mb-2 block">Product Price</label>
                 <Input
                   id="productPrice"
                   name="productPrice"
@@ -81,10 +114,14 @@ const AddProducts = () => {
                   placeholder="Enter product price"
                   className="w-full"
                 />
+                {formik.errors.productPrice && (
+                  <p className="text-red-500 text-sm">{formik.errors.productPrice}</p>
+                )}
               </div>
 
+              {/* Product Brand */}
               <div>
-                <h2 className="text-lg font-medium mb-2">Product Brand</h2>
+                <label className="text-lg font-medium mb-2 block">Product Brand</label>
                 <Input
                   id="productBrand"
                   name="productBrand"
@@ -94,10 +131,14 @@ const AddProducts = () => {
                   placeholder="Enter product brand"
                   className="w-full"
                 />
+                {formik.errors.productBrand && (
+                  <p className="text-red-500 text-sm">{formik.errors.productBrand}</p>
+                )}
               </div>
 
+              {/* Stock Quantity */}
               <div>
-                <h2 className="text-lg font-medium mb-2">Stock Quantity</h2>
+                <label className="text-lg font-medium mb-2 block">Stock Quantity</label>
                 <Input
                   id="stockQuantity"
                   name="stockQuantity"
@@ -107,14 +148,18 @@ const AddProducts = () => {
                   placeholder="Enter stock quantity"
                   className="w-full"
                 />
+                {formik.errors.stockQuantity && (
+                  <p className="text-red-500 text-sm">{formik.errors.stockQuantity}</p>
+                )}
               </div>
 
+              {/* Is Featured */}
               <div className="col-span-2">
-                <h2 className="text-lg font-medium mb-2">Is Featured?</h2>
+                <label className="text-lg font-medium mb-2 block">Is Featured?</label>
                 <RadioGroup
                   orientation="horizontal"
-                  onChange={(e) =>
-                    formik.setFieldValue("isFeatured", e.target.value === "true")
+                  onChange={(value) =>
+                    formik.setFieldValue("isFeatured", value === "true")
                   }
                   className="space-x-6"
                 >
@@ -122,19 +167,25 @@ const AddProducts = () => {
                   <Radio value="false">No</Radio>
                 </RadioGroup>
               </div>
+
+              {/* Discount */}
               <div>
-                <h2 className="text-lg font-medium mb-2">Discount Price</h2>
+                <label className="text-lg font-medium mb-2 block">Discount (%)</label>
                 <Input
                   id="discount"
                   name="discount"
                   type="number"
                   onChange={formik.handleChange}
                   value={formik.values.discount}
-                  placeholder="Enter discount price"
+                  placeholder="Enter discount"
                   className="w-full"
                 />
+                {formik.errors.discount && (
+                  <p className="text-red-500 text-sm">{formik.errors.discount}</p>
+                )}
               </div>
 
+              {/* Color Options */}
               <div>
                 <h2 className="text-lg font-medium mb-2">Select Colors</h2>
                 <Select
@@ -153,8 +204,9 @@ const AddProducts = () => {
                 </Select>
               </div>
 
+              {/* Product Image */}
               <div className="col-span-2">
-                <h2 className="text-lg font-medium mb-2">Product Image</h2>
+                <label className="text-lg font-medium mb-2 block">Product Image</label>
                 <Input
                   id="productImage"
                   name="productImage"
@@ -167,17 +219,18 @@ const AddProducts = () => {
               </div>
             </div>
 
+            {/* Submit Button */}
             <div className="mt-6">
-              <Button type="submit" className="bg-black text-white w-full">
-                Add Product
+              <Button
+                type="submit"
+                className="bg-black text-white w-full"
+                disabled={formik.isSubmitting}
+              >
+                {formik.isSubmitting ? "Adding Product..." : "Add Product"}
               </Button>
             </div>
           </form>
         </div>
-      </div>
-
-      <div className="mt-12">
-        <ProductList />
       </div>
     </div>
   );

@@ -1,52 +1,25 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Card, CardBody, CardFooter, Image } from '@nextui-org/react'; 
-import { useRouter } from 'next/navigation';
+import { ProductCard } from "@/components/ProductCard"
 
-const ProductList = () => {
-  const [products, setProducts] = useState([]);
-  const router = useRouter();
-  const getProduct = async (values) => {
-    const {data} = await axios.get(`http://localhost:4000/products`, values);
-    setProducts(data)
+async function getProducts() {
+  const res = await fetch("http://localhost:4000/products")
+  if (!res.ok) {
+    throw new Error("Failed to fetch products")
   }
+  return res.json();
+}
 
-  useEffect(() => {
-    getProduct();
-}, []);
+export default async function ProductList() {
+  const products = await getProducts()
 
   return (
-    <div className="flex ">
-      <div className="flex-col">
-      <p className="text-2xl font-bold m-3 p-2">Product Recently Added</p>
-      <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 ">
-      {products.map((item) => (
-        <div key={item._id}>
-        <Card  >
-          <CardBody onClick={() => router.push('/product/' + item._id)} className=" p-0 ">
-          <Image
-              src="/product-3.jpg"
-              width={250}      
-              height={250}     
-              alt={item.productName}
-              layout="responsive" 
-              className="object-cover "
-          />
-          </CardBody>
-          <CardFooter className="text-small justify-between">
-            <div className="flex flex-col m-0 font-light">
-              <b>{item.productName}</b>
-              <b>Rs {item.productPrice}</b>
-            </div>
-          </CardFooter>
-        </Card>
-        </div>
-      ))}
+    (<div className="container mx-auto py-8">
+      <h1 className="text-3xl font-bold mb-8">Product List</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {products.map((product) => (
+          <ProductCard key={product._id} product={product} />
+        ))}
       </div>
-      </div>
-    </div>
+    </div>)
   );
-};
+}
 
-export default ProductList;
