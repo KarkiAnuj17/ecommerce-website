@@ -9,6 +9,7 @@ const productSchema = new mongoose.Schema({
   productImage: { type: String, required: true },
   ratings: { type: Number, default: 0 },
   isFeatured: { type: Boolean, default: false },
+  categories: {type: String, required: true},
   colorOption: { type: [String], required: true },
 });
 

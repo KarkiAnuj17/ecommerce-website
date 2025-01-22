@@ -1,6 +1,5 @@
-'use client'
 import CustomNavbar from '@/component/navbar/header/page';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import FooterNavbar from '@/component/navbar/footer/page';
 import Image from 'next/image';
 import Categories from '../product/catogories/page';

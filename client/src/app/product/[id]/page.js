@@ -1,138 +1,147 @@
 "use client"
-import CustomNavbar from '@/component/navbar/header/page';
-import React, { useEffect, useState } from 'react';
-import FooterNavbar from '@/component/navbar/footer/page';
-import FeaturedProduct from '../featured-product/page';
-import { TbListDetails } from "react-icons/tb";
-import { FaArrowRight } from "react-icons/fa";
-import { Button, Select, SelectItem } from '@nextui-org/react';
-import axios from 'axios';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
-const size = [40, 41, 42, 43, 44, 45, 46];
-
-const Thumbnail = [
-  { image: "https://imgs.search.brave.com/QtX-izwgOIVHIG8wTK7e7ddaxrYUUzkZURdzLOkSJdM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zbmVh/a2VybmV3cy5jb20v/d3AtY29udGVudC91/cGxvYWRzLzIwMjMv/MDIvam9yZGFuLTEt/aGktODUtYmxhY2st/d2hpdGUtYnE0NDIy/LTAwMS1zdG9yZS1s/aXN0LTEuanBn" },
-  { image: "https://imgs.search.brave.com/EuSUsFBmdYV1RUFzmAqiIlnWaKfXWhGdOWm8CyP0VHM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zbmVh/a2VybmV3cy5jb20v/d3AtY29udGVudC91/cGxvYWRzLzIwMjIv/MTAvYWlyLWpvcmRh/bi0xLWhpLTg1LWJs/YWNrLXdoaXRlLUJR/NDQyMi0wMDEtMS5q/cGc" },
-  { image: "https://imgs.search.brave.com/01tEirfNpqioQiXfUD06_WfV68FHAdcOtVrlYJEW30c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9oaXBz/LmhlYXJzdGFwcHMu/Y29tL2htZy1wcm9k/L2ltYWdlcy9haXIt/am9yZGFuLTEtaGln/aC1oZXJvLTE2NzYw/NDI4NTQuanBnP2Ny/b3A9MC41eHc6MXho/O2NlbnRlcix0b3Am/cmVzaXplPTY0MDoq" },
-  { image: "https://imgs.search.brave.com/QtX-izwgOIVHIG8wTK7e7ddaxrYUUzkZURdzLOkSJdM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zbmVh/a2VybmV3cy5jb20v/d3AtY29udGVudC91/cGxvYWRzLzIwMjMv/MDIvam9yZGFuLTEt/aGktODUtYmxhY2st/d2hpdGUtYnE0NDIy/LTAwMS1zdG9yZS1s/aXN0LTEuanBn" }
-];
+import axios from "axios"
+import { useParams } from "next/navigation"
+import React, { useEffect, useState } from "react"
+import Image from "next/image"
+import { Star } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 
 const ProductPage = () => {
-  const [products, setProducts] = useState([]);
-  const router =useRouter();
-  const getProduct = async (values) => {
-    const {data} = await axios.get(`http://localhost:4000/products`, values);
-    setProducts(data)
-  }
-  useEffect(() => {
-    getProduct();
-}, []);
+  const params = useParams()
+  const [productDetail, setProductDetails] = useState(null)
+  const [selectedColor, setSelectedColor] = useState("")
+  const [selectedSize, setSelectedSize] = useState("M")
 
+  const fetchProductDetails = async () => {
+    try {
+      const { data } = await axios.get(`http://localhost:4000/products/${params.id}`)
+      setProductDetails(data)
+      if (data.colorOption && data.colorOption.length > 0) {
+        setSelectedColor(JSON.parse(data.colorOption[0])[0])
+      }
+    } catch (error) {
+      console.error("Error fetching product details:", error)
+    }
+  }
+
+  useEffect(() => {
+    fetchProductDetails()
+  }, [params.id])
+
+  if (!productDetail) return <div>Loading...</div>
+
+  const discountedPrice = productDetail.productPrice * (1 - productDetail.discount / 100)
+  const availableColors = JSON.parse(productDetail.colorOption[0])
+  const sizes = ["S", "M", "L", "XL"]
 
   return (
-    <div>
-      <CustomNavbar />
-      <div className="min-h-screen flex items-center justify-center bg-gray-200">
-        <div className="w-full p-8 rounded-lg shadow-md flex flex-col lg:flex-row gap-8">
-          <div className="flex-1">
-            <div className="mb-6">
-                <Image
-                width={300}      
-                height={50}
-                alt="shirt" 
-                  src="/product-3.jpg"
-                  className="w-1/3 rounded-lg"
-                />
+    <div className="container mx-auto px-4 py-8">
+      <Card className="bg-white rounded-lg overflow-hidden">
+        <CardContent className="p-8">
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Product Image */}
+            <div className="relative aspect-square bg-gray-50 rounded-lg overflow-hidden">
+              <Image
+                src={`http://localhost:4000/uploads/${productDetail.productImage}`}
+                alt={productDetail.productName}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg"
+              />
             </div>
-            {/* <div className="flex gap-4">
-              {Thumbnail.map((item, index) => (
-                <img
-                  key={index}
-                  src={item.image}
-                  className="w-24 h-24 object-cover rounded-lg cursor-pointer border-2 border-gray-300"
-                />
-              ))}
-            </div> */}
-          </div>
-          <div className="flex-1">
-            {/* <h2 className="mb-4">Home / T-Shirt</h2> */}
-            {products.map((item) => (
-              <div key={item._id} onClick={() => handleProductClick(item)}
->
-                <h2 className="text-3xl font-bold ">
-                  {item.productName}
-                </h2>
-                <h2 className="text-xl   ">
-                  {item.productBrand}
-                </h2>
-                <p className="text-2xl ">
-                  Rs {item.productPrice}
+
+            {/* Product Details */}
+            <div className="flex flex-col">
+              <div className="text-sm text-gray-500 mb-2">{productDetail.categories}</div>
+              <h1 className="text-2xl font-semibold mb-4">{productDetail.productName}</h1>
+
+              {/* Ratings */}
+              <div className="flex items-center gap-2 mb-4">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`w-4 h-4 ${
+                        i < Math.floor(productDetail.ratings) ? "text-yellow-400 fill-current" : "text-gray-200"
+                      }`}
+                    />
+                  ))}
+                </div>
+                <span className="text-sm text-gray-600">
+                  ({productDetail.ratings}) {productDetail.ratings}K Reviews
+                </span>
+              </div>
+
+              {/* Price */}
+              <div className="flex items-center gap-2 mb-6">
+                {productDetail.discount > 0 && (
+                  <span className="text-gray-500 line-through">${productDetail.productPrice}</span>
+                )}
+                <span className="text-xl font-semibold">${discountedPrice.toFixed(2)}</span>
+              </div>
+
+              {/* Description */}
+              <div className="mb-6">
+                <h2 className="font-semibold mb-2">Description</h2>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  {productDetail.productBrand}. In stock: {productDetail.stockQuantity} units.
                 </p>
               </div>
-            ))}
-            <div className=" flex-col mb-4 gap-2 m-4">
-              {/* <p className="text-lg font-medium mb-2"> Size:</p>
-              <div className="grid grid-cols-4 gap-2">
-                <div className="grid grid-cols-4 gap-2 w-80">
-                  {size.map((item, index) => (
+
+              {/* Color Selection */}
+              <div className="mb-6">
+                <h2 className="font-semibold mb-2">Available Color</h2>
+                <div className="flex gap-2">
+                  {availableColors.map((color) => (
                     <button
-                      key={index}
-                      className=" h-15 flex items-center justify-center text-lg font-semibold rounded-md border border-gray-300 bg-white"
+                      key={color}
+                      onClick={() => setSelectedColor(color)}
+                      className={`w-8 h-8 rounded-sm transition-all ${
+                        selectedColor === color ? "ring-2 ring-offset-2 ring-black" : "ring-1 ring-gray-300"
+                      }`}
+                      style={{ backgroundColor: color.toLowerCase() }}
+                      aria-label={`Select ${color} color`}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Size Selection */}
+              <div className="mb-8">
+                <h2 className="font-semibold mb-2">Size</h2>
+                <div className="flex gap-2">
+                  {sizes.map((size) => (
+                    <button
+                      key={size}
+                      onClick={() => setSelectedSize(size)}
+                      className={`w-10 h-10 flex items-center justify-center rounded-sm border transition-all ${
+                        selectedSize === size
+                          ? "border-black bg-black text-white"
+                          : "border-gray-200 hover:border-gray-300"
+                      }`}
                     >
-                      {item}
+                      {size}
                     </button>
                   ))}
                 </div>
-              </div> */}
-              <div className="flex w-full">
-                <Select
-                  selectionMode="multiple"
-                  name="colorOption"
-                  placeholder="Select color"
-                  className="w-2/3 my-3 justify-start "
-                >
-                  <SelectItem key="Black">Black</SelectItem>
-                  <SelectItem key="Red">Red</SelectItem>
-                  <SelectItem key="Blue">Blue</SelectItem>
-                  <SelectItem key="Green">Green</SelectItem>
-                </Select>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-4">
+                <Button className="flex-1 h-12 text-sm font-medium">Add To Chart</Button>
+                <Button className="flex-1 h-12 text-sm font-medium bg-black text-white hover:bg-gray-900">
+                  Checkout Now
+                </Button>
               </div>
             </div>
-            <div className="mb-4">
-              <Button onClick={() => router.push('/cart')} className="w-full bg-black text-white py-3 rounded-lg m-4">
-                Add to Cart
-              </Button>
-              <p className="text-sm text-gray-500 mt-2">
-                Free delivery on orders over $50.00
-              </p>
-            </div>
-            <div className="flex items-center gap-5">
-              <p className="font-bold text-xl">Product Details</p>
-              <TbListDetails />
-            </div>
-            <p className="p-1 text-justify">
-              Experience the ultimate in style and comfort with the Nike Reebok
-              Zig. Combining modern aesthetics with innovative technology, these
-              shoes are perfect for both everyday wear and intense workouts.
-            </p>
           </div>
-        </div>
-      </div>
-      <div className=" p-8 bg-gray-100 rounded-lg">
-        <div className="flex justify-between items-center">
-          <h3 className="text-2xl font-bold mb-4">Related Products</h3>
-          <div className="flex items-center space-x-2 cursor-pointer">
-            <p className=" hover:underline">View All</p>
-            <FaArrowRight />
-          </div>
-        </div>
-        <FeaturedProduct />
-      </div>
-      <FooterNavbar />
+        </CardContent>
+      </Card>
     </div>
-  );
-};
+  )
+}
 
-export default ProductPage;
+export default ProductPage
+

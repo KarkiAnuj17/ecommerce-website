@@ -16,4 +16,11 @@ const getAllProduct = async (req, res) => {
     res.send("sth went wrong")
 }
 }
-module.exports ={addNewProduct,getAllProduct}
+const getProductById = async (req, res) => {
+  try{
+    const data =await Product.findById(req.params.productId)
+    res.send(data)
+}catch(err){
+    res.send("sth went wrong")
+}}
+module.exports ={addNewProduct,getAllProduct,getProductById}
