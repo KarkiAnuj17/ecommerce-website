@@ -38,7 +38,6 @@ export function ProductCard({ product }) {
             variant="secondary"
             size="icon"
             className={`absolute top-2 right-2 z-10 ${isFavorite ? "bg-red-500 text-white hover:bg-red-600" : "bg-white hover:bg-gray-100"}`}
-            // onClick={toggleFavorite}
           >
             <Heart className={`h-5 w-5 ${isFavorite ? "fill-current" : ""}`} />
           </Button>

@@ -1,28 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-const categories = [
-  {
-    name: "Electronics",
-    slug: "electronics",
-    image: "/electronics.webp",
-  },
-  {
-    name: "Sports",
-    slug: "sports",
-    image: "/sports.webp",
-  },
-  {
-    name: "Fashion",
-    slug: "fashion",
-    image: "/fashion.webp",
-  },
-  {
-    name: "Books",
-    slug: "books",
-    image: "/books.webp",
-  },
-]
 
 const Categories = () => {
   return (

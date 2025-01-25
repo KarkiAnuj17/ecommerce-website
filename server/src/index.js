@@ -9,11 +9,15 @@ app.use('/uploads',express.static('uploads'));
 const userRoute = require('./routes/users')
 const productRoute = require('./routes/products')
 const contactRoute = require('./routes/contact')
+const categoriesRoute = require('./routes/categories')
+
 const connect = require('./db/connection')
 connect()
 app.use(userRoute)
 app.use(productRoute)
 app.use(contactRoute)
+app.use(categoriesRoute)
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

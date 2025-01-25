@@ -70,7 +70,7 @@ const ProductPage = () => {
                   ))}
                 </div>
                 <span className="text-sm text-gray-600">
-                  ({productDetail.ratings}) {productDetail.ratings}K Reviews
+                  ({productDetail.ratings}) {productDetail.ratings}Reviews
                 </span>
               </div>
 
@@ -83,12 +83,7 @@ const ProductPage = () => {
               </div>
 
               {/* Description */}
-              <div className="mb-6">
-                <h2 className="font-semibold mb-2">Description</h2>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {productDetail.productBrand}. In stock: {productDetail.stockQuantity} units.
-                </p>
-              </div>
+             
 
               {/* Color Selection */}
               <div className="mb-6">
@@ -131,9 +126,16 @@ const ProductPage = () => {
               {/* Action Buttons */}
               <div className="flex gap-4">
                 <Button className="flex-1 h-12 text-sm font-medium">Add To Chart</Button>
-                <Button className="flex-1 h-12 text-sm font-medium bg-black text-white hover:bg-gray-900">
-                  Checkout Now
+                <Button className="flex-1 h-12 text-sm font-medium bg-white text-black hover:bg-gray-100">
+                  Add To Favourite
                 </Button>
+              </div>
+              <div className="mb-6 p-4">
+                <h2 className="font-semibold mb-2">Product Details</h2>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  {productDetail.productBrand}.<br/>
+                  In stock: {productDetail.stockQuantity} units.
+                </p>
               </div>
             </div>
           </div>

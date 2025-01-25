@@ -1,6 +1,6 @@
 "use client"
 import React from "react"
-import { Input, Button, SelectItem, Select } from "@nextui-org/react"
+import { Input, Button, SelectItem, Select, Textarea } from "@nextui-org/react"
 import { RadioGroup, Radio } from "@nextui-org/react"
 import { useFormik } from "formik"
 import * as Yup from "yup"
@@ -211,7 +211,7 @@ const AddProducts = () => {
 
               <div className="col-span-2">
                 <label className="text-lg font-medium block mb-2">Product Description</label>
-                <Input
+                <Textarea
                   id="productDescription"
                   name="productDescription"
                   type="textarea"
