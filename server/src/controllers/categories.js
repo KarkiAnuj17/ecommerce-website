@@ -8,4 +8,13 @@ const addNewCategories = async (req, res) => {
     res.send("sth went wrong")
 }
 }
-module.exports ={addNewCategories}
+const getAllCategories = async (req, res) => {
+  try{
+    const data =await Categories.find()
+    res.send(data)
+}catch(err){
+    res.send("sth went wrong")
+}
+}
+
+module.exports ={addNewCategories,getAllCategories}

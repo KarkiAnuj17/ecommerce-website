@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { addNewCategories  } = require('../controllers/categories');
+const { addNewCategories, getAllCategories  } = require('../controllers/categories');
 const app = Router();
 const multer  = require('multer')
 const storage = multer.diskStorage({
@@ -14,4 +14,6 @@ const storage = multer.diskStorage({
   const upload = multer({ storage: storage })
 
 app.post('/categories',upload.single('categoryImage'), addNewCategories);
+app.get('/categories',getAllCategories);
+
 module.exports = app;

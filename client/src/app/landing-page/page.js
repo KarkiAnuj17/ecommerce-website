@@ -2,9 +2,8 @@ import CustomNavbar from '@/component/navbar/header/page';
 import React from 'react';
 import FooterNavbar from '@/component/navbar/footer/page';
 import Image from 'next/image';
-import Categories from '../product/catogories/page';
-import Product from '../product/page';
 import ProductList from '../admin/add-product/product-list';
+import CategoriesPage from '../admin/categories/categories-list';
 
 
 const LandingPage = () => {
@@ -35,7 +34,7 @@ const LandingPage = () => {
           </div>
       </div>
     </div>
-    <Categories/>
+<CategoriesPage/>
     <div className="m-3 p-8 items-end justify-end w-full">
     <div className="flex ">
     </div>
