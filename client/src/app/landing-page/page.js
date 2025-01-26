@@ -11,7 +11,6 @@ const LandingPage = () => {
   return (
     <div className="flex flex-col">
       <CustomNavbar />,
-      {/* <ProductCatogories/>, */}
       <div className="flex flex-col items-center justify-center gap-5 ">
       <div className=" w-2/3 h-80  bg-red-500 rounded-lg  flex items-center justify-center text-white">
       <div className="flex">
