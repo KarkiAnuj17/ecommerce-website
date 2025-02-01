@@ -5,8 +5,11 @@ import { RadioGroup, Radio } from "@nextui-org/react"
 import { useFormik } from "formik"
 import * as Yup from "yup"
 import axios from "axios"
+import { useToast } from "@/hooks/use-toast"
+import { ToastAction } from "@radix-ui/react-toast"
 
 const AddProducts = () => {
+  const { toast } = useToast()
   const formik = useFormik({
     initialValues: {
       productName: "",
@@ -20,6 +23,7 @@ const AddProducts = () => {
       categories: "",
       productDescription: "",
     },
+    
     validationSchema: Yup.object({
       productName: Yup.string().required("Product name is required"),
       productPrice: Yup.number().required("Price is required").positive("Price must be greater than 0"),
@@ -60,11 +64,22 @@ const AddProducts = () => {
           "Content-Type": "multipart/form-data",
         },
       })
-      alert("Product added successfully")
+
+      if (data) 
+        toast({
+          title: data,
+          action: <ToastAction altText="Try again">View product</ToastAction>,
+        })
+      
     } catch (error) {
-      console.error("Error adding product:", error)
+      toast({
+        variant: "destructive",
+        title: error?.response?.data,
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      })
     }
   }
+
 
   return (
     <div className="min-h-screen bg-gray-50">

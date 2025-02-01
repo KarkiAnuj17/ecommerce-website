@@ -30,8 +30,8 @@ export default function CategoriesPage() {
     loadCategories();
   }, []);
 
-  const handleClick = (categoryName) => {
-    router.push(`/categories/${categoryName}`);
+  const handleClick = (categoryId) => {
+    router.push(`/categories/${categoryId}`);
   };
 
   if (error) {
@@ -49,9 +49,9 @@ export default function CategoriesPage() {
         <div className="flex justify-center gap-8">
           {categories.map((category) => (
             <div
-              key={category._id || category.name}
+              key={category._id}
               className="text-center cursor-pointer"
-              onClick={() => handleClick(category.categoryName)}
+              onClick={() => handleClick(category._id)}
             >
               <div className="w-24 h-24 rounded-full bg-gray-100 mb-2 flex items-center justify-center">
                 <Image

@@ -33,7 +33,7 @@ const LandingPage = () => {
           </div>
       </div>
     </div>
-<CategoriesPage/>
+    <CategoriesPage/>
     <div className="m-3 p-8 items-end justify-end w-full">
     <div className="flex ">
     </div>

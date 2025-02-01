@@ -17,12 +17,16 @@ export function ProductCard({ product }) {
   const handleClick =()=>{
     router.push('/product/'+ product._id)
   }
+  const handle =()=>{
+    router.push('/cart/'+ product._id)
+  }
 
   return (
-    <Card onClick ={handleClick} className="w-full max-w-sm overflow-hidden relative">
+    <Card  className="w-full max-w-sm overflow-hidden relative">
       <CardContent className="p-0">
         <div className="aspect-square relative">
           <Image
+          onClick ={handleClick}
             src={`http://localhost:4000/uploads/${product.productImage}`}
             alt={product.productName}
             layout="fill"
@@ -64,7 +68,7 @@ export function ProductCard({ product }) {
         </div>
       </CardContent>
       <CardFooter className="p-4 pt-0">
-        <Button className="w-full bg-primary hover:bg-primary/90 text-white">Add to Cart</Button>
+        <Button onClick={handle} className="w-full bg-primary hover:bg-primary/90 text-white">Add to Cart</Button>
       </CardFooter>
     </Card>
   )

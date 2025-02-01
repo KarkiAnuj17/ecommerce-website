@@ -1,18 +1,19 @@
 "use client"
 
 import axios from "axios"
-import { useParams } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import { Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import CustomNavbar from "@/component/navbar/header/page"
 
 const ProductPage = () => {
   const params = useParams()
+  const router = useRouter()
   const [productDetail, setProductDetails] = useState(null)
   const [selectedColor, setSelectedColor] = useState("")
-  const [selectedSize, setSelectedSize] = useState("M")
 
   const fetchProductDetails = async () => {
     try {
@@ -34,10 +35,15 @@ const ProductPage = () => {
 
   const discountedPrice = productDetail.productPrice * (1 - productDetail.discount / 100)
   const availableColors = JSON.parse(productDetail.colorOption[0])
-  const sizes = ["S", "M", "L", "XL"]
+  const handleClick=(()=>{
+   router.push('/cart/'+ productDetail._id)
+  }
+)
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div>
+      <CustomNavbar/>
+      <div className="container mx-auto px-4 py-8">
       <Card className="bg-white rounded-lg overflow-hidden">
         <CardContent className="p-8">
           <div className="grid md:grid-cols-2 gap-12">
@@ -103,29 +109,11 @@ const ProductPage = () => {
                 </div>
               </div>
 
-              {/* Size Selection */}
-              <div className="mb-8">
-                <h2 className="font-semibold mb-2">Size</h2>
-                <div className="flex gap-2">
-                  {sizes.map((size) => (
-                    <button
-                      key={size}
-                      onClick={() => setSelectedSize(size)}
-                      className={`w-10 h-10 flex items-center justify-center rounded-sm border transition-all ${
-                        selectedSize === size
-                          ? "border-black bg-black text-white"
-                          : "border-gray-200 hover:border-gray-300"
-                      }`}
-                    >
-                      {size}
-                    </button>
-                  ))}
-                </div>
-              </div>
+              
 
               {/* Action Buttons */}
               <div className="flex gap-4">
-                <Button className="flex-1 h-12 text-sm font-medium">Add To Chart</Button>
+                <Button onClick={handleClick} className="flex-1 h-12 text-sm font-medium">Add To Chart</Button>
                 <Button className="flex-1 h-12 text-sm font-medium bg-white text-black hover:bg-gray-100">
                   Add To Favourite
                 </Button>
@@ -141,6 +129,7 @@ const ProductPage = () => {
           </div>
         </CardContent>
       </Card>
+    </div>
     </div>
   )
 }

@@ -16,13 +16,13 @@ const getAllCategories = async (req, res) => {
     res.send("sth went wrong")
 }
 }
-const getCategoriesByName = async (req, res) => {
+const getCategoriesById= async (req, res) => {
   try{
-    const data =await Categories.findOne(req.params.categoryName)
+    const data =await Categories.findById(req.params.categoriesId)
     res.send(data)
 }catch(err){
     res.send("sth went wrong")
 }
 }
 
-module.exports ={addNewCategories,getAllCategories,getCategoriesByName}
+module.exports ={addNewCategories,getAllCategories,getCategoriesById}
