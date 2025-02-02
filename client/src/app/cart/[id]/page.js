@@ -1,5 +1,4 @@
 "use client"
-
 import { useState, useEffect } from "react"
 import axios from "axios"
 import Image from "next/image"
@@ -12,43 +11,40 @@ import CustomNavbar from "@/component/navbar/header/page"
 export default function CartPage() {
   const params = useParams()
   const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const { data } = await axios.get(`http://localhost:4000/products/${params.id}`)
         setProducts(Array.isArray(data) ? data : [data])
-        setLoading(false)
       } catch (error) {
         console.error("Error fetching products:", error)
-        setLoading(false)
       }
     }
 
     fetchProducts()
   }, [params.id])
 
-  if (loading) return <div>Loading...</div>
-  if (!products.length) return <div>No products found</div>
+
 
   const calculateSubtotal = () => {
     return products.reduce((total, product) => {
       const price = product.productPrice * (product.quantity || 1)
-      const productDiscount = price * (product.discount / 100) // Calculate discount from product data
+      const productDiscount = price * (product.discount / 100) 
       return total + (price - productDiscount)
     }, 0)
   }
 
-  // Update the discount calculation to use product discounts
   const totalDiscount = products.reduce((total, product) => {
     const price = product.productPrice * (product.quantity || 1)
     return total + price * (product.discount / 100)
   }, 0)
-
+  const totalprice = products.reduce((total, product) => {
+    return total + product.productPrice * (product.quantity || 1)
+  }, 0)
   const subtotal = calculateSubtotal()
-  const vat = subtotal * 0.15 // 15% VAT
-  const shipping = 0 // Free shipping
+  const vat = subtotal * 0.15 
+  const shipping = 0 
   const total = subtotal + vat + shipping
 
   const updateQuantity = (index, increment) => {
@@ -118,15 +114,14 @@ export default function CartPage() {
             </Card>
           ))}
         </div>
-
         <div>
           <Card>
             <CardContent className="p-6">
               <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
               <div className="space-y-4">
                 <div className="flex justify-between">
-                  <span>Subtotal</span>
-                  <span>${subtotal.toFixed(2)}</span>
+                  <span>Price</span>
+                  <span>${totalprice.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-muted-foreground">
                   <span>Discount</span>
