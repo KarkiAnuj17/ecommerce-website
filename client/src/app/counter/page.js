@@ -1,5 +1,5 @@
 'use client'
-import { decrement, increment } from '@/redux/counterSlice'
+import { decrement, increment } from '@/redux/reducerSlices/counterSlice'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
