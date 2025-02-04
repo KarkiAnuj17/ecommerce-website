@@ -11,27 +11,30 @@ import { useRouter } from "next/navigation"
 export function ProductCard({ product }) {
   const [isFavorite, setIsFavorite] = useState(false)
   const router = useRouter()
-  // const toggleFavorite = () => {
-  //   setIsFavorite(!isFavorite)
-  // }
-  const handleClick =()=>{
-    router.push('/product/'+ product._id)
+  
+  const handleClick = () => {
+    router.push('/product/' + product._id)
   }
-  const handle =()=>{
-    router.push('/cart/'+ product._id)
+
+  const handleAddToCart = () => {
+    router.push('/cart/' + product._id)
+  }
+
+  const toggleFavorite = () => {
+    setIsFavorite((prev) => !prev) // Toggle favorite state
   }
 
   return (
-    <Card  className="w-full max-w-sm overflow-hidden relative">
+    <Card className="w-full max-w-sm overflow-hidden relative">
       <CardContent className="p-0">
         <div className="aspect-square relative">
           <Image
-          onClick ={handleClick}
+            onClick={handleClick}
             src={`http://localhost:4000/uploads/${product.productImage}`}
             alt={product.productName}
             layout="fill"
             objectFit="cover"
-            className="rounded-t-md"
+            className="rounded-t-md cursor-pointer"
           />
           {product.discount > 0 && (
             <Badge className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 text-xs font-semibold">
@@ -39,11 +42,12 @@ export function ProductCard({ product }) {
             </Badge>
           )}
           <Button
+            onClick={toggleFavorite}
             variant="secondary"
             size="icon"
-            className={`absolute top-2 right-2 z-10 ${isFavorite ? "bg-red-500 text-white hover:bg-red-600" : "bg-white hover:bg-gray-100"}`}
+            className={`absolute top-2 right-2 z-10 ${isFavorite ? " text-red-500 " : "bg-white hover:bg-gray-100"}`}
           >
-            <Heart className={`h-5 w-5 ${isFavorite ? "fill-current" : ""}`} />
+            <Heart className={`h-5 w-5 ${isFavorite ? "fill-current text-red-500" : "text-gray-600"}`} />
           </Button>
         </div>
         <div className="p-4">
@@ -68,9 +72,8 @@ export function ProductCard({ product }) {
         </div>
       </CardContent>
       <CardFooter className="p-4 pt-0">
-        <Button onClick={handle} className="w-full bg-primary hover:bg-primary/90 text-white">Add to Cart</Button>
+        <Button onClick={handleAddToCart} className="w-full bg-primary hover:bg-primary/90 text-white">Add to Cart</Button>
       </CardFooter>
     </Card>
   )
 }
-
