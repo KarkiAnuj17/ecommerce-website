@@ -1,4 +1,4 @@
-import UserLayout from "@/component/sidebar/user";
+import UserLayout from "@/components/sidebar/user";
 import React from "react";
 import { FiBox, FiHeart, FiCreditCard, FiShoppingCart } from "react-icons/fi";
 

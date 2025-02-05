@@ -7,21 +7,23 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Heart } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { useDispatch } from "react-redux"
+import { addToCart } from "@/redux/reducerSlices/productSlice"
 
 export function ProductCard({ product }) {
   const [isFavorite, setIsFavorite] = useState(false)
   const router = useRouter()
-  
+  const dispatch = useDispatch()
   const handleClick = () => {
     router.push('/product/' + product._id)
   }
 
   const handleAddToCart = () => {
-    router.push('/cart/' + product._id)
+    dispatch(addToCart(product))
   }
 
   const toggleFavorite = () => {
-    setIsFavorite((prev) => !prev) // Toggle favorite state
+    setIsFavorite((prev) => !prev)
   }
 
   return (

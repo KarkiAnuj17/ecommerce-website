@@ -1,4 +1,4 @@
-import UserLayout from '@/component/sidebar/user'
+import UserLayout from '@/components/sidebar/user'
 import React from 'react'
 
 const Wishlist = () => {

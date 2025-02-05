@@ -5,7 +5,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Minus, Plus, X } from "lucide-react"
-import CustomNavbar from "@/component/navbar/header/page"
+import CustomNavbar from "@/components/navbar/header/page"
 
 export default function CartPage() {
   const [cartItems, setCartItems] = useState([])

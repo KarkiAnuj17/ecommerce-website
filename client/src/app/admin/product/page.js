@@ -1,5 +1,5 @@
 'use client';
-import Layout from '@/component/sidebar/admin';
+import Layout from '@/components/sidebar/admin';
 import { Input } from '@nextui-org/react';
 import React from 'react';
 

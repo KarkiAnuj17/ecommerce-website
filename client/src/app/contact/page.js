@@ -1,7 +1,7 @@
 'use client'
 import React from 'react';
-import FooterNavbar from '@/component/navbar/footer/page';
-import CustomNavbar from '@/component/navbar/header/page';
+import FooterNavbar from '@/components/navbar/footer/page';
+import CustomNavbar from '@/components/navbar/header/page';
 import { Input, Button, Textarea, CardBody, Card } from '@nextui-org/react';
 import Image from 'next/image';
 import { CiLocationOn } from "react-icons/ci";
