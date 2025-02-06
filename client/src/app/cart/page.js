@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux"
 import CustomNavbar from "@/components/navbar/header/page"
 import { removeFromCart } from "@/redux/reducerSlices/productSlice"
 import { X } from "lucide-react"
+import { decrement, increment } from "@/redux/reducerSlices/counterSlice"
 
 export default function CartPage() {
   const { cartItems } = useSelector((state) => state.product);
@@ -37,7 +38,7 @@ export default function CartPage() {
 
             {cartItems.length > 0 ? (
               cartItems.map((item) => (
-                <Card key={item.id} className="mb-4">
+                <Card key={item._id} className="mb-4">
                   <CardContent className="grid grid-cols-4 gap-4 p-4">
                     <div className="col-span-2 flex gap-4">
                       <div className="relative w-20 h-20">
@@ -57,9 +58,9 @@ export default function CartPage() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Button size="sm" variant="outline" onClick={() => dispatch({ type: "DECREASE_QUANTITY", payload: item._id })}>-</Button>
+                      <Button size="sm" variant="outline" onClick={() => dispatch(increment)}>-</Button>
                       <span>{item.quantity}</span>
-                      <Button size="sm" variant="outline" onClick={() => dispatch({ type: "INCREASE_QUANTITY", payload: item._id })}>+</Button>
+                      <Button size="sm" variant="outline" onClick={() => dispatch(decrement)}>+</Button>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="font-semibold">${(item.productPrice * item.quantity).toFixed(2)}</span>

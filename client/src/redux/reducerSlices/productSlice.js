@@ -27,9 +27,10 @@ export const productSlice = createSlice({
       }
     },
     removeFromCart: (state, action) => {
-      debugger;
-      state.cartItems = state.cartItems.filter((item) => item._id !== action.payload._id);
-    },
+      const currentCartItems = JSON.parse(JSON.stringify(state.cartItems))
+      const updatedCart = currentCartItems.filter((item) => item._id !== action.payload);
+      state.cartItems = updatedCart;
+      },
     clearAllCartItems: (state, action) => {
       state.cartItems = []
     },
@@ -37,7 +38,5 @@ export const productSlice = createSlice({
     
   },
 })
-
 export const { addToCart, removeFromCart,clearAllCartItems} = productSlice.actions
-
 export default productSlice.reducer
