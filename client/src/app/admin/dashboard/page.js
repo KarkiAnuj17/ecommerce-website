@@ -2,7 +2,7 @@
 import React from 'react';
 import Order from './order/page';
 import Revenue from './revenue/page';
-import Layout from '@/component/sidebar/admin';
+import Layout from '@/components/sidebar/admin';
 import SalesOverview from './sales/page';
 const Dashboard = () => {
   return (

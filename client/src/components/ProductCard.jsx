@@ -14,7 +14,7 @@ export function ProductCard({ product }) {
   const [isFavorite, setIsFavorite] = useState(false)
   const dispatch = useDispatch()
   const router = useRouter()
-  
+  const dispatch = useDispatch()
   const handleClick = () => {
     router.push('/product/' + product._id)
   }
@@ -26,7 +26,7 @@ export function ProductCard({ product }) {
   }
 
   const toggleFavorite = () => {
-    setIsFavorite((prev) => !prev) // Toggle favorite state
+    setIsFavorite((prev) => !prev)
   }
 
   return (

@@ -7,9 +7,12 @@ import * as Yup from "yup"
 import axios from "axios"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { useDispatch } from "react-redux"
+import { loginUser } from "@/redux/reducerSlices/userSlice"
 
 export default function LoginPage() {
   const router = useRouter()
+  const dispatch = useDispatch()
 
   const loginSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email address').required('Email is required'),
@@ -28,6 +31,7 @@ export default function LoginPage() {
       try {
         const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/login`, values)
         if (data) {
+          dispatch(loginUser(data))
           router.push("/landing-page")
         }
       } catch (error) {

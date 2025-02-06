@@ -1,5 +1,5 @@
 "use client"
-import UserLayout from "@/component/sidebar/user";
+import UserLayout from "@/components/sidebar/user";
 import React, { useState } from "react";
 
 const Profile = () => {

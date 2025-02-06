@@ -7,7 +7,7 @@ import Image from "next/image"
 import { Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import CustomNavbar from "@/component/navbar/header/page"
+import CustomNavbar from "@/components/navbar/header/page"
 
 const ProductPage = () => {
   const params = useParams()

@@ -1,9 +1,9 @@
-import CustomNavbar from '@/component/navbar/header/page';
+import CustomNavbar from '@/components/navbar/header/page';
 import { Button, Divider } from '@nextui-org/react';
 import Image from 'next/image';
 import React from 'react';
 import { FaArrowRight } from "react-icons/fa";
-import FooterNavbar from '@/component/navbar/footer/page';
+import FooterNavbar from '@/components/navbar/footer/page';
 import { FaQuoteLeft } from "react-icons/fa";
 import { IoIosStar } from "react-icons/io";
 import { IoIosStarHalf } from "react-icons/io";

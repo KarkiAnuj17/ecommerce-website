@@ -5,6 +5,7 @@ import productSlice from './reducerSlices/productSlice'
 export default configureStore({
   reducer: {
     counter : counterSlice,
-    product: productSlice
+    user : userSlice,
+    product : productSlice,
   },
 })

@@ -8,11 +8,11 @@ const page = () => {
     const dispatch = useDispatch()
     const {value} = useSelector(state=>state.counter)
   return (
-      <div>
-    <button onClick={()=>dispatch(increment())}>+</button>
-    {value}
+  <div>
     <button onClick={()=>dispatch(decrement())}>-</button>
-    </div>
+    {value}
+    <button onClick={()=>dispatch(increment())}>+</button>
+  </div>
   )
 }
 
