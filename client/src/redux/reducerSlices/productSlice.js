@@ -12,7 +12,6 @@ export const productSlice = createSlice({
       const currentCartItems = JSON.parse(JSON.stringify(state.cartItems))
       // Find if item already exists in the cart
       const item = currentCartItems.find((item) => item._id === action.payload._id);
-      debugger;
       if(item){
         //get the item that exists by looping, and update the quantity by 1
             const updatedCart = currentCartItems.map((item)=>{
@@ -25,13 +24,11 @@ export const productSlice = createSlice({
       }else{
         // add quantity 1 initially when item doesnt pre exist
         state.cartItems= [...state.cartItems, { ...action.payload, quantity: 1 }]
-        
       }
-   
-
     },
     removeFromCart: (state, action) => {
-
+      debugger;
+      state.cartItems = state.cartItems.filter((item) => item._id !== action.payload._id);
     },
     clearAllCartItems: (state, action) => {
       state.cartItems = []

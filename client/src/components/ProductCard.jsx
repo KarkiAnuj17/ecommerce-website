@@ -14,13 +14,11 @@ export function ProductCard({ product }) {
   const [isFavorite, setIsFavorite] = useState(false)
   const dispatch = useDispatch()
   const router = useRouter()
-  const dispatch = useDispatch()
   const handleClick = () => {
     router.push('/product/' + product._id)
   }
 
   const handleAddToCart = () => {
-    // router.push('/cart/' + product._id)
     dispatch(addToCart(product))
 
   }

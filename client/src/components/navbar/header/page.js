@@ -1,34 +1,34 @@
-'use client'
+'use client';
 import React from "react";
-import {Input, Button } from "@nextui-org/react";
+import { Input, Button } from "@nextui-org/react";
 import { CiHeart } from "react-icons/ci";
 import { FiShoppingCart } from "react-icons/fi";
-import { Badge } from "@/components/ui/badge";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 
 const CustomNavbar = () => {
-  const {cartItems} = useSelector(state=>state.product)
+  const { cartItems } = useSelector((state) => state.product);
+
   return (
     <div className="bg-gray-50">
-
       <nav className="flex items-center justify-between px-8 py-6 bg-black text-white">
         <div className="flex items-center gap-8">
-        <div className="flex items-center gap-2 text-2xl font-semibold">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-6 w-6">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-            <polyline points="9 22 9 12 15 12 15 22" />
-          </svg>
-          LuxeMarket
-        </div>
+          <div className="flex items-center gap-2 text-2xl font-semibold">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-6 w-6"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+            LuxeMarket
+          </div>
           <div className="hidden md:flex gap-6">
             <Link href="/new" className="text-white">
               New
@@ -41,6 +41,7 @@ const CustomNavbar = () => {
             </Link>
           </div>
         </div>
+
         <div className="flex items-center gap-6">
           <div className="relative hidden md:block w-80">
             <Input
@@ -65,26 +66,30 @@ const CustomNavbar = () => {
               }
             />
           </div>
+
           <Link href="/favourites" className="flex items-center gap-2 text-white">
-            <CiHeart className="h-6 w-6 "  />
+            <CiHeart className="h-6 w-6" />
             Favourites
           </Link>
-          <Link href="/cart" className="flex items-center gap-2 text-white">
-  
-                <span className="absolute left-1 w-6 h-6 rounded-full bg-white text-black self-center p-1">{cartItems.length}</span>
-  
+
+          <Link href="/cart" className="relative flex items-center gap-2 text-white">
+            {cartItems.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                {cartItems.length}
+              </span>
+            )}
             <FiShoppingCart className="h-6 w-6" />
             Cart
           </Link>
+
           <Link href="/login">
             <Button variant="outline" className="text-sm text-white border-white">
               Sign in
             </Button>
           </Link>
+
           <Link href="/register">
-            <Button className="text-sm bg-white text-gray-900">
-              Register
-            </Button>
+            <Button className="text-sm bg-white text-gray-900">Register</Button>
           </Link>
         </div>
       </nav>

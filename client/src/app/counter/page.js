@@ -4,7 +4,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 
-const page = () => {
+const Counter = () => {
     const dispatch = useDispatch()
     const {value} = useSelector(state=>state.counter)
   return (
@@ -16,4 +16,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Counter
