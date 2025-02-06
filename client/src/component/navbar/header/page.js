@@ -1,11 +1,17 @@
+'use client'
 import React from "react";
-import { Link, Input, Button } from "@nextui-org/react";
+import {Input, Button } from "@nextui-org/react";
 import { CiHeart } from "react-icons/ci";
 import { FiShoppingCart } from "react-icons/fi";
+import { Badge } from "@/components/ui/badge";
+import { useSelector } from "react-redux";
+import Link from "next/link";
 
 const CustomNavbar = () => {
+  const {cartItems} = useSelector(state=>state.product)
   return (
     <div className="bg-gray-50">
+
       <nav className="flex items-center justify-between px-8 py-6 bg-black text-white">
         <div className="flex items-center gap-8">
         <div className="flex items-center gap-2 text-2xl font-semibold">
@@ -60,10 +66,13 @@ const CustomNavbar = () => {
             />
           </div>
           <Link href="/favourites" className="flex items-center gap-2 text-white">
-            <CiHeart className="h-6 w-6" />
+            <CiHeart className="h-6 w-6 "  />
             Favourites
           </Link>
           <Link href="/cart" className="flex items-center gap-2 text-white">
+  
+                <span className="absolute left-1 w-6 h-6 rounded-full bg-white text-black self-center p-1">{cartItems.length}</span>
+  
             <FiShoppingCart className="h-6 w-6" />
             Cart
           </Link>

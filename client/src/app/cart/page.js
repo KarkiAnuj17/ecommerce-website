@@ -6,66 +6,10 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Minus, Plus, X } from "lucide-react"
 import CustomNavbar from "@/component/navbar/header/page"
+import { useSelector } from "react-redux"
 
 export default function CartPage() {
-  const [cartItems, setCartItems] = useState([])
-
-  useEffect(() => {
-    fetchCartItems()
-  }, [])
-
-  const fetchCartItems = async () => {
-    try {
-      const { data } = await axios.get("http://localhost:4000/cart")
-      setCartItems(data)
-    } catch (error) {
-      console.error("Error fetching cart items:", error)
-    }
-  }
-
-  const calculateSubtotal = () => {
-    return cartItems.reduce((total, item) => {
-      const price = item.productPrice * item.quantity
-      const productDiscount = price * (item.discount / 100)
-      return total + (price - productDiscount)
-    }, 0)
-  }
-
-  const totalDiscount = cartItems.reduce((total, item) => {
-    const price = item.productPrice * item.quantity
-    return total + price * (item.discount / 100)
-  }, 0)
-
-  const totalprice = cartItems.reduce((total, item) => {
-    return total + item.productPrice * item.quantity
-  }, 0)
-
-  const subtotal = calculateSubtotal()
-  const vat = subtotal * 0.15
-  const shipping = 0
-  const total = subtotal + vat + shipping
-
-  const updateQuantity = async (itemId, increment) => {
-    try {
-      const item = cartItems.find((item) => item.id === itemId)
-      const newQuantity = increment ? item.quantity + 1 : Math.max(1, item.quantity - 1)
-
-      await axios.patch(`http://localhost:4000/cart/${itemId}`, { quantity: newQuantity })
-
-      setCartItems(cartItems.map((item) => (item.id === itemId ? { ...item, quantity: newQuantity } : item)))
-    } catch (error) {
-      console.error("Error updating quantity:", error)
-    }
-  }
-
-  const removeItem = async (itemId) => {
-    try {
-      await axios.delete(`http://localhost:4000/cart/${itemId}`)
-      setCartItems(cartItems.filter((item) => item.id !== itemId))
-    } catch (error) {
-      console.error("Error removing item:", error)
-    }
-  }
+  const {cartItems} = useSelector(state=>state.product)
 
   return (
     <div>
@@ -83,7 +27,7 @@ export default function CartPage() {
               <div>Price</div>
             </div>
 
-            {cartItems.map((item) => (
+            {cartItems.length>0 ? cartItems.map((item) => (
               <Card key={item.id} className="mb-4">
                 <CardContent className="grid grid-cols-4 gap-4 p-4">
                   <div className="col-span-2 flex gap-4">
@@ -113,14 +57,14 @@ export default function CartPage() {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="font-semibold">${(item.productPrice * item.quantity).toFixed(2)}</span>
+                    <span className="font-semibold">${item?.productPrice}</span>
                     <Button variant="ghost" size="icon" onClick={() => removeItem(item.id)}>
                       <X className="h-4 w-4" />
                     </Button>
                   </div>
                 </CardContent>
               </Card>
-            ))}
+            )): "No product in the card"}
           </div>
           <div>
             <Card>
@@ -129,24 +73,24 @@ export default function CartPage() {
                 <div className="space-y-4">
                   <div className="flex justify-between">
                     <span>Price</span>
-                    <span>${totalprice.toFixed(2)}</span>
+                    <span>$</span>
                   </div>
                   <div className="flex justify-between text-muted-foreground">
                     <span>Discount</span>
-                    <span>-${totalDiscount.toFixed(2)}</span>
+                    <span>-$</span>
                   </div>
                   <div className="flex justify-between text-muted-foreground">
                     <span>VAT (15%)</span>
-                    <span>${vat.toFixed(2)}</span>
+                    <span>$</span>
                   </div>
                   <div className="flex justify-between text-muted-foreground">
                     <span>Shipping</span>
-                    <span>${shipping.toFixed(2)}</span>
+                    <span>$</span>
                   </div>
                   <div className="border-t pt-4">
                     <div className="flex justify-between font-semibold">
                       <span>Total</span>
-                      <span>${total.toFixed(2)}</span>
+                      <span>$</span>
                     </div>
                   </div>
                   <Button className="w-full">Process Order</Button>
