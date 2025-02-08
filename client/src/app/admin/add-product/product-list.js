@@ -1,6 +1,6 @@
 import { ProductCard } from "@/components/ProductCard"
 
-async function getProducts() {
+async function  getProducts() {
   const res = await fetch("http://localhost:4000/products")
   if (!res.ok) {
     throw new Error("Failed to fetch products")

@@ -1,138 +1,119 @@
 "use client"
 
-import axios from "axios"
-import { useParams, useRouter } from "next/navigation"
-import React, { useEffect, useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
-import { Star } from "lucide-react"
+import { useParams } from "next/navigation"
+import { useDispatch, useSelector } from "react-redux"
+import axios from "axios"
+import { addToCart } from "@/redux/reducerSlices/productSlice"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Label } from "@/components/ui/label"
 import CustomNavbar from "@/components/navbar/header/page"
+import { Star } from "lucide-react"
 
-const ProductPage = () => {
-  const params = useParams()
-  const router = useRouter()
-  const [productDetail, setProductDetails] = useState(null)
-  const [selectedColor, setSelectedColor] = useState("")
+export default function ProductDetail() {
+  const { id } = useParams()
+  const [product, setProduct] = useState(null)
+  const dispatch = useDispatch()
 
-  const fetchProductDetails = async () => {
-    try {
-      const { data } = await axios.get(`http://localhost:4000/products/${params.id}`)
-      setProductDetails(data)
-      if (data.colorOption && data.colorOption.length > 0) {
-        setSelectedColor(JSON.parse(data.colorOption[0])[0])
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      try {
+        const { data } = await axios.get(`http://localhost:4000/products/${id}`)
+        setProduct(data)
+      } catch (err) {
+        console.error("Error fetching product details:", err)
       }
-    } catch (error) {
-      console.error("Error fetching product details:", error)
+    }
+
+    fetchProductDetails()
+  }, [id])
+
+  const handleAddToCart = () => {
+    if (product) {
+      dispatch(addToCart(product))
     }
   }
 
-  useEffect(() => {
-    fetchProductDetails()
-  }, [params.id])
-
-  if (!productDetail) return <div>Loading...</div>
-
-  const discountedPrice = productDetail.productPrice * (1 - productDetail.discount / 100)
-  const availableColors = JSON.parse(productDetail.colorOption[0])
-  const handleClick=(()=>{
-   router.push('/cart/'+ productDetail._id)
+  if (!product) {
+    return <div className="text-center py-10 text-gray-500">Loading...</div>
   }
-)
+
+  const originalPrice = (product.productPrice / (1 - product.discount / 100)).toFixed(2)
 
   return (
-    <div>
-      <CustomNavbar/>
-      <div className="container mx-auto px-4 py-8">
-      <Card className="bg-white rounded-lg overflow-hidden">
-        <CardContent className="p-8">
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Product Image */}
-            <div className="relative aspect-square bg-gray-50 rounded-lg overflow-hidden">
+    <div className="min-h-screen bg-gray-50">
+      <CustomNavbar />
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <div className="bg-white rounded-lg shadow-sm p-6 md:p-8">
+          <div className="grid md:grid-cols-2 gap-8 items-start">
+            {/* Left Column - Image */}
+            <div className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden">
               <Image
-                src={`http://localhost:4000/uploads/${productDetail.productImage}`}
-                alt={productDetail.productName}
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg"
+                src={`http://localhost:4000/uploads/${product.productImage}`}
+                alt={product.productName}
+                fill
+                className="object-cover"
+                priority
               />
+              {product.discount > 0 && (
+                <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                  {product.discount}% OFF
+                </div>
+              )}
             </div>
 
-            {/* Product Details */}
-            <div className="flex flex-col">
-              <div className="text-sm text-gray-500 mb-2">{productDetail.categories}</div>
-              <h1 className="text-2xl font-semibold mb-4">{productDetail.productName}</h1>
-
-              {/* Ratings */}
-              <div className="flex items-center gap-2 mb-4">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-4 h-4 ${
-                        i < Math.floor(productDetail.ratings) ? "text-yellow-400 fill-current" : "text-gray-200"
-                      }`}
-                    />
-                  ))}
+            <div className="flex flex-col gap-6">
+              <div>
+                <h1 className="text-2xl font-semibold text-gray-900">{product.productName}</h1>
+                <div className="mt-2 flex items-center gap-2">
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`w-4 h-4 ${
+                          i < Math.floor(product.ratings) ? "fill-primary text-primary" : "fill-gray-200 text-gray-200"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-sm text-gray-600">
+                    ({product.ratings.toFixed(1)}) {Math.floor(Math.random() * 2000)} Reviews
+                  </span>
                 </div>
-                <span className="text-sm text-gray-600">
-                  ({productDetail.ratings}) {productDetail.ratings}Reviews
-                </span>
               </div>
 
-              {/* Price */}
-              <div className="flex items-center gap-2 mb-6">
-                {productDetail.discount > 0 && (
-                  <span className="text-gray-500 line-through">${productDetail.productPrice}</span>
-                )}
-                <span className="text-xl font-semibold">${discountedPrice.toFixed(2)}</span>
+              <div className="space-y-1">
+                <p className="text-sm text-gray-500">Brand</p>
+                <p className="font-medium">{product.productBrand}</p>
               </div>
 
-              {/* Description */}
-             
-
-              {/* Color Selection */}
-              <div className="mb-6">
-                <h2 className="font-semibold mb-2">Available Color</h2>
-                <div className="flex gap-2">
-                  {availableColors.map((color) => (
-                    <button
-                      key={color}
-                      onClick={() => setSelectedColor(color)}
-                      className={`w-8 h-8 rounded-sm transition-all ${
-                        selectedColor === color ? "ring-2 ring-offset-2 ring-black" : "ring-1 ring-gray-300"
-                      }`}
-                      style={{ backgroundColor: color.toLowerCase() }}
-                      aria-label={`Select ${color} color`}
-                    />
-                  ))}
-                </div>
+              <div className="space-y-1">
+                <p className="text-sm text-gray-500">Description</p>
+                <p className="text-gray-700 leading-relaxed">{product.productDescription}</p>
               </div>
 
               
 
-              {/* Action Buttons */}
-              <div className="flex gap-4">
-                <Button onClick={handleClick} className="flex-1 h-12 text-sm font-medium">Add To Chart</Button>
-                <Button className="flex-1 h-12 text-sm font-medium bg-white text-black hover:bg-gray-100">
-                  Add To Favourite
-                </Button>
+              <div className="flex items-baseline gap-2">
+                <span className="text-2xl font-semibold">${product.productPrice.toFixed(2)}</span>
+                {product.discount > 0 && <span className="text-sm text-gray-500 line-through">${originalPrice}</span>}
               </div>
-              <div className="mb-6 p-4">
-                <h2 className="font-semibold mb-2">Product Details</h2>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {productDetail.productBrand}.<br/>
-                  In stock: {productDetail.stockQuantity} units.
-                </p>
+
+              <div className="flex gap-4">
+                <Button onClick={handleAddToCart} className="flex-1 bg-primary hover:bg-primary/90">
+                  Add to Cart
+                </Button>
+                <Button variant="outline" className="flex-1">
+                  Checkout Now
+                </Button>
               </div>
             </div>
           </div>
-        </CardContent>
-      </Card>
-    </div>
+        </div>
+      </div>
     </div>
   )
 }
-
-export default ProductPage
 

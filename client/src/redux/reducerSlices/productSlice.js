@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState=  {
   cartItems: [],
-
 }
 export const productSlice = createSlice({
   name: 'product',
@@ -26,11 +25,13 @@ export const productSlice = createSlice({
         state.cartItems= [...state.cartItems, { ...action.payload, quantity: 1 }]
       }
     },
+    
     removeFromCart: (state, action) => {
       const currentCartItems = JSON.parse(JSON.stringify(state.cartItems))
       const updatedCart = currentCartItems.filter((item) => item._id !== action.payload);
       state.cartItems = updatedCart;
       },
+
     clearAllCartItems: (state, action) => {
       state.cartItems = []
     },

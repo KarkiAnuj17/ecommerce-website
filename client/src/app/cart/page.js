@@ -58,9 +58,9 @@ export default function CartPage() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Button size="sm" variant="outline" onClick={() => dispatch(increment)}>-</Button>
+                      <Button size="sm" variant="outline" onClick={() => dispatch(decrement(item._id))}>-</Button>
                       <span>{item.quantity}</span>
-                      <Button size="sm" variant="outline" onClick={() => dispatch(decrement)}>+</Button>
+                      <Button size="sm" variant="outline" onClick={() => dispatch(increment(item._id))}>+</Button>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="font-semibold">${(item.productPrice * item.quantity).toFixed(2)}</span>

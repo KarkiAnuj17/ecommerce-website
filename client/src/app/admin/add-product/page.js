@@ -1,5 +1,4 @@
 "use client"
-import React from "react"
 import { Input, Button, SelectItem, Select, Textarea } from "@nextui-org/react"
 import { RadioGroup, Radio } from "@nextui-org/react"
 import { useFormik } from "formik"
@@ -23,16 +22,19 @@ const AddProducts = () => {
       categories: "",
       productDescription: "",
     },
-    
+
     validationSchema: Yup.object({
       productName: Yup.string().required("Product name is required"),
       productPrice: Yup.number().required("Price is required").positive("Price must be greater than 0"),
       productBrand: Yup.string().required("Brand is required"),
       stockQuantity: Yup.number().required("Stock quantity is required").min(0, "Stock quantity cannot be negative"),
       discount: Yup.number().min(0, "Discount cannot be negative").max(100, "Discount cannot exceed 100%"),
-      colorOption: Yup.array().min(1, "At least one color is required").required("Color selection is required"),
+      colorOption: Yup.array()
+        .of(Yup.string())
+        .min(1, "At least one color is required")
+        .required("Color selection is required"),
       productImage: Yup.mixed().required("Product image is required"),
-      categories: Yup.string().required("Category selection is required"),
+      // categories: Yup.string().required("Category selection is required"),
       productDescription: Yup.string()
         .required("Product description is required")
         .max(500, "Description must be 500 characters or less"),
@@ -50,12 +52,12 @@ const AddProducts = () => {
     formData.append("productBrand", values.productBrand)
     formData.append("stockQuantity", values.stockQuantity)
     formData.append("discount", values.discount)
-    formData.append("isFeatured", values.isFeatured)
+    formData.append("isFeatured", values.isFeatured.toString())
     formData.append("colorOption", JSON.stringify(values.colorOption))
     if (values.productImage) {
       formData.append("productImage", values.productImage)
     }
-    formData.append("categories", values.categories)
+    // formData.append("categories", values.categories)
     formData.append("productDescription", values.productDescription)
 
     try {
@@ -65,12 +67,11 @@ const AddProducts = () => {
         },
       })
 
-      if (data) 
+      if (data)
         toast({
           title: data,
           action: <ToastAction altText="Try again">View product</ToastAction>,
         })
-      
     } catch (error) {
       toast({
         variant: "destructive",
@@ -79,7 +80,6 @@ const AddProducts = () => {
       })
     }
   }
-
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -159,8 +159,8 @@ const AddProducts = () => {
                 <label className="text-lg font-medium block mb-2">Is Featured?</label>
                 <RadioGroup
                   orientation="horizontal"
-                  value={formik.values.isFeatured ? "true" : "false"}
-                  onChange={(value) => formik.setFieldValue("isFeatured", value === "true")}
+                  value={formik.values.isFeatured.toString()}
+                  onValueChange={(value) => formik.setFieldValue("isFeatured", value === "true")}
                   className="space-x-6"
                 >
                   <Radio value="true">Yes</Radio>
@@ -183,16 +183,15 @@ const AddProducts = () => {
                   <p className="text-red-500 text-sm">{formik.errors.discount}</p>
                 )}
               </div>
-              
+
               <div>
                 <label className="text-lg font-medium block mb-2">Select Colors</label>
                 <Select
                   selectionMode="multiple"
                   name="colorOption"
                   placeholder="Select color(s)"
-                  onChange={(e) =>
-                    formik.setFieldValue("colorOption", e.target.value.split(","))}
-                    
+                  selectedKeys={formik.values.colorOption}
+                  onSelectionChange={(keys) => formik.setFieldValue("colorOption", Array.from(keys))}
                   className="w-full"
                 >
                   <SelectItem key="Black">Black</SelectItem>
@@ -204,14 +203,13 @@ const AddProducts = () => {
                   <p className="text-red-500 text-sm">{formik.errors.colorOption}</p>
                 )}
               </div>
-              <div>
+              {/* <div>
                 <label className="text-lg font-medium block mb-2">Select Categories</label>
                 <Select
                   selectionMode="single"
                   name="categories"
                   placeholder="Select category"
-                  onChange={(e) =>
-                    formik.setFieldValue("categories", e.target.value)} 
+                  onChange={(e) => formik.setFieldValue("categories", e.target.value)}
                   className="w-full"
                 >
                   <SelectItem key="Electronics">Electronics</SelectItem>
@@ -222,7 +220,7 @@ const AddProducts = () => {
                 {formik.touched.categories && formik.errors.categories && (
                   <p className="text-red-500 text-sm">{formik.errors.categories}</p>
                 )}
-              </div>
+              </div> */}
 
               <div className="col-span-2">
                 <label className="text-lg font-medium block mb-2">Product Description</label>

@@ -20,7 +20,6 @@ export function ProductCard({ product }) {
 
   const handleAddToCart = () => {
     dispatch(addToCart(product))
-
   }
 
   const toggleFavorite = () => {
