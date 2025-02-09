@@ -6,8 +6,10 @@ import * as Yup from "yup"
 import axios from "axios"
 import { useToast } from "@/hooks/use-toast"
 import { ToastAction } from "@radix-ui/react-toast"
+import { useEffect, useState } from "react"
 
 const AddProducts = () => {
+  const [categories, setCategories] = useState([])
   const { toast } = useToast()
   const formik = useFormik({
     initialValues: {
@@ -34,7 +36,7 @@ const AddProducts = () => {
         .min(1, "At least one color is required")
         .required("Color selection is required"),
       productImage: Yup.mixed().required("Product image is required"),
-      // categories: Yup.string().required("Category selection is required"),
+      categories: Yup.string().required("Category selection is required"),
       productDescription: Yup.string()
         .required("Product description is required")
         .max(500, "Description must be 500 characters or less"),
@@ -44,6 +46,17 @@ const AddProducts = () => {
       resetForm()
     },
   })
+  const fetchCategories = async () => {
+    try {
+      const { data } = await axios.get("http://localhost:4000/categories") 
+      setCategories(data)
+    } catch (error) {
+      console.error("Error fetching categories:", error)
+    }
+  }
+  useEffect(() => {
+    fetchCategories()
+  }, [])
 
   const addProduct = async (values) => {
     const formData = new FormData()
@@ -57,7 +70,7 @@ const AddProducts = () => {
     if (values.productImage) {
       formData.append("productImage", values.productImage)
     }
-    // formData.append("categories", values.categories)
+    formData.append("categories", values.categories)
     formData.append("productDescription", values.productDescription)
 
     try {
@@ -203,24 +216,27 @@ const AddProducts = () => {
                   <p className="text-red-500 text-sm">{formik.errors.colorOption}</p>
                 )}
               </div>
-              {/* <div>
-                <label className="text-lg font-medium block mb-2">Select Categories</label>
-                <Select
-                  selectionMode="single"
-                  name="categories"
-                  placeholder="Select category"
-                  onChange={(e) => formik.setFieldValue("categories", e.target.value)}
-                  className="w-full"
-                >
-                  <SelectItem key="Electronics">Electronics</SelectItem>
-                  <SelectItem key="Clothing">Clothing</SelectItem>
-                  <SelectItem key="Home">Home</SelectItem>
-                  <SelectItem key="Books">Books</SelectItem>
-                </Select>
-                {formik.touched.categories && formik.errors.categories && (
-                  <p className="text-red-500 text-sm">{formik.errors.categories}</p>
-                )}
-              </div> */}
+              <div>
+  <label className="text-lg font-medium block mb-2">Select Categories</label>
+  <Select
+    selectionMode="single"
+    name="categories"
+    placeholder="Select category"
+    selectedKeys={[formik.values.categories]}
+    onSelectionChange={(keys) => formik.setFieldValue("categories", Array.from(keys)[0])}
+    className="w-full "
+  >
+    {categories.map((category) => (
+      <SelectItem key={category._id} value={category.categoryName}>
+        {category.categoryName}
+      </SelectItem>
+    ))}
+  </Select>
+  {formik.touched.categories && formik.errors.categories && (
+    <p className="text-red-500 text-sm">{formik.errors.categories}</p>
+  )}
+</div>
+
 
               <div className="col-span-2">
                 <label className="text-lg font-medium block mb-2">Product Description</label>
@@ -252,7 +268,6 @@ const AddProducts = () => {
                 )}
               </div>
             </div>
-
             <div className="mt-6">
               <Button type="submit" className="bg-black text-white w-full" disabled={formik.isSubmitting}>
                 {formik.isSubmitting ? "Adding Product..." : "Add Product"}
