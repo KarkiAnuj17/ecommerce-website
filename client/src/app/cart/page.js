@@ -4,13 +4,12 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { useSelector, useDispatch } from "react-redux"
 import CustomNavbar from "@/components/navbar/header/page"
-import { removeFromCart } from "@/redux/reducerSlices/productSlice"
+import { decrement, increment, removeFromCart } from "@/redux/reducerSlices/productSlice"
 import { X } from "lucide-react"
-import { decrement, increment } from "@/redux/reducerSlices/counterSlice"
+import Link from "next/link"
 
 export default function CartPage() {
   const { cartItems } = useSelector((state) => state.product);
-  const {value} = useSelector(state=>state.counter)
   const dispatch = useDispatch();
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.productPrice * item.quantity, 0);
@@ -21,8 +20,7 @@ export default function CartPage() {
 
  const handleRemove = (id) => {
     dispatch(removeFromCart(id))
-
-  }
+ }
   return (
     <div>
       <CustomNavbar />
@@ -30,8 +28,8 @@ export default function CartPage() {
         <h1 className="text-2xl font-semibold mb-6">Shopping Bag</h1>
         <div className="grid md:grid-cols-3 gap-8">
           <div className="md:col-span-2">
-            <div className="grid grid-cols-4 gap-4 mb-4 text-sm text-muted-foreground">
-              <div className="col-span-2">Product</div>
+            <div className="grid grid-cols-4 gap-4 mb-4 text-sm text-muted-foreground ml-3">
+              <div className="col-span-2 ">Product</div>
               <div>Quantity</div>
               <div>Price</div>
             </div>
@@ -98,16 +96,17 @@ export default function CartPage() {
                     <span>Shipping</span>
                     <span>${shipping.toFixed(2)}</span>
                   </div>
-                  <div className="border-t pt-4">
+                  <div className="border-t pt-4 m-3">
                     <div className="flex justify-between font-semibold text-lg">
                       <span>Total</span>
                       <span>${total.toFixed(2)}</span>
                     </div>
                   </div>
-                  <Button className="w-full">Process Order</Button>
-                  <Button variant="outline" className="w-full">
+                  <Link href="/checkout"><Button className="w-full m-3">Proceed to checkout</Button></Link>
+                  <Link href="/landing-page"><Button variant="outline" className="w-full ml-3">
                     Continue Shopping
                   </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
