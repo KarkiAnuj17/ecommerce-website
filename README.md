@@ -58,6 +58,17 @@ Feel free to contribute, suggest features, or report issues by opening a GitHub 
 - **Database:** MongoDB
 
 ---
+
 ##✅ Output
-![Register ](<Screenshot 2025-05-23 172629-1.png>)
-![Login ](<Screenshot 2025-05-23 172726-1.png>) ![landingpage1 ](<Screenshot 2025-05-23 173033-1.png>) ![Landingpage2 ](<Screenshot 2025-05-23 173049-1.png>)![Product Details](<Screenshot 2025-05-23 173433-1.png>) ![Cart Details](<Screenshot 2025-05-23 173443-1.png>)![Add product](<Screenshot 2025-05-23 174841.png>)
+![Screenshot 2025-05-23 172629](https://github.com/user-attachments/assets/34bb4347-7ed5-408c-9d9b-0ffa2e5586b9)
+![Screenshot 2025-05-23 173049](https://github.com/user-attachments/assets/2c569a5d-7f7a-4790-8152-349af0f20287)
+![Screenshot 2025-05-23 173033](https://github.com/user-attachments/assets/f8865952-e361-49b0-8413-5cb25e9d1e93)
+![Screenshot 2025-05-23 172726](https://github.com/user-attachments/assets/70cdf654-5262-4764-95a7-6fbd37bb2d47)
+![Screenshot 2025-05-23 173433](https://github.com/user-attachments/assets/eded6f72-dec3-4e1c-b2e4-02b5260740d7)
+![Screenshot 2025-05-23 174841](https://github.com/user-attachments/assets/8c6b2b25-7151-48f5-90eb-7d853779868c)
+![Screenshot 2025-05-23 174142](https://github.com/user-attachments/assets/b7c0b744-9fb8-4300-ae90-596dca51f4c3)
+![Screenshot 2025-05-23 173443](https://github.com/user-attachments/assets/38762dd3-f179-42b5-b05f-088df9a19111)
+
+
+
+
