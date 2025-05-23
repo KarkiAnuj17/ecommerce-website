@@ -61,7 +61,7 @@ export default function CartPage() {
                       <Button size="sm" variant="outline" onClick={() => dispatch(increment(item._id))}>+</Button>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="font-semibold">${(item.productPrice * item.quantity).toFixed(2)}</span>
+                      <span className="font-semibold">Rs{(item.productPrice * item.quantity).toFixed(2)}</span>
                       <Button variant="ghost" size="icon" onClick={() => handleRemove(item._id)}>
                         <X className="h-4 w-4" />
                       </Button>
@@ -86,20 +86,20 @@ export default function CartPage() {
                   </div>
                   <div className="flex justify-between text-red-500">
                     <span>Discount</span>
-                    <span>-${discount.toFixed(2)}</span>
+                    <span>-Rs{discount.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-muted-foreground">
                     <span>VAT (15%)</span>
-                    <span>${vat.toFixed(2)}</span>
+                    <span>Rs{vat.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-muted-foreground">
                     <span>Shipping</span>
-                    <span>${shipping.toFixed(2)}</span>
+                    <span>Rs{shipping.toFixed(2)}</span>
                   </div>
                   <div className="border-t pt-4 m-3">
                     <div className="flex justify-between font-semibold text-lg">
                       <span>Total</span>
-                      <span>${total.toFixed(2)}</span>
+                      <span>Rs{total.toFixed(2)}</span>
                     </div>
                   </div>
                   <Link href="/checkout"><Button className="w-full m-3">Proceed to checkout</Button></Link>

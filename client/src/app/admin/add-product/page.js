@@ -95,7 +95,7 @@ const AddProducts = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 w-full">
       <div className="flex justify-center items-center bg-white py-6 shadow-sm">
         <h1 className="text-3xl font-bold text-gray-700">Add a New Product</h1>
       </div>
@@ -113,7 +113,7 @@ const AddProducts = () => {
                   onChange={formik.handleChange}
                   value={formik.values.productName}
                   placeholder="Enter product name"
-                  className="w-full"
+                  className="w-80"
                 />
                 {formik.touched.productName && formik.errors.productName && (
                   <p className="text-red-500 text-sm">{formik.errors.productName}</p>
@@ -129,7 +129,7 @@ const AddProducts = () => {
                   onChange={formik.handleChange}
                   value={formik.values.productPrice}
                   placeholder="Enter product price"
-                  className="w-full"
+                  className="w-80"
                 />
                 {formik.touched.productPrice && formik.errors.productPrice && (
                   <p className="text-red-500 text-sm">{formik.errors.productPrice}</p>
@@ -145,7 +145,7 @@ const AddProducts = () => {
                   onChange={formik.handleChange}
                   value={formik.values.productBrand}
                   placeholder="Enter product brand"
-                  className="w-full"
+                  className="w-80"
                 />
                 {formik.touched.productBrand && formik.errors.productBrand && (
                   <p className="text-red-500 text-sm">{formik.errors.productBrand}</p>
@@ -161,7 +161,7 @@ const AddProducts = () => {
                   onChange={formik.handleChange}
                   value={formik.values.stockQuantity}
                   placeholder="Enter stock quantity"
-                  className="w-full"
+                  className="w-80"
                 />
                 {formik.touched.stockQuantity && formik.errors.stockQuantity && (
                   <p className="text-red-500 text-sm">{formik.errors.stockQuantity}</p>
@@ -190,7 +190,7 @@ const AddProducts = () => {
                   onChange={formik.handleChange}
                   value={formik.values.discount}
                   placeholder="Enter discount"
-                  className="w-full"
+                  className="w-80"
                 />
                 {formik.touched.discount && formik.errors.discount && (
                   <p className="text-red-500 text-sm">{formik.errors.discount}</p>
@@ -205,7 +205,7 @@ const AddProducts = () => {
                   placeholder="Select color(s)"
                   selectedKeys={formik.values.colorOption}
                   onSelectionChange={(keys) => formik.setFieldValue("colorOption", Array.from(keys))}
-                  className="w-full"
+                  className="w-80"
                 >
                   <SelectItem key="Black">Black</SelectItem>
                   <SelectItem key="Red">Red</SelectItem>
@@ -247,7 +247,7 @@ const AddProducts = () => {
                   onChange={formik.handleChange}
                   value={formik.values.productDescription}
                   placeholder="Enter product description"
-                  className="w-full"
+                  className="w-80"
                 />
                 {formik.touched.productDescription && formik.errors.productDescription && (
                   <p className="text-red-500 text-sm">{formik.errors.productDescription}</p>
@@ -261,7 +261,7 @@ const AddProducts = () => {
                   name="productImage"
                   type="file"
                   onChange={(event) => formik.setFieldValue("productImage", event.currentTarget.files[0])}
-                  className="w-full"
+                  className="w-80"
                 />
                 {formik.touched.productImage && formik.errors.productImage && (
                   <p className="text-red-500 text-sm">{formik.errors.productImage}</p>

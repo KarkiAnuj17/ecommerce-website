@@ -56,7 +56,7 @@ export function ProductCard({ product }) {
           <h3 className="text-lg font-semibold mb-1 truncate">{product.productName}</h3>
           <p className="text-sm text-gray-500 mb-2">{product.productBrand}</p>
           <div className="flex justify-between items-center">
-            <span className="text-xl font-bold text-primary">${product.productPrice.toFixed(2)}</span>
+            <span className="text-l text-primary">Rs{product.productPrice.toFixed(2)}</span>
             <div className="flex items-center">
               {[...Array(5)].map((_, i) => (
                 <svg

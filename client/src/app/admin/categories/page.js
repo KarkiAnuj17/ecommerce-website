@@ -44,7 +44,7 @@ const AddCategory = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 ">
       <div className="flex justify-center items-center bg-white py-6 shadow-sm">
         <h1 className="text-3xl font-bold text-gray-700">Add a New Category</h1>
       </div>
@@ -62,7 +62,7 @@ const AddCategory = () => {
                   onChange={formik.handleChange}
                   value={formik.values.categoryName}
                   placeholder="Enter category name"
-                  className="w-full"
+                  className="w-80"
                 />
                 {formik.touched.categoryName && formik.errors.categoryName && (
                   <p className="text-red-500 text-sm">{formik.errors.categoryName}</p>
@@ -78,7 +78,7 @@ const AddCategory = () => {
                   value={formik.values.categoryDescription}
                   placeholder="Enter category description"
                   rows={4}
-                  className="w-full"
+                  className="w-80"
                 />
                 {formik.touched.categoryDescription && formik.errors.categoryDescription && (
                   <p className="text-red-500 text-sm">{formik.errors.categoryDescription}</p>
@@ -92,7 +92,7 @@ const AddCategory = () => {
                   name="categoryImage"
                   type="file"
                   onChange={(event) => formik.setFieldValue("categoryImage", event.currentTarget.files[0])}
-                  className="w-full"
+                  className="w-80"
                 />
                 {formik.touched.categoryImage && formik.errors.categoryImage && (
                   <p className="text-red-500 text-sm">{formik.errors.categoryImage}</p>

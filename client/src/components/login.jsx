@@ -29,7 +29,7 @@ export default function LoginPage() {
     validationSchema: loginSchema,
     onSubmit: async (values) => {
       try {
-        const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/login`, values)
+        const { data } = await axios.post(`http://localhost:4000/login`, values)
         if (data) {
           dispatch(loginUser(data))
           router.push("/landing-page")
