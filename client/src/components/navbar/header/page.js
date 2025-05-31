@@ -10,8 +10,10 @@ const CustomNavbar = () => {
   const { cartItems } = useSelector((state) => state.product);
 
   return (
-    <div className="bg-gray-50">
-      <nav className="flex items-center justify-between px-8 py-6 bg-black text-white">
+<nav className="fixed top-0 w-full z-50 bg-white shadow-md">
+
+    <div className="bg-white">
+      <nav className="flex items-center justify-between px-8 py-6 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
         <div className="flex items-center gap-8">
           <div className="flex items-center gap-2 text-2xl font-semibold">
             <svg
@@ -46,7 +48,7 @@ const CustomNavbar = () => {
           <div className="relative hidden md:block w-80">
             <Input
               type="text"
-              className="pl-10 bg-black border border-hidden text-white shadow-none"
+              className="pl-10 border border-hidden text-white "
               placeholder="Search products..."
               contentLeft={
                 <svg
@@ -94,6 +96,7 @@ const CustomNavbar = () => {
         </div>
       </nav>
     </div>
+</nav>
   );
 };
 
