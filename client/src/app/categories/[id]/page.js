@@ -37,7 +37,7 @@ const CategoryPage = () => {
   useEffect(() => {
     fetchCategoryDetails()
     fetchProducts()
-  }, [params.id]) // Added params.id as a dependency
+  }, [params.id]) 
 
   if (error) {
     return (

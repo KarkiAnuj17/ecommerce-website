@@ -1,103 +1,128 @@
+
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import React from 'react';
-import { FaFacebook, FaInstagram } from 'react-icons/fa';
-import { FaXTwitter } from 'react-icons/fa6';
+import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react';
 
-const FooterNavbar = () => {
+const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
-      <section className="container mx-auto px-4 py-10 text-center">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">Stay Updated</h2>
-          <p className="text-lg text-purple-100 mb-6">
-            Subscribe to our newsletter and get 20% off your first order
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <Input
-              placeholder="Enter your email"
-              className="bg-white border-0 text-black flex-1"
-              type="email"
-              aria-label="Email address"
-            />
-            <Button className="bg-white text-purple-600 hover:bg-gray-100">
-              Subscribe
-            </Button>
+    <footer className="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 border-t border-white/10">
+      {/* Newsletter Section */}
+      <div className="border-b border-white/10">
+        <div className="container mx-auto px-4 py-16">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">Stay Updated</h2>
+            <p className="text-lg text-white/70 mb-8">
+              Subscribe to our newsletter and get 20% off your first order
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <Input
+                placeholder="Enter your email"
+                className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-purple-400 flex-1"
+                type="email"
+                aria-label="Email address"
+              />
+              <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold px-6">
+                Subscribe
+              </Button>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Navigation Section */}
-<nav className="container mx-auto px-7 py-8 flex flex-col md:flex-row md:flex-wrap items-start md:items-start justify-center gap-y-10 md:gap-x-20 text-sm text-white text-left">
-        <div className="flex flex-col ">
-          <p className="font-semibold text-base">Shop</p>
-          <a href="#">Coupons</a>
-          <a href="#">Money-back Guarantee</a>
-          <a href="#">Buying Help</a>
-        </div>
-        <div className="flex flex-col gap-1">
-          <p className="font-semibold text-base">Sell</p>
-          <a href="#">Sell on Website</a>
-          <a href="#">Affiliates</a>
-          <a href="#">Learn to Sell</a>
-          <a href="#">Forums</a>
-        </div>
-         <div className="flex flex-col gap-1">
-          <p className="font-semibold text-base">Stay Connected</p>
-          <div className="flex gap-4 text-xl">
-            <a
-              href="https://www.facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-            >
-              <FaFacebook />
-            </a>
-            <a
-              href="https://www.instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-            >
-              <FaInstagram />
-            </a>
-            <a
-              href="https://www.twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Twitter"
-            >
-              <FaXTwitter />
-            </a>
+      {/* Main Footer Content */}
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Company Info */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg"></div>
+              <span className="text-xl font-bold text-white">TechStore</span>
+            </div>
+            <p className="text-white/70 leading-relaxed">
+              Your premium destination for cutting-edge technology and innovative products.
+            </p>
+            <div className="flex gap-4">
+              <Button variant="ghost" size="sm" className="text-white/60 hover:text-purple-400 hover:bg-white/10 rounded-full w-10 h-10 p-0">
+                <Facebook className="w-4 h-4" />
+              </Button>
+              <Button variant="ghost" size="sm" className="text-white/60 hover:text-purple-400 hover:bg-white/10 rounded-full w-10 h-10 p-0">
+                <Instagram className="w-4 h-4" />
+              </Button>
+              <Button variant="ghost" size="sm" className="text-white/60 hover:text-purple-400 hover:bg-white/10 rounded-full w-10 h-10 p-0">
+                <Twitter className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+
+          {/* Shop Links */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-white text-lg">Shop</h3>
+            <ul className="space-y-2">
+              {['Products', 'Categories', 'Deals', 'New Arrivals', 'Best Sellers'].map((link) => (
+                <li key={link}>
+                  <a href="#" className="text-white/70 hover:text-purple-400 transition-colors">
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Support Links */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-white text-lg">Support</h3>
+            <ul className="space-y-2">
+              {['Help Center', 'Shipping Info', 'Returns', 'Size Guide', 'Contact Us'].map((link) => (
+                <li key={link}>
+                  <a href="#" className="text-white/70 hover:text-purple-400 transition-colors">
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-white text-lg">Contact</h3>
+            <div className="space-y-3">
+              <div className="flex items-center gap-3 text-white/70">
+                <MapPin className="w-4 h-4 text-purple-400" />
+                <span className="text-sm">123 Tech Street, Digital City</span>
+              </div>
+              <div className="flex items-center gap-3 text-white/70">
+                <Phone className="w-4 h-4 text-purple-400" />
+                <span className="text-sm">+1 (555) 123-4567</span>
+              </div>
+              <div className="flex items-center gap-3 text-white/70">
+                <Mail className="w-4 h-4 text-purple-400" />
+                <span className="text-sm">hello@techstore.com</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="flex flex-col gap-1">
-          <p className="font-semibold text-base">Help</p>
-          <a href="#">Help Center</a>
-          <a href="#">Privacy Settings</a>
-        </div>
-       
-      </nav>
+      </div>
 
-     
-      <div className="border-t border-purple-300 py-4 text-center text-sm">
-        <div className="flex justify-center flex-wrap gap-6">
-          <a href="#" className="hover:underline">
-            © 2025 YourCompany
-          </a>
-          <a href="#" className="hover:underline">
-            Terms of Service
-          </a>
-          <a href="#" className="hover:underline">
-            Privacy Policy
-          </a>
-          <a href="#" className="hover:underline">
-            Cookie Policy
-          </a>
+      {/* Bottom Bar */}
+      <div className="border-t border-white/10">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-white/60 text-sm">
+              © 2025 TechStore. All rights reserved.
+            </p>
+            <div className="flex gap-6 text-sm">
+              {['Terms of Service', 'Privacy Policy', 'Cookie Policy'].map((link) => (
+                <a key={link} href="#" className="text-white/60 hover:text-purple-400 transition-colors">
+                  {link}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </footer>
   );
 };
 
-export default FooterNavbar;
+export default Footer;

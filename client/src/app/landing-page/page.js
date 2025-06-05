@@ -1,84 +1,85 @@
-import CustomNavbar from '@/components/navbar/header/page';
 import React from 'react';
-import FooterNavbar from '@/components/navbar/footer/page';
-import Image from 'next/image';
-import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Star, Zap, Shield, Truck } from "lucide-react";
+import Link from 'next/link';
+import CustomNavbar from '@/components/navbar/header/page';
 import ProductList from '../admin/add-product/product-list';
-import CategoriesPage from '../admin/categories/categories-list';
 
-
-const LandingPage = () => {
- 
+const LandingHero = () => {
   return (
-    <div className="flex flex-col pt-20">
-      <CustomNavbar />,
-       <div className="w-[1000px] max-w-7xl mx-auto my-8">
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-slate-900 to-slate-800">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl"></div>
+    <div>
+      <CustomNavbar/>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 pt-20">
+      <div className="container mx-auto px-4 py-16">
+        <div className="relative overflow-hidden rounded-2xl bg-black/20 backdrop-blur-sm border border-white/10 mb-16">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
 
-        <div className="relative flex flex-col md:flex-row items-center">
-          <div className="md:w-2/5 p-6 flex justify-center">
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-amber-400/20 to-orange-500/20 rounded-xl blur-md group-hover:blur-lg transition-all duration-300"></div>
-              <Image
-                src="/exclusive.png"
-                width={300}
-                height={300}
-                alt="ChronoEdge Watch"
-                className="relative z-10 filter brightness-110 drop-shadow-xl group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                LIMITED
+          <div className="relative flex flex-col lg:flex-row items-center p-8 lg:p-12">
+            <div className="lg:w-2/5 flex justify-center mb-8 lg:mb-0">
+              <div className="relative group">
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-xl blur-md group-hover:blur-lg transition-all duration-300"></div>
+                <div className="relative z-10 w-80 h-80 bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                  <span className="text-white/60 text-lg">Exclusive Product</span>
+                </div>
+                <div className="absolute -top-3 -right-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg animate-pulse">
+                  LIMITED
+                </div>
               </div>
             </div>
-          </div>
-          <div className="md:w-3/5 p-8 text-white">
-            <div className="space-y-4">
+            
+            <div className="lg:w-3/5 text-white space-y-6">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold leading-tight">
+                <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-4">
                   Infinite Precision:
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">
-                    {" "}
-                    Own the Moment
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
+                    {" "}Own the Moment
                   </span>
-                </h2>
-                <div className="h-1 w-16 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full mt-3"></div>
-                <p className="text-slate-300 mt-3">
+                </h1>
+                <div className="h-1 w-20 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full mb-4"></div>
+                <p className="text-xl text-white/80 leading-relaxed">
                   Elevate every second with ChronoEdge - limited stock of the timepiece that defines timeless style!
                 </p>
               </div>
 
               <div className="flex items-center gap-4">
-                <span className="text-2xl font-bold">$2,499</span>
-                <span className="text-slate-400 line-through">$3,299</span>
+                <span className="text-3xl font-bold text-white">$2,499</span>
+                <span className="text-xl text-white/60 line-through">$3,299</span>
+                <div className="bg-red-500/20 text-red-300 px-3 py-1 rounded-full text-sm font-semibold">
+                  24% OFF
+                </div>
               </div>
 
-              <div className="flex flex-wrap gap-4 items-center">
-                <Button className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black font-semibold px-6 py-2 rounded-full shadow-lg transition-all duration-300 hover:shadow-amber-500/25">
-                  BUY NOW
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-
-                <div className="flex items-center gap-2 text-sm text-slate-300">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="/cart">
+                  <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold px-8 py-3 text-lg rounded-full shadow-lg transition-all duration-300 hover:shadow-purple-500/25">
+                    BUY NOW
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+                
+                <div className="flex items-center gap-2 text-white/80">
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                   <span>Only 12 left in stock</span>
                 </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+                <span className="text-white/80">(4.9/5 from 2,847 reviews)</span>
               </div>
             </div>
           </div>
         </div>
+      <ProductList/>
       </div>
     </div>
-    <div className="m-3 p-8 items-end justify-end w-full">
-    <div className="flex ">
     </div>
-    <ProductList/>
-    </div>
-      <FooterNavbar/>
-    </div>    
   );
 };
 
-export default LandingPage;
+export default LandingHero;
