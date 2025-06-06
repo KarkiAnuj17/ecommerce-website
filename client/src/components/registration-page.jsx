@@ -66,7 +66,7 @@ const RegistrationPage = () => {
   }
 
   return (
-    <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-gradient-to-r from-purple-500 via-pink-500 to-pink-400">
+    <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <div className="hidden lg:flex items-center justify-center p-12 text-white relative overflow-hidden">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -76,7 +76,7 @@ const RegistrationPage = () => {
         >
           <div className="flex items-center mb-12">
             <Icons.logo className="w-12 h-12 mr-4" />
-            <h1 className="text-5xl font-bold">LuxeMarket</h1>
+            <h1 className="text-5xl  font-bold">LuxeMarket</h1>
           </div>
           <p className="text-3xl font-semibold mb-4">Premium Shopping<br /><span className="text-white/70">Experience</span></p>
           <p className="text-lg text-white/70 mb-8">Join LuxeMarket, the exclusive marketplace where quality meets style. Create an account and start your luxury journey.</p>

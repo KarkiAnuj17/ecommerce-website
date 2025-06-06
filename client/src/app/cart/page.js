@@ -35,7 +35,7 @@ const CartPage = () => {
   return (
     <div>
       <CustomNavbar/>
-<div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 pt-20">
+<div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 pt-20 ">
       <div className="bg-black/20 backdrop-blur-sm border-b border-white/10">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
@@ -44,7 +44,6 @@ const CartPage = () => {
           </div>
         </div>
       </div>
-
       <div className="container mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-4">
@@ -63,7 +62,6 @@ const CartPage = () => {
                         />                       
                         </div>
                       </div>
-
                       <div className="flex-1 space-y-2">
                         <div className="flex justify-between items-start">
                           <div>
@@ -84,7 +82,6 @@ const CartPage = () => {
                             <X className="w-4 h-4" />
                           </Button>
                         </div>
-
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                           <div className="flex items-center gap-3">
                             <span className="text-white/80 text-sm">Quantity:</span>
@@ -108,7 +105,6 @@ const CartPage = () => {
                               </Button>
                             </div>
                           </div>
-
                           <div className="text-right">
                             {item.discount > 0 && (
                               <p className="text-white/60 text-sm line-through">

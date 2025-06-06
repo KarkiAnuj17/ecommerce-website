@@ -40,16 +40,16 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen grid lg:grid-cols-2">
-      <div className="hidden lg:flex flex-col justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-purple-200 px-12 py-10 gap-8">
-        <div className="flex items-center gap-3 text-3xl font-bold tracking-tight">
-          <svg className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+      <div className="hidden lg:flex flex-col justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 px-12 py-10 gap-8">
+        <div className="flex items-center text-white gap-3 text-3xl font-bold tracking-tight">
+          <svg className="h-7 w-7 " fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
             <polyline points="9 22 9 12 15 12 15 22" />
           </svg>
           LuxeMarket
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 text-white">
           <h1 className="text-4xl font-bold">Premium Shopping Experience</h1>
           <p className="text-purple-300 text-sm">
             Discover the finest deals in style. LuxeMarket brings you quality, security, and elegance—all in one place.
@@ -75,7 +75,7 @@ export default function LoginPage() {
             title: "Verified Sellers",
             desc: "Shop confidently from our curated list of trusted vendors",
           }].map((feature, i) => (
-            <div key={i} className="flex items-start gap-4 border border-purple-500/30 rounded-xl p-4 backdrop-blur-sm bg-white/5 hover:bg-white/10 transition">
+            <div key={i} className="flex items-start gap-4 border text-white border-purple-500/30 rounded-xl p-4 backdrop-blur-sm bg-white/5 hover:bg-white/10 transition">
               <div className="p-2 border border-purple-500/30 rounded-full">
                 {feature.icon}
               </div>
@@ -88,7 +88,6 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Right section (login form) */}
       <div className="flex items-center justify-center p-6 bg-white dark:bg-slate-900">
         <div className="w-full max-w-md space-y-6 bg-white/10 dark:bg-white/5 border border-white/20 backdrop-blur-md rounded-xl p-8 shadow-xl">
           <div className="text-center">

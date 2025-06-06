@@ -4,6 +4,7 @@ import { ArrowRight, Star, Zap, Shield, Truck } from "lucide-react";
 import Link from 'next/link';
 import CustomNavbar from '@/components/navbar/header/page';
 import ProductList from '../admin/add-product/product-list';
+import Image from 'next/image';
 
 const LandingHero = () => {
   return (
@@ -20,7 +21,14 @@ const LandingHero = () => {
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-xl blur-md group-hover:blur-lg transition-all duration-300"></div>
                 <div className="relative z-10 w-80 h-80 bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                  <span className="text-white/60 text-lg">Exclusive Product</span>
+                  <span className="text-white/60 text-lg">
+                  <Image
+                              src={'/exclusive.png'}
+                              alt = "exclusive"
+                              layout="fill"
+                              objectFit="cover"
+                              className="cursor-pointer opacity-80 hover:opacity-100 transition-opacity duration-300"
+                            /></span>
                 </div>
                 <div className="absolute -top-3 -right-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg animate-pulse">
                   LIMITED

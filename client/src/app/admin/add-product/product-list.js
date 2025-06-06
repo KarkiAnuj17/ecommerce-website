@@ -67,7 +67,7 @@ const ProductList = () => {
   }
 
   return (
-    <div className="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-16">
+    <div className="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900  rounded-xl py-16">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-white mb-4">Our Products</h2>

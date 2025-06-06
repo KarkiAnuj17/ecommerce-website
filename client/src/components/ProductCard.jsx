@@ -5,11 +5,12 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Heart } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { useDispatch } from "react-redux"
-import { addToCart } from "@/redux/reducerSlices/productSlice"
+import { useDispatch, useSelector } from "react-redux"
+import { addToCart, addToFavorite } from "@/redux/reducerSlices/productSlice"
 
 export function ProductCard({ product }) {
-  const [isFavorite, setIsFavorite] = useState(false)
+  const favorites = useSelector(state => state.product.favoritesItem)
+  const isFavorite = favorites.some(item => item._id === product._id)
   const dispatch = useDispatch()
   const router = useRouter()
 
@@ -22,7 +23,7 @@ export function ProductCard({ product }) {
   }
 
   const toggleFavorite = () => {
-    setIsFavorite((prev) => !prev)
+    dispatch(addToFavorite(product))
   }
 
   const discountPrice = product.productPrice-(product.productPrice* product.discount / 100).toFixed(2)

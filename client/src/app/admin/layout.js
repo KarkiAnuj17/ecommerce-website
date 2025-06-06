@@ -1,23 +1,21 @@
-import { Sidebar, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import React from "react";
+"use client"
 
-const AdminLayout = ({ children }) => {
+import { AdminSidebar } from "@/components/adminSidebar"
+import CustomNavbar from "@/components/navbar/header/page"
+import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar"
+
+export default function AdminLayout({ children }) {
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen">
-        {/* Sidebar with fixed width */}
-        <div className="w-[250px]">
-          <Sidebar />
-        </div>
-
-        {/* Main content with max width and margin */}
-        <main className="flex-1 max-w-5xl mx-auto p-6 bg-background text-foreground">
+      <AdminSidebar/>
+      <CustomNavbar/>
+      <SidebarInset>
+        <header className="flex h-16 items-center gap-4 border-b  px-6">
           <SidebarTrigger />
-          {children}
-        </main>
-      </div>
+          <div className="flex-1" />
+        </header>
+        <main className="flex-1">{children}</main>
+      </SidebarInset>
     </SidebarProvider>
-  );
-};
-
-export default AdminLayout;
+  )
+}

@@ -1,5 +1,4 @@
 "use client"
-
 import CustomNavbar from "@/components/navbar/header/page"
 import { ProductCard } from "@/components/ProductCard"
 import axios from "axios"
