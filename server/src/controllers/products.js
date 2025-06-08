@@ -23,4 +23,18 @@ const getProductById = async (req, res) => {
 }catch(err){
     res.send("sth went wrong")
 }}
-module.exports ={addNewProduct,getAllProduct,getProductById}
+const updateProductById = async (req, res) => {
+  try{
+    const data =await Product.findByIdAndUpdate(req.params.productId,req.body)
+    res.send(data)
+}catch(err){
+    res.send("sth went wrong")
+}}
+const deleteProductById = async (req, res) => {
+  try{
+    const data =await Product.findByIdAndDelete(req.params.productId)
+    res.send(data)
+}catch(err){
+    res.send("sth went wrong")
+}}
+module.exports ={addNewProduct,getAllProduct,getProductById,deleteProductById,updateProductById}

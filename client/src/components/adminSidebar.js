@@ -67,7 +67,7 @@ export function AdminSidebar() {
                 <SidebarMenuSub>
                   <SidebarMenuSubItem>
                     <SidebarMenuSubButton asChild isActive={isActive("/admin/products")}>
-                      <Link href="/admin/products">All Products</Link>
+                      <Link href="/admin/all-product">All Products</Link>
                     </SidebarMenuSubButton>
                   </SidebarMenuSubItem>
                   <SidebarMenuSubItem>
