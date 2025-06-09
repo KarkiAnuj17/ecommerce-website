@@ -10,7 +10,16 @@ const addNewProduct = async (req, res) => {
 }
 const getAllProduct = async (req, res) => {
   try{
-    const data =await Product.find()
+    const { sort } = req.query;
+    let sortOption = {};
+    
+    if (sort === 'asc') {
+      sortOption.productPrice = 1; 
+    } else if (sort === 'desc') {
+      sortOption.productPrice = -1;
+    }
+    
+    const data = await Product.find().sort(sortOption);
     res.send(data)
 }catch(err){
     res.send("sth went wrong")
