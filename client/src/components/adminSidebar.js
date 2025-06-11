@@ -1,7 +1,7 @@
 "use client"
-import Link from "next/link"
+import React, { useState } from "react"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, Package, ShoppingCart, Users, Settings, Layers, BarChart3, LogOut } from "lucide-react"
+import { LayoutDashboard, Package, ShoppingCart, Users, Settings, Layers, BarChart3, LogOut, ChevronDown, ChevronRight } from "lucide-react"
 
 import {
   Sidebar,
@@ -19,18 +19,20 @@ import {
   SidebarMenuSubItem,
   SidebarRail,
 } from "@/components/ui/sidebar"
+import Link from "next/link"
 
 export function AdminSidebar() {
   const pathname = usePathname()
+  const [isProductSubmenuOpen, setProductSubmenuOpen] = useState(false)
 
-  const isActive = (path) => {
-    return pathname === path
-  }
+  const isActive = (path) => pathname === path
+
+  const toggleProductSubmenu = () => setProductSubmenuOpen((prev) => !prev)
 
   return (
-    <Sidebar >
+    <Sidebar>
       <SidebarHeader>
-        <div className="flex items-center gap-2 pt-30">
+        <div className="flex items-center gap-2 ">
           <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary">
             <ShoppingCart className="h-4 w-4 text-primary-foreground" />
           </div>
@@ -55,27 +57,26 @@ export function AdminSidebar() {
               </SidebarMenuItem>
 
               <SidebarMenuItem>
-                <SidebarMenuButton
-                  asChild
-                  isActive={isActive("/admin/products") || isActive("/admin/products/add-product")}
-                >
-                  <Link href="/admin/products">
-                    <Package className="h-4 w-4" />
-                    <span>Products</span>
-                  </Link>
+                <SidebarMenuButton onClick={toggleProductSubmenu} isActive={isActive("/admin/products") || isActive("/admin/products/add-product")}>
+                  <Package className="h-4 w-4" />
+                  <span>Products</span>
+                  {isProductSubmenuOpen ? <ChevronDown className="ml-auto h-4 w-4" /> : <ChevronRight className="ml-auto h-4 w-4" />}
                 </SidebarMenuButton>
-                <SidebarMenuSub>
-                  <SidebarMenuSubItem>
-                    <SidebarMenuSubButton asChild isActive={isActive("/admin/products")}>
-                      <Link href="/admin/all-product">All Products</Link>
-                    </SidebarMenuSubButton>
-                  </SidebarMenuSubItem>
-                  <SidebarMenuSubItem>
-                    <SidebarMenuSubButton asChild isActive={isActive("/admin/products/add-product")}>
-                      <Link href="/admin/add-product">Add Product</Link>
-                    </SidebarMenuSubButton>
-                  </SidebarMenuSubItem>
-                </SidebarMenuSub>
+
+                {isProductSubmenuOpen && (
+                  <SidebarMenuSub>
+                    <SidebarMenuSubItem>
+                      <SidebarMenuSubButton asChild isActive={isActive("/admin/products")}>
+                        <Link href="/admin/all-product">All Products</Link>
+                      </SidebarMenuSubButton>
+                    </SidebarMenuSubItem>
+                    <SidebarMenuSubItem>
+                      <SidebarMenuSubButton asChild isActive={isActive("/admin/products/add-product")}>
+                        <Link href="/admin/add-product">Add Product</Link>
+                      </SidebarMenuSubButton>
+                    </SidebarMenuSubItem>
+                  </SidebarMenuSub>
+                )}
               </SidebarMenuItem>
 
               <SidebarMenuItem>

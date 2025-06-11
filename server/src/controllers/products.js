@@ -12,7 +12,6 @@ const getAllProduct = async (req, res) => {
   try{
     const { sort } = req.query;
     let sortOption = {};
-    
     if (sort === 'asc') {
       sortOption.productPrice = 1; 
     } else if (sort === 'desc') {

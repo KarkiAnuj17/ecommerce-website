@@ -1,103 +1,180 @@
-'use client';
-import React from "react";
-import { Input, Button } from "@nextui-org/react";
-import { CiHeart } from "react-icons/ci";
-import { FiShoppingCart } from "react-icons/fi";
-import { useSelector } from "react-redux";
-import Link from "next/link";
+"use client"
+
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Heart, ShoppingCart, Search, Home, LogOut, User, Settings } from "lucide-react"
+import { useSelector, useDispatch } from "react-redux"
+import { logoutUser } from "@/redux/reducerSlices/userSlice"
+import Link from "next/link"
 
 const CustomNavbar = () => {
-  const { cartItems } = useSelector((state) => state.product);
+  const dispatch = useDispatch()
+  const { cartItems } = useSelector((state) => state.product)
+  const { isAuthenticated, user } = useSelector((state) => state.user)
+
+  const handleLogout = () => {
+    localStorage.removeItem("token")
+    localStorage.removeItem("user")
+    dispatch(logoutUser())
+    window.location.href = "/"
+  }
+
+  const getInitials = (name) => {
+    return name
+      .split(" ")
+      .map((word) => word[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2)
+  }
+
+  const displayName = user?.name || user?.fullName || user?.email?.split("@")[0] || "User"
 
   return (
-<nav className="fixed top-0 w-full z-50 bg-white shadow-md">
-
-    <div className="bg-white">
-      <nav className="flex items-center justify-between px-8 py-6 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
-        <div className="flex items-center gap-8">
-          <div className="flex items-center gap-2 text-2xl font-semibold">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-6 w-6"
-            >
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-              <polyline points="9 22 9 12 15 12 15 22" />
-            </svg>
-            <Link href="/landing-page">LuxeMarket</Link>
+    <nav className="fixed top-0 w-full z-50 bg-white shadow-md">
+      <div className="bg-white">
+        <nav className="flex items-center justify-between px-8 py-6 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
+          <div className="flex items-center gap-8">
+            <div className="flex items-center gap-2 text-2xl font-semibold">
+              <Home className="h-6 w-6" />
+              <Link href="/landing-page" className="hover:text-purple-200 transition-colors">
+                LuxeMarket
+              </Link>
+            </div>
+            <div className="hidden md:flex gap-6">
+              <Link href="/new" className="text-white hover:text-purple-200 transition-colors">
+                New
+              </Link>
+              <Link href="/deals" className="text-white hover:text-purple-200 transition-colors">
+                Deals
+              </Link>
+              <Link href="/contact" className="text-white hover:text-purple-200 transition-colors">
+                Help & Contact
+              </Link>
+            </div>
           </div>
-          <div className="hidden md:flex gap-6">
-            <Link href="/new" className="text-white">
-              New
-            </Link>
-            <Link href="/deals" className="text-white">
-              Deals
-            </Link>
-            <Link href="/contact" className="text-white">
-              Help & Contact
-            </Link>
-          </div>
-        </div>
 
-        <div className="flex items-center gap-6">
-          <div className="relative hidden md:block w-80">
-            <Input
-              type="text"
-              className="pl-10 border border-hidden text-white "
-              placeholder="Search products..."
-              contentLeft={
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-gray-400 ml-3"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+          <div className="flex items-center gap-6">
+            <div className="relative hidden md:block w-80">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Input
+                type="text"
+                className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-gray-300 focus:bg-white/20"
+                placeholder="Search products..."
+              />
+            </div>
+
+            {isAuthenticated && (
+              <>
+                <Link
+                  href="/favourites"
+                  className="flex items-center gap-2 text-white hover:text-purple-200 transition-colors"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M21 21l-4.35-4.35M16.75 10a6.75 6.75 0 11-13.5 0 6.75 6.75 0 0113.5 0z"
-                  />
-                </svg>
-              }
-            />
-          </div>
+                  <Heart className="h-5 w-5" />
+                  <span className="hidden sm:inline">Favourites</span>
+                </Link>
 
-          <Link href="/favourites" className="flex items-center gap-2 text-white">
-            <CiHeart className="h-6 w-6" />
-            Favourites
-          </Link>
-
-          <Link href="/cart" className="relative flex items-center gap-2 text-white">
-            {cartItems.length > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
-                {cartItems.length}
-              </span>
+                <Link
+                  href="/cart"
+                  className="relative flex items-center gap-2 text-white hover:text-purple-200 transition-colors"
+                >
+                  {cartItems.length > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                      {cartItems.length}
+                    </span>
+                  )}
+                  <ShoppingCart className="h-5 w-5" />
+                  <span className="hidden sm:inline">Cart</span>
+                </Link>
+              </>
             )}
-            <FiShoppingCart className="h-6 w-6" />
-            Cart
-          </Link>
 
-          <Link href="/login">
-            <Button variant="outline" className="text-sm text-white border-white">
-              Sign in
-            </Button>
-          </Link>
+            {isAuthenticated ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="relative h-10 w-10 rounded-full p-0 hover:bg-white/10">
+                    <Avatar className="h-10 w-10 border-2 border-white/20 hover:border-white/40 transition-colors">
+                      <AvatarImage
+                        src={user?.avatar || `https://i.pravatar.cc/150?u=${user?.email}`}
+                        alt={displayName}
+                      />
+                      <AvatarFallback className="bg-purple-600 text-white font-semibold">
+                        {getInitials(displayName)}
+                      </AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-64" align="end" forceMount>
+                  <DropdownMenuLabel className="font-normal">
+                    <div className="flex flex-col space-y-2">
+                      <div className="flex items-center gap-3">
+                        <Avatar className="h-12 w-12">
+                          <AvatarImage
+                            src={user?.avatar || `https://i.pravatar.cc/150?u=${user?.email}`}
+                            alt={displayName}
+                          />
+                          <AvatarFallback className="bg-purple-600 text-white font-semibold">
+                            {getInitials(displayName)}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div className="flex flex-col">
+                          <p className="text-sm font-medium leading-none">{displayName}</p>
+                          <p className="text-xs leading-none text-muted-foreground mt-1">{user?.email}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link href="/profile" className="flex items-center gap-2 cursor-pointer">
+                      <User className="h-4 w-4" />
+                      Profile
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/settings" className="flex items-center gap-2 cursor-pointer">
+                      <Settings className="h-4 w-4" />
+                      Settings
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={handleLogout}
+                    className="flex items-center gap-2 cursor-pointer text-red-600 focus:text-red-600"
+                  >
+                    <LogOut className="h-4 w-4" />
+                    Log out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <div className="flex items-center gap-4">
+                <Link href="/login"
+                    variant="outline"
+                  className="flex items-center gap-2 text-white hover:text-purple-200 transition-colors"
+                  >
+                    Sign in
+                  
+                </Link>
+                <Link href="/register">
+                  <Button className="text-sm bg-white text-slate-900 hover:bg-gray-100">Register</Button>
+                </Link>
+              </div>
+            )}
+          </div>
+        </nav>
+      </div>
+    </nav>
+  )
+}
 
-          <Link href="/register">
-            <Button className="text-sm bg-white text-gray-900">Register</Button>
-          </Link>
-        </div>
-      </nav>
-    </div>
-</nav>
-  );
-};
-
-export default CustomNavbar;
+export default CustomNavbar
