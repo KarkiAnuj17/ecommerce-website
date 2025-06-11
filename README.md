@@ -94,7 +94,7 @@ We welcome your contributions!
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/<your-username>/<your-repo>.git
+   git clone https://github.com/KarkiAnuj17/ecommerce-website.git
    ```
 
 2. **Install dependencies for both client and server:**
