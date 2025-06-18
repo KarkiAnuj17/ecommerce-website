@@ -9,7 +9,7 @@ import { ArrowRight, Star, ShoppingBag, Truck, Shield, Headphones, Heart, Eye } 
 import Image from "next/image"
 import FooterNavbar from "@/components/navbar/footer/page"
 import CustomNavbar from "@/components/navbar/header/page"
-import CategoriesPage from "./admin/categories/categories-list"
+import CategoriesPage from "./categories/categories-list"
 
 
 const Homepage = () => {

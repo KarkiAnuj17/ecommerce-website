@@ -14,21 +14,20 @@ import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import Image from 'next/image';
 
-
-
 const CheckoutPage = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [paymentMethod, setPaymentMethod] = useState("card");
   const [sameAsShipping, setSameAsShipping] = useState(true);
 
   const { cartItems } = useSelector((state)=>state.product);
+  const { email,fullName ,phoneNumber}=useSelector((state)=>state.user)
   const subtotal = cartItems.reduce((sum, item) => sum + item.productPrice * item.quantity, 0);
   const discount = cartItems.reduce((acc, item) => acc + (item.discount / 100) * item.productPrice * item.quantity, 0);
-  const shipping = 9.99;
+  const shipping = 100;
   const tax = (subtotal - discount) * 0.08;
   const total = subtotal - discount + shipping + tax;
 
-  const steps = [
+  const steps = [ 
     { id: 1, title: "Contact", icon: User, completed: currentStep > 1 },
     { id: 2, title: "Shipping", icon: MapPin, completed: currentStep > 2 },
     { id: 3, title: "Payment", icon: Wallet, completed: currentStep > 3 }
@@ -97,23 +96,17 @@ const CheckoutPage = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
+                  <div className='flex flex-col  gap-2'>
                     <Label htmlFor="email" className="text-white/80">Email Address</Label>
-                    <Input 
-                      id="email" 
-                      type="email" 
-                      placeholder="john@example.com"
-                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
-                    />
+                    <span className="bg-white/10 border border-white/20 text-white px-3 py-2 rounded">
+                        {email}
+                    </span>
                   </div>
-                  <div>
+                  <div className='flex flex-col gap-2'>
                     <Label htmlFor="phone" className="text-white/80">Phone Number</Label>
-                    <Input 
-                      id="phone" 
-                      type="tel" 
-                      placeholder="+1 (555) 123-4567"
-                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
-                    />
+                    <span className="bg-white/10 border border-white/20 text-white px-3 py-2 rounded">
+                        {phoneNumber}
+                    </span>
                   </div>
                 </div>
               </CardContent>
@@ -132,22 +125,13 @@ const CheckoutPage = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="firstName" className="text-white/80">First Name</Label>
-                    <Input 
-                      id="firstName" 
-                      placeholder="John"
-                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="lastName" className="text-white/80">Last Name</Label>
-                    <Input 
-                      id="lastName" 
-                      placeholder="Doe"
-                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
-                    />
-                  </div>
+                  <div className='flex flex-col gap-2'>
+                  <Label htmlFor="fullName" className="text-white/80">Full Name</Label>
+                 <span className="bg-white/10 border border-white/20 text-white px-3 py-2 rounded">
+                        {fullName}
+                    </span>
+                </div>
+                 
                 </div>
                 <div>
                   <Label htmlFor="address" className="text-white/80">Street Address</Label>
@@ -293,7 +277,7 @@ const CheckoutPage = () => {
                       </div>
                       <div className="text-right">
                         <p className="font-medium text-white">
-                          ${((item.productPrice * (1 - item.discount / 100)) * item.quantity).toFixed(2)}
+                          Rs {((item.productPrice * (1 - item.discount / 100)) * item.quantity).toFixed(2)}
                         </p>
                       </div>
                     </div>
@@ -305,27 +289,27 @@ const CheckoutPage = () => {
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm text-white/80">
                     <span>Subtotal</span>
-                    <span>${subtotal.toFixed(2)}</span>
+                    <span>Rs {subtotal.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-sm text-green-400">
                     <span>Discount</span>
-                    <span>-${discount.toFixed(2)}</span>
+                    <span>-Rs {discount.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-sm text-white/80">
                     <span className="flex items-center gap-1">
                       <Truck className="w-4 h-4" />
                       Shipping
                     </span>
-                    <span>${shipping.toFixed(2)}</span>
+                    <span>Rs {shipping.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-sm text-white/80">
                     <span>Tax</span>
-                    <span>${tax.toFixed(2)}</span>
+                    <span>Rs {tax.toFixed(2)}</span>
                   </div>
                   <Separator className="bg-white/20" />
                   <div className="flex justify-between font-semibold text-lg text-white">
                     <span>Total</span>
-                    <span>${total.toFixed(2)}</span>
+                    <span>Rs {total.toFixed(2)}</span>
                   </div>
                 </div>
 
@@ -336,7 +320,7 @@ const CheckoutPage = () => {
 
                 <Button className="w-full h-12 text-lg bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
                   <Lock className="w-4 h-4 mr-2" />
-                  Complete Order - ${total.toFixed(2)}
+                  Complete Order - Rs {total.toFixed(2)}
                 </Button>
 
                 <div className="flex justify-center gap-4 pt-4">

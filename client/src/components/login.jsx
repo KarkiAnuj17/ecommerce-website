@@ -8,7 +8,8 @@ import axios from "axios"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useDispatch } from "react-redux"
-import { loginUser } from "@/redux/reducerSlices/userSlice"
+import { toast } from "sonner"
+import { addLoginDetails } from "@/redux/reducerSlices/userSlice"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -28,26 +29,15 @@ export default function LoginPage() {
     onSubmit: async (values) => {
       try {
         const { data } = await axios.post(`http://localhost:4000/login`, values)
-        if (data) {
-          const userData = {
-            email: values.email, 
-            ...data.user, 
-            fullName: data.user?.fullName || data.fullName,
-            id: data.user?.id || data.id,
-          }
-
-          if (data.token) {
-            localStorage.setItem("token", data.token)
-          }
-
-          localStorage.setItem("user", JSON.stringify(userData))
-
-          // Dispatch to Redux with complete user data
-          dispatch(loginUser(userData))
-
-          router.push("/landing-page")
+        if (data?.isLoggedIn) {
+         router.push("/")
+          }  
+          if(data){
+          dispatch(addLoginDetails(data))
         }
-      } catch (error) {
+           toast(data?.message)  
+        }
+       catch (error) {
         console.error("Login error:", error)
       }
     },

@@ -10,7 +10,7 @@ export default function AdminLayout({ children }) {
       <div className="fixed top-0 left-0 h-full z-50">
           <AdminSidebar />
         </div>      
-         <div className="fixed top-0 left-0 right-0 z-40">
+        <div className="fixed top-0 left-0 right-0 z-40">
             <CustomNavbar />
           </div>
       <SidebarInset>

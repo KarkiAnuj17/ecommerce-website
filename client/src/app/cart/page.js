@@ -12,6 +12,7 @@ import Image from 'next/image';
 
 const CartPage = () => {
   const { cartItems } = useSelector((state) => state.product);
+  const { fullName,}= useSelector((state)=>state.user)
   const dispatch = useDispatch();
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.productPrice * item.quantity, 0);
@@ -108,11 +109,11 @@ const CartPage = () => {
                           <div className="text-right">
                             {item.discount > 0 && (
                               <p className="text-white/60 text-sm line-through">
-                                ${(item.productPrice * item.quantity).toFixed(2)}
+                                Rs {(item.productPrice * item.quantity).toFixed(2)}
                               </p>
                             )}
                             <p className="text-xl font-bold text-white">
-                              ${((item.productPrice * (1 - item.discount / 100)) * item.quantity).toFixed(2)}
+                              Rs {((item.productPrice * (1 - item.discount / 100)) * item.quantity).toFixed(2)}
                             </p>
                           </div>
                         </div>
@@ -144,24 +145,24 @@ const CartPage = () => {
                 <div className="space-y-4">
                   <div className="flex justify-between text-white/80">
                     <span>Subtotal ({cartItems.length} items)</span>
-                    <span>${subtotal.toFixed(2)}</span>
+                    <span>Rs {subtotal.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-green-400">
                     <span>Discount</span>
-                    <span>-${discount.toFixed(2)}</span>
+                    <span>-Rs {discount.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-white/80">
                     <span>VAT (15%)</span>
-                    <span>${vat.toFixed(2)}</span>
+                    <span>Rs {vat.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-white/80">
                     <span>Shipping</span>
-                    <span>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
+<span>{shipping === 0 ? 'Free' : `Rs${shipping.toFixed(2)}`}</span>
                   </div>
                   <div className="border-t border-white/20 pt-4">
                     <div className="flex justify-between text-xl font-bold text-white">
                       <span>Total</span>
-                      <span>${total.toFixed(2)}</span>
+                      <span>Rs{total.toFixed(2)}</span>
                     </div>
                   </div>
                 </div>

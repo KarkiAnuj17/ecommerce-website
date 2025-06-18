@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
   CardContent,
-} from "@/components/ui/card" // ✅ CardContent imported
+} from "@/components/ui/card"
 
 const AddCategory = () => {
   const formik = useFormik({

@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState=  {
   cartItems: [],
-  favoritesItem:[]
+  favoritesItem:[],
+  
 }
 export const productSlice = createSlice({
   name: 'product',
@@ -59,7 +60,9 @@ export const productSlice = createSlice({
       } else {
         state.favoritesItem.push(action.payload)
       }
-    }
+    },
+    
+
   },
 })
 export const { addToCart, removeFromCart,clearAllCartItems,increment,decrement,addToFavorite} = productSlice.actions
